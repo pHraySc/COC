@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="core" extends="struts-default" namespace="/core">
+		<interceptors>
+			<!-- 登录拦截器 -->
+			<interceptor name="loginCheck" class="com.ailk.biapp.ci.interceptor.CILoginCheckInterceptor"></interceptor>
+			<!-- action日志拦截器 -->
+			<interceptor name="ciLog" class="com.ailk.biapp.ci.interceptor.CILogInterceptor"></interceptor>
+            <interceptor-stack name="sysDefaultStack">
+                <interceptor-ref name="loginCheck"></interceptor-ref>
+                <interceptor-ref name="ciLog"></interceptor-ref>
+                <!-- struts2 default interceptor stack -->
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+		</interceptors>
+		<!-- set the app interceptor -->
+        <default-interceptor-ref name="sysDefaultStack"></default-interceptor-ref>
+		<global-results>
+			<result name="index">/aibi_ci/index.jsp</result>
+			<result name="noauth" type="redirect">/aibi_ci/relogin.jsp</result>
+			<result name="exception">/aibi_ci/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="exception"/>
+		</global-exception-mappings>
+		<!-- 新版客户群集市 start-->		
+		<action name="ciCustomerMarketAction" class="com.ailk.biapp.ci.core.action.CiCustomerMarketAction">
+			<result name="customerMarketIndex">/aibi_ci/core/pages/customGroup/customMarketIndex.jsp</result>
+			<result name="customerMarketList">/aibi_ci/core/pages/customGroup/customMarketList.jsp</result>
+		</action>
+		<!-- 新版客户群集市 end-->		
+		<!-- 营销导航主页begin -->
+		<action name="ciMainAction" class="com.ailk.biapp.ci.core.action.CiMainAction">
+			<result name="marketMain">/aibi_ci/core/pages/main.jsp</result>
+			<result name="customGroupDetailTip">/aibi_ci/core/pages/customGroup/customGroupDetailTip.jsp</result>
+			<result name="labelDetailTip">/aibi_ci/core/pages/label/labelDetailTip.jsp</result>
+			<result name="shopCart">/aibi_ci/core/pages/shopCart/shopCart.jsp</result>
+			<result name="shopCartRuleTable">/aibi_ci/core/pages/shopCart/shopCartRuleTable.jsp</result>
+			<result name="signLabelSettingDialog">/aibi_ci/core/pages/elementSetting/signLabelSettingDialog.jsp</result>
+			<result name="kpiLabelSettingDialog">/aibi_ci/core/pages/elementSetting/kpiLabelSettingDialog.jsp</result>
+			<result name="enumLabelSettingDialog">/aibi_ci/core/pages/elementSetting/enumLabelSettingDialog.jsp</result>
+			<result name="enumLabelSettingList">/aibi_ci/core/pages/elementSetting/enumLabelSettingList.jsp</result>
+			<result name="dateLabelSettingDialog">/aibi_ci/core/pages/elementSetting/dateLabelSettingDialog.jsp</result>
+			<result name="textLabelSettingDialog">/aibi_ci/core/pages/elementSetting/textLabelSettingDialog.jsp</result>
+			<result name="vertLabelSettingDialog">/aibi_ci/core/pages/elementSetting/vertLabelSettingDialog.jsp</result>
+			<result name="customerSettingDialog">/aibi_ci/core/pages/elementSetting/customerSettingDialog.jsp</result>
+			<result name="customerRuleSettingDialog">/aibi_ci/core/pages/elementSetting/customerRuleSettingDialog.jsp</result>
+		</action>
+		<!-- 营销导航主页end -->
+		<!-- 新版我的客户群begin -->
+		<action name="ciCustomerManagerAction" class="com.ailk.biapp.ci.core.action.CiCustomerManagerAction">
+		    <result name="init">/aibi_ci/core/pages/customGroup/customManagerIndex.jsp</result>
+		    <result name="importInit">/aibi_ci/core/pages/customGroup/importInit_new.jsp</result>
+		    <result name="importSuccess">/aibi_ci/core/pages/customGroup/saveSuccessDialog.jsp</result>
+		    <result name="importFail">/aibi_ci/core/pages/customGroup/importFail.jsp</result>
+		    <result name="customManagerList">/aibi_ci/core/pages/customGroup/customManagerList.jsp</result>
+		    <result name="queryGroupInfoList">/aibi_ci/core/pages/customGroup/queryGroupInfoList.jsp</result>
+		    <result name="viewSqlList">/aibi_ci/core/pages/customGroup/viewSqlList.jsp</result>
+		    <result name="showRule">/aibi_ci/core/pages/customGroup/showRule.jsp</result>
+		     <result name="preEdit">/aibi_ci/core/pages/customGroup/customerForm.jsp</result>
+		</action>
+		<!-- 新版我的客户群end -->
+		
+		<!-- 标签集市start -->
+		<action name="labelMarketAction" class="com.ailk.biapp.ci.core.action.LabelMarketAction">
+			<result name="labelIndex">/aibi_ci/core/pages/label/labelTabelIndex.jsp</result>
+			<result name="labelList">/aibi_ci/core/pages/label/labelTabelList.jsp</result>
+		</action>
+		<!-- 标签集市end -->
+
+		<!-- 排行榜 start-->		
+		<action name="ciRankingListAction" class="com.ailk.biapp.ci.core.action.CiRankingListAction">
+			<result name="sysHotLabelRankingIndex">/aibi_ci/core/pages/rankingList/sysHotLabelRankingIndex.jsp</result>
+			<result name="sysHotLabelRankingList">/aibi_ci/core/pages/rankingList/sysHotLabelRankingList.jsp</result>
+			<result name="sysHotCustomRankingIndex">/aibi_ci/core/pages/rankingList/sysHotCustomRankingIndex.jsp</result>
+			<result name="sysHotCustomRankingList">/aibi_ci/core/pages/rankingList/sysHotCustomRankingList.jsp</result>
+			<result name="lastPublishRankLabel">/aibi_ci/core/pages/rankingList/lastPublishRankLabel.jsp</result>
+			<result name="lastUsedCuntom">/aibi_ci/core/pages/rankingList/lastUsedCuntom.jsp</result>
+		</action>
+		<!-- 排行榜 end-->	
+		<!-- 用户关注 start-->
+		<action name="ciUserAttentionAction" class="com.ailk.biapp.ci.core.action.CiUserAttentionAction">
+			<result name="userAttentionIndex">/aibi_ci/core/pages/userAttention/userAttention.jsp</result>
+			<result name="userAttentionCustom">/aibi_ci/core/pages/userAttention/userAttentionCustomList.jsp</result>
+			<result name="userAttentionLabel">/aibi_ci/core/pages/userAttention/userAttentionLabelList.jsp</result>
+		</action>
+		<!-- 用户关注 end-->
+		
+		<!-- 新版客户群操作start -->
+		<action name="customGroupOperateAction" class="com.ailk.biapp.ci.core.action.CustomGroupOperateAction">
+			<result name="customersTrendDetail">/aibi_ci/core/pages/customGroup/customersTrendDetail.jsp</result>
+			<result name="customersTrendTable">/aibi_ci/core/pages/customGroup/customersTrendTable.jsp</result>
+			<result name="customersTrendChartData">/aibi_ci/core/pages/customGroup/customersTrendChart.jsp</result>
+			<result name="recomCustomOrLabel">/aibi_ci/core/pages/customGroup/recomCustomOrLabelDialog.jsp</result>
+			<result name="queryGroupList">/aibi_ci/core/pages/customGroup/queryGroupList.jsp</result>
+		    <result name="pushCustomerGroupSingleInit">/aibi_ci/core/pages/customGroup/pushCustomerGroupSingleInit.jsp</result>
+		</action>
+		<!-- 新版客户群操作start -->
+
+	</package>
+</struts>

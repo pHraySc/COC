@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>	
+	<!-- base jdbc  service-->
+	<bean id="chart_daoService" class="com.asiainfo.biframe.utils.database.spring.DaoService" singleton="false">
+		<!--support multiply datasource-->
+		<property name="jndiName">
+			<value>${JNDI_PREFIX}${JDBC_AIOMNI}</value>
+		</property>		
+	</bean>
+
+	<!-- provide the dictionary and translation service -->
+	<bean id="chart_dicService" class="com.asiainfo.biframe.chart.service.impl.DicServiceImpl" singleton="false">
+		<property name="daoService">
+			<ref local="chart_daoService"/>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>  
+  <beans xmlns="http://www.springframework.org/schema/beans"  
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+        xmlns:jaxws="http://cxf.apache.org/jaxws"  
+        xmlns:soap="http://cxf.apache.org/bindings/soap"  
+        xsi:schemaLocation="  
+ 	 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+ 	 http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd  
+ 	 http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">  
+
+  	<bean id="right_configureProperties" class="com.asiainfo.biframe.privilege.foura.util.ConfigureProperties">
+    	<property name="serverIpAndPort">
+    		<value>10.1.21.173:8081</value>
+    	</property>
+    </bean>
+    
+    <bean id="right_userOperateLogClient" class="com.asiainfo.biframe.privilege.foura.wclient.impl.UserOperateLogClientImpl">
+    	<property name="configureProperties">
+    		<ref bean="right_configureProperties"/>
+    	</property>
+    </bean>
+  	
+    <jaxws:server id="right_userAcctManageWService" serviceClass="com.asiainfo.biframe.privilege.foura.wservice.IUserAccManage" address="/UpdateAppAcctSoap">  
+      <jaxws:serviceBean>  
+          <bean class="com.asiainfo.biframe.privilege.foura.wservice.impl.UserAccManageImpl" > 
+   		  </bean>
+      </jaxws:serviceBean>  
+    </jaxws:server> 
+    
+    <jaxws:server id="right_userGroupQueryWService" serviceClass="com.asiainfo.biframe.privilege.foura.wservice.IRoleQuery" address="/QueryAppRoleSoap">  
+      <jaxws:serviceBean>  
+          <bean class="com.asiainfo.biframe.privilege.foura.wservice.impl.RoleQueryImpl" > 
+   		  </bean>
+      </jaxws:serviceBean>  
+    </jaxws:server>  
+    
+    <jaxws:server id="right_userQueryWService" serviceClass="com.asiainfo.biframe.privilege.foura.wservice.IUserAccQuery" address="/QueryAppAcctSoap">  
+      <jaxws:serviceBean>  
+          <bean class="com.asiainfo.biframe.privilege.foura.wservice.impl.UserAccQueryImpl" > 
+   		  </bean>
+      </jaxws:serviceBean>  
+    </jaxws:server>  
+    
+    <jaxws:server id="right_userGroupMapWService" serviceClass="com.asiainfo.biframe.privilege.foura.wservice.IUserGroupMapService" address="/QueryAppAcctRightSoap">  
+      <jaxws:serviceBean>  
+          <bean class="com.asiainfo.biframe.privilege.foura.wservice.impl.UserGroupMapServiceImpl" > 
+          	<property name="userAdminService">
+   			<ref bean="right_userAdminService"/>
+   			</property>
+   		  </bean>
+      </jaxws:serviceBean>  
+    </jaxws:server> 
+    
+    <jaxws:server id="right_userGroupMapChgWService" serviceClass="com.asiainfo.biframe.privilege.foura.wservice.IUserGroupMapChgService" address="/UpdateAppAcctRoleSoap">  
+      <jaxws:serviceBean>  
+          <bean class="com.asiainfo.biframe.privilege.foura.wservice.impl.UserGroupMapChgServiceImpl" > 
+	         <property name="userAdminService">
+	   			<ref bean="right_userAdminService"/>
+	   		</property>
+	   		<property name="userGroupAdminService">
+	   			<ref bean="right_userGroupAdminService"/>
+	   		</property>
+   		  </bean>
+      </jaxws:serviceBean>  
+    </jaxws:server> 
+    
+     <jaxws:server id="right_userGroupChgWService" serviceClass="com.asiainfo.biframe.privilege.foura.wservice.IUserGroupChgService" address="/UpdateAppRoleSoap">  
+      <jaxws:serviceBean>  
+          <bean class="com.asiainfo.biframe.privilege.foura.wservice.impl.UserGroupChgServiceImpl" > 
+	        <property name="userGroupAdminService">
+   				<ref bean="right_userGroupAdminService"/>
+   			</property>
+   		  </bean>
+      </jaxws:serviceBean>  
+    </jaxws:server> 
+    
+    <jaxws:server id="right_userAcctPwdManageWService" serviceClass="com.asiainfo.biframe.privilege.foura.wservice.IUserAcctPwdManage" address="/UpdateBatchAppAcctPwdSoap">  
+      <jaxws:serviceBean>  
+          <bean class="com.asiainfo.biframe.privilege.foura.wservice.impl.UserAcctPwdManageImpl" > 
+   		  </bean>
+      </jaxws:serviceBean>  
+    </jaxws:server> 
+  </beans> 
+

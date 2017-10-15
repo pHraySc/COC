@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+   generate by rzw
+-->
+<hibernate-mapping>
+    <class name="com.ailk.biapp.ci.entity.CiOperLoginTemp" table="CI_OPER_LOGIN_TEMP">
+        <id name="uniqueId" type="java.lang.String">
+            <column name="UNIQUEID" />
+            <generator class="com.ailk.biapp.ci.util.CiIdentifierGenerator" />
+        </id>
+        <property name="hitTime" type="java.lang.String">
+            <column name="HITTIME" length="20" />
+        </property>
+        <property name="sessionId" type="java.lang.String">
+            <column name="SESSIONID" length="128" />
+        </property>
+        <property name="userId" type="java.lang.String">
+            <column name="USERID" length="32" />
+        </property>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" length="32" />
+        </property>
+        <property name="bassId" type="java.lang.String">
+            <column name="BASSID" length="32" />
+        </property>
+        <property name="operaterType" type="java.lang.String">
+            <column name="OPERATERTYPE" length="32" />
+        </property>
+        <property name="operaterName" type="java.lang.String">
+            <column name="OPERATERNAME" length="32" />
+        </property>
+        <property name="appId" type="java.lang.String">
+            <column name="APPID" length="512" />
+        </property>
+        <property name="appName" type="java.lang.String">
+            <column name="APPNAME" length="512" />
+        </property>
+        <property name="resourceId" type="java.lang.String">
+            <column name="RESOURCEID" length="256" />
+        </property>
+        <property name="extResourceId" type="java.lang.String">
+            <column name="EXTRESOURCEID" length="200" />
+        </property>
+        <property name="resourceName" type="java.lang.String">
+            <column name="RESOURCENAME" length="512" />
+        </property>
+        <property name="resourceType" type="java.lang.String">
+            <column name="RESOURCETYPE" length="32" />
+        </property>
+        <property name="resourcePath" type="java.lang.String">
+            <column name="RESOURCEPATH" length="1024" />
+        </property>
+        <property name="msg" type="java.lang.String">
+            <column name="MSG" length="2000" />
+        </property>
+        <property name="operationResult" type="java.lang.String">
+            <column name="OPERATIONRESULT" length="8" />
+        </property>
+        <property name="logLevel" type="java.lang.String">
+            <column name="LOGLEVEL" length="8" />
+        </property>
+        <property name="tabHeader" type="java.lang.String">
+            <column name="TABHEADER" length="1000" />
+        </property>
+        <property name="clientAddress" type="java.lang.String">
+            <column name="CLIENTADDRESS" length="64" />
+        </property>
+        <property name="serverAddress" type="java.lang.String">
+            <column name="SERVERADDRESS" length="64" />
+        </property>
+        <property name="threadName" type="java.lang.String">
+            <column name="THREADNAME" length="200" />
+        </property>
+        <property name="traffic" type="java.lang.Integer">
+            <column name="TRAFFIC" />
+        </property>
+        <property name="logServerIp" type="java.lang.String">
+            <column name="LOGSERVERIP" length="64" />
+        </property>
+        <property name="logServerPort" type="java.lang.String">
+            <column name="LOGSERVERPORT" length="10" />
+        </property>
+        <property name="thirdDeptId" type="java.lang.String">
+            <column name="THIRD_DEPT_ID" length="32" />
+        </property>
+        <property name="thirdDeptName" type="java.lang.String">
+            <column name="THIRD_DEPT_NAME" length="128" />
+        </property>
+        <property name="secondDeptId" type="java.lang.String">
+            <column name="SECOND_DEPT_ID" length="32" />
+        </property>
+        <property name="secondDeptName" type="java.lang.String">
+            <column name="SECOND_DEPT_NAME" length="128" />
+        </property>
+    </class>
+</hibernate-mapping>

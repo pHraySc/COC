@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+
+    <bean id="download_propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location"><value>classpath:/config/aibi_downloadService/downloadService.properties</value></property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+
+	</bean>
+
+	<bean id="download_daoService" class="com.asiainfo.biframe.utils.database.spring.DaoService" singleton="false">
+		<!--support multi-source -->
+		<property name="jndiName">
+			<value>${JNDI_PREFIX}${JDBC_AIOMNI}</value>
+		</property>
+	</bean>
+
+	<bean id="download_AuthService" class="com.asiainfo.biframe.download.service.impl.AuthServiceImpl">
+	</bean>
+
+	<!--=====================ONLine begin huangchao2============================== -->
+	<bean id="download_defaultOnlineDownloadService" class="com.asiainfo.biframe.download.service.impl.OnlineDownloadServiceImpl" >
+		<property name="daoService">
+			<ref local="download_daoService"/>
+		</property>
+		<property name="newDicService">
+			<ref bean="dimTable_newService"/>
+		</property>
+		<property name="dicService">
+			<ref bean="dimTable_service"/>
+		</property>
+		<property name="defaultJNDI">
+			<value>${JNDI_PREFIX}${JDBC_AIOMNI}</value>
+		</property>
+	</bean>
+
+	<bean id="download_defaultDownloadController" class="com.asiainfo.biframe.download.service.impl.DownloadControllerImpl">
+		<property name="daoService">
+			<ref local="download_daoService"/>
+		</property>
+	</bean>
+	<!--=====================ONLine end huangchao2============================== -->
+
+	<!--=====================OFFLine begin yanghui3============================== -->
+
+	<bean id="download_offLineDownloadDao" class="com.asiainfo.biframe.download.dao.impl.OffLineDownloadDaoImpl" singleton="false">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="download_offLineDownloadService" parent="baseProxy" singleton="false">
+		<property name="target">
+			<bean class="com.asiainfo.biframe.download.service.impl.OffLineDownloadServiceImpl">
+				<property name="offLineDownloadDao">
+					<ref local="download_offLineDownloadDao"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!--###################### AOP begin###################### -->
+	<bean  class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"  singleton="false">
+  	  <property name="beanNames">
+            <list>
+                <value>*OffLineDownloadService</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+			<list>
+				<value>download_offLineDownloadBeforeAdvisor</value>
+				<value>download_offLineDownloadAfterAdvisor</value>
+			</list>
+		</property>
+ 	</bean>
+
+
+	<!-- offlinedownload default implimatation Classes -->
+	<bean id="download_defaultOffLineDownloadService" class="com.asiainfo.biframe.download.service.impl.DefaultOffLineDownloadTempServiceImpl" singleton="false">
+		<property name="offLineDownloadService">
+			<ref bean="download_offLineDownloadService" />
+		</property>
+		<property name="daoService">
+			<ref local="download_daoService"/>
+		</property>
+		<property name="dicService">
+			<ref bean="dimTable_service"/>
+		</property>
+		<property name="newDicService">
+			<ref bean="dimTable_newService"/>
+		</property>
+		<property name="defaultJNDI">
+			<value>${JNDI_PREFIX}${JDBC_AIOMNI}</value>
+		</property>
+	</bean>
+
+	<!-- Advisor pointcut definition for before do download -->
+	<bean id="download_offLineDownloadBeforeAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"  singleton="false">
+		<property name="advice">
+			<ref local="download_offLineDownloadBeforeAdvice"/>
+		</property>
+		<property name="pattern">
+			<value>.*doDownload</value>
+		</property>
+	</bean>
+
+	<!-- Advisor pointcut definition for after do download -->
+	<bean id="download_offLineDownloadAfterAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"  singleton="false">
+		<property name="advice">
+			<ref local="download_offLineDownloadAfterAdvice"/>
+		</property>
+			<property name="pattern">
+			<value>.*doDownload</value>
+		</property>
+	</bean>
+
+	<!-- Advice classes -->
+	<bean id="download_offLineDownloadBeforeAdvice" class="com.asiainfo.biframe.download.service.impl.OffLineDownloadBeforeAdvice"  singleton="false"/>
+	<bean id="download_offLineDownloadAfterAdvice" class="com.asiainfo.biframe.download.service.impl.OffLineDownloadAfterAdvice"  singleton="false"/>
+	<!--###################### AOP end  ######################-->
+
+	<!--###################### quartz ######################-->
+	<bean id="download_offLineDowanloadJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass">
+			 <value>com.asiainfo.biframe.download.service.impl.OffLineScanServiceImpl</value>
+		</property>
+		<property name="jobDataAsMap">
+   		 <map>
+    	  	<entry key="offLineDownloadService">
+    	  		<ref bean="download_offLineDownloadService"/>
+    	  	</entry>
+   		 </map>
+    </property>
+	</bean>
+
+    <bean id="download_taskSumTrigger" class="com.asiainfo.biframe.manager.timertask.BICronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="download_offLineDowanloadJob"/>
+        </property>
+        <property name="cronExpression">
+            <value>0 0/${OFFLINE_SCAN_PERIOD} * * * ?</value>
+        </property>
+    </bean>
+    <bean id="download_quartzScheduler"  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="download_taskSumTrigger" />
+			</list>
+		</property>
+		<!--Set whether to automatically start the scheduler after initialization -->
+		<property name="autoStartup">
+			<value>${OFFLINE_IS_AUTOSTARTUP}</value>
+		</property>
+	</bean>
+
+    <!--###################### quartz end######################-->
+
+	<!--=====================OFFLine begin yanghui3============================== -->
+
+	<bean id="download_localOnlineDownloadService" class="com.asiainfo.biframe.download.service.impl.LocalOnlineDownloadServiceImpl" >
+	</bean>
+
+	<bean id="download_localDownloadController" class="com.asiainfo.biframe.download.service.impl.LocalDownloadControllerImpl">
+	</bean>
+
+	<bean id="download_localOffLineDownloadService" class="com.asiainfo.biframe.download.service.impl.LocalOfflineDownloadServiceImpl" singleton="false">
+	</bean>
+</beans>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CommonConfig>
+	<desc>所有图形默认大小都是300×300，系统自动支持按比例缩放(建议显示区域是正方形，否则会靠左显示)；预定义图形类型包括：steel/feather/ratingMeter/metal/rpm/revenue/kph/vertical/clock/framed/framed2</desc>
+	<ConfigItem>
+		<ConfigName>steel</ConfigName>
+		<ConfigDesc>金属风格的仪表盘</ConfigDesc>
+		<ConfigParam>
+			<ParamName>chart</ParamName>
+			<ParamValue>gaugeOriginX='150' gaugeOriginY='150' bgColor='FFFFFF' baseFontColor='FFFFFF' majorTMNumber='11' majorTMColor='FFFFFF' majorTMHeight='8' minorTMNumber='5' minorTMColor='FFFFFF' minorTMHeight='3' toolTipBorderColor='FFFFFF' toolTipBgColor='333333' gaugeOuterRadius='100' gaugeScaleAngle='270' placeValuesInside='1' gaugeInnerRadius='80%25' annRenderDelay='0' gaugeFillMix='' pivotRadius='10' showPivotBorder='0' pivotFillMix='{CCCCCC},{333333}' pivotFillRatio='50,50' showShadow='0'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>dials</ParamName>
+			<ParamValue>borderColor='FFFFFF' bgColor='000000,CCCCCC,000000' borderAlpha='0' baseWidth='10'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>annotations</ParamName>
+			<ParamValue>&lt;annotationGroup xPos='150' yPos='150' showBelow='1'&gt;&lt;annotation type='circle' xPos='0' yPos='0' radius='145' startAngle='0' endAngle='360' fillColor='CCCCCC,111111' fillPattern='linear' fillAlpha='100,100' fillRatio='50,50' fillAngle='-45' /&gt;&lt;annotation type='circle' xPos='0' yPos='0' radius='120' startAngle='0' endAngle='360' fillColor='111111,cccccc' fillPattern='linear' fillAlpha='100,100' fillRatio='50,50' fillAngle='-45' /&gt;&lt;annotation type='circle' xPos='0' yPos='0' radius='110' startAngle='0' endAngle='360' color='666666' /&gt;&lt;/annotationGroup&gt;</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>styles</ParamName>
+			<ParamValue></ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+	</ConfigItem>
+	<ConfigItem>
+		<ConfigName>feather</ConfigName>
+		<ConfigDesc>简洁风格的仪表盘</ConfigDesc>
+		<ConfigParam>
+			<ParamName>chart</ParamName>
+			<ParamValue>gaugeOriginX='150' gaugeOriginY='150' bgColor='FFFFFF' showLimits='1' baseFontColor='666666' majorTMNumber='11' majorTMColor='666666' majorTMHeight='8' minorTMNumber='5' minorTMColor='666666' minorTMHeight='3' pivotRadius='20' showGaugeBorder='0' gaugeOuterRadius='100' gaugeInnerRadius='90' gaugeScaleAngle='320' displayValueDistance='10' placeValuesInside='1' gaugeFillMix='' pivotFillMix='{F0EFEA}, {BEBCB0}' pivotBorderColor='BEBCB0' pivotfillRatio='80,20' showShadow='0'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>dials</ParamName>
+			<ParamValue>bordercolor='FFFFFF' bgColor='bebcb0, f0efea, bebcb0' borderAlpha='0' baseWidth='10' topWidth='3'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>annotations</ParamName>
+			<ParamValue>&lt;annotationGroup xPos='150' yPos='150' fillRatio='10,125,254' fillPattern='radial'&gt;&lt;annotation type='circle' xPos='0' yPos='0' radius='140' borderColor='bebcb0' fillAsGradient='1' fillColor='f0efea, bebcb0' fillRatio='85,15' /&gt; &lt;annotation type='circle' xPos='0' yPos='0' radius='120' fillColor='bebcb0, f0efea' fillRatio='85,15' /&gt; &lt;annotation type='circle' xPos='0' color='FFFFFF' yPos='0' radius='100' borderColor='f0efea' /&gt; &lt;/annotationGroup&gt;</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>styles</ParamName>
+			<ParamValue></ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+	</ConfigItem>
+	<ConfigItem>
+		<ConfigName>ratingMeter</ConfigName>
+		<ConfigDesc>运动风格的仪表盘(不适合进行分多段(colorRange)进行显示)</ConfigDesc>
+		<ConfigParam>
+			<ParamName>chart</ParamName>
+			<ParamValue>gaugeOuterRadius='140' gaugeInnerRadius='140' showGaugeBorder='0' displayValueDistance='45' bgColor='000000' bgAlpha='100' gaugestartAngle='235' gaugeendAngle='-55' majorTMNumber='11' majorTMThickness='5' majorTMColor='F48900' majorTMHeight='15' minorTMNumber='4' minorTMThickness='2' minorTMColor='FFFFFF' minorTMHeight='13' placeValuesInside='1' baseFontColor='F48900' baseFont='Impact' baseFontSize='18' showShadow='0' pivotRadius='20' pivotFillColor='000000,383836' pivotFillType='linear' pivotFillRatio='50,50' pivotFillAngle='240' annRenderDelay='0'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>dials</ParamName>
+			<ParamValue>color='E70E00' borderColor='E70E00' baseWidth='25' topWidth='1' radius='85'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>annotations</ParamName>
+			<ParamValue></ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>styles</ParamName>
+			<ParamValue>&lt;definition&gt;&lt;style name='pivotGlow' type='glow' color='F48900' blurX='15' blurY='15' alpha='60' /&gt; &lt;style name='circleBlur' type='blur' /&gt; &lt;style name='TTipFont' type='font' color='F48900' bgColor='000000' borderColor='F48900' font='Verdana' size='14' /&gt; &lt;/definition&gt;&lt;application&gt;&lt;apply toObject='PIVOT' styles='pivotGlow' /&gt; &lt;apply toObject='Grp1' styles='circleBlur' /&gt; &lt;apply toObject='TOOLTIP' styles='TTipFont' /&gt; &lt;/application&gt;</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+	</ConfigItem>
+	<ConfigItem>
+		<ConfigName>metal</ConfigName>
+		<ConfigDesc>金属风格的仪表盘(不适合进行分多段(colorRange)进行显示)</ConfigDesc>
+		<ConfigParam>
+			<ParamName>chart</ParamName>
+			<ParamValue>gaugeOriginX='150' gaugeOriginY='150' gaugeOuterRadius='110' gaugeInnerRadius='110' showGaugeBorder='0' bgColor='FFFFFF' gaugeStartAngle='225' gaugeEndAngle='-45' bgAlpha='100' majorTMNumber='8' majorTMThickness='3' majorTMColor='FFFFFF' majorTMHeight='7' minorTMNumber='0' placeValuesInside='1' sgaugeOriginY='160' showShadow='0' pivotRadius='20' pivotFillColor='000000,383836' pivotFillType='linear' pivotFillRatio='50,50' pivotFillAngle='240' annRenderDelay='0' gaugeFillMix='' showPivotBorder='1' pivotBorderColor='999999' pivotBorderThickness='2'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>dials</ParamName>
+			<ParamValue>color='FFFFFF,999999' alpha='100' showBorder='0' baseWidth='3' topWidth='3' radius='100' x='150' y='150'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>annotations</ParamName>
+			<ParamValue>&lt;annotationGroup id='Grp1' showBelow='1'&gt;&lt;annotation type='circle' x='150' y='150' color='1C1C1C,AAAAAA,1C1C1C' radius='127' fillPattern='linear' /&gt; &lt;annotation type='circle' x='150' y='150' color='9E9E9E,ECECEC' radius='117' fillPattern='linear' fillAngle='270' /&gt; &lt;annotation type='circle' x='150' y='150' color='000000,6C6C6C' radius='115' fillPattern='linear' fillAngle='270' /&gt; &lt;/annotationGroup&gt;</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>styles</ParamName>
+			<ParamValue>&lt;definition&gt;&lt;style name='TTipFont' type='font' color='FFFFFF' bgColor='333333' borderColor='333333' font='Verdana' size='10' /&gt; &lt;style name='ValueFont' type='font' size='12' color='FFFFFF' bold='1' /&gt; &lt;style name='LimitFont' type='font' size='12' color='70E300' bold='1' /&gt; &lt;/definition&gt;&lt;application&gt;&lt;apply toObject='TOOLTIP' styles='TTipFont' /&gt; &lt;apply toObject='TICKVALUES' styles='ValueFont' /&gt; &lt;apply toObject='LIMITVALUES' styles='LimitFont' /&gt; &lt;/application&gt;</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+	</ConfigItem>
+	<ConfigItem>
+		<ConfigName>rpm</ConfigName>
+		<ConfigDesc>转速表</ConfigDesc>
+		<ConfigParam>
+			<ParamName>chart</ParamName>
+			<ParamValue>gaugeOriginX='150' gaugeOriginY='150' gaugeOuterRadius='110' gaugeInnerRadius='100' gaugeScaleAngle='280' bgColor='FFFFFF'  baseFontColor='646F8F' majorTMNumber='11' majorTMColor='646F8F' majorTMHeight='9' minorTMNumber='5' minorTMColor='646F8F' minorTMHeight='3' showGaugeBorder='0' gaugeAlpha='50' placeValuesInside='1' displayValueDistance='15' toolTipBgColor='F2F2FF' toolTipBorderColor='6A6FA6' gaugeFillMix='' showShadow='0' annRenderDelay='0' pivotRadius='14' pivotFillMix='{A1A0FF},{6A6FA6}' pivotBorderColor='bebcb0' pivotFillRatio='70,30'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>dials</ParamName>
+			<ParamValue>bgColor='6A6FA6,A1A0FF' borderAlpha='0' baseWidth='5' topWidth='4' </ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>annotations</ParamName>
+			<ParamValue>&lt;annotationGroup xPos='150' yPos='150' showBelow='1'&gt;&lt;annotation type='circle' xPos='0' yPos='0' radius='148' fillColor='000000,2C6BB2, 135FAB' fillRatio='80,15, 5' borderColor='2C6BB2' /&gt; &lt;annotation type='circle' xPos='0' yPos='0' radius='130' fillColor='FFFFFF, D4D4D4' fillRatio='20,80' borderColor='2C6BB2' /&gt; &lt;annotation type='arc' xPos='0' yPos='0' radius='130' innerRadius='120' startAngle='-60' endAngle='240' fillColor='51884F' fillAlpha='50' borderColor='51884F' /&gt; &lt;/annotationGroup&gt;</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>styles</ParamName>
+			<ParamValue></ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+	</ConfigItem>
+	<ConfigItem>
+		<ConfigName>revenue</ConfigName>
+		<ConfigDesc>收入表</ConfigDesc>
+		<ConfigParam>
+			<ParamName>chart</ParamName>
+			<ParamValue>gaugeOuterRadius='115' gaugeOriginX='150' gaugeOriginY='160' gaugeInnerRadius='2'bgColor='AEC0CA,FFFFFF' fillAngle='45' majorTMNumber='10' majorTMHeight='8' showGaugeBorder='0' formatNumberScale='1' displayValueDistance='24' decimalPrecision='2' tickMarkDecimalPrecision='1' pivotRadius='17' showPivotBorder='1' pivotBorderColor='000000' pivotBorderThickness='5' pivotFillMix='FFFFFF,000000'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>dials</ParamName>
+			<ParamValue>borderAlpha='0' bgColor='000000' baseWidth='28' topWidth='1' radius='130'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>annotations</ParamName>
+			<ParamValue>&lt;annotationGroup xPos='150' yPos='161'&gt;&lt;annotation type='circle' xPos='0' yPos='0' radius='120' startAngle='0' endAngle='180' fillPattern='linear' fillAsGradient='1' fillColor='666666,ffffff' fillAlpha='100,100' fillRatio='50,50' fillDegree='0' /&gt; &lt;/annotationGroup&gt;</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>styles</ParamName>
+			<ParamValue></ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+	</ConfigItem>
+	<ConfigItem>
+		<ConfigName>kph</ConfigName>
+		<ConfigDesc>速度表</ConfigDesc>
+		<ConfigParam>
+			<ParamName>chart</ParamName>
+			<ParamValue></ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>dials</ParamName>
+			<ParamValue></ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>annotations</ParamName>
+			<ParamValue></ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>styles</ParamName>
+			<ParamValue></ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+	</ConfigItem>
+	<ConfigItem>
+		<ConfigName>vertical</ConfigName>
+		<ConfigDesc>垂直仪表</ConfigDesc>
+		<ConfigParam>
+			<ParamName>chart</ParamName>
+			<ParamValue>gaugeOriginX='100' gaugeOriginY='150' gaugeOuterRadius='100' bgAlpha='0' bgColor='FFFFFF' palette='0' numberSuffix='%25' gaugeStartAngle='90' gaugeEndAngle='-90' autoScale='1' showBorder='1' gaugeFillMix='{light-10},{light-30},{light-20},{dark-5},{color},{light-30},{light-20},{dark-10}' gaugeFillRatio='3'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>dials</ParamName>
+			<ParamValue>rearExtension='10'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>annotations</ParamName>
+			<ParamValue></ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>styles</ParamName>
+			<ParamValue>&lt;definition&gt;&lt;style name='RectShadow' type='shadow' strength='3' /&gt; &lt;/definition&gt;&lt;application&gt;&lt;apply toObject='Grp1' styles='RectShadow' /&gt; &lt;/application&gt;</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+	</ConfigItem>
+	<ConfigItem>
+		<ConfigName>clock</ConfigName>
+		<ConfigDesc>时钟风格</ConfigDesc>
+		<ConfigParam>
+			<ParamName>chart</ParamName>
+			<ParamValue>bgColor='333333' gaugeOriginX='150' gaugeOriginY='150' gaugeOuterRadius='95' gaugeInnerRadius='95' showGaugeBorder='0' bgAlpha='100' gaugeStartAngle='90' gaugeEndAngle='-270' majorTMNumber='12' majorTMThickness='3' majorTMColor='FFFFFF' majorTMHeight='7' minorTMNumber='4' minorTMColor='FFFFFF' minorTMHeight='4' placeValuesInside='1' tickValueStep='3' tickValueDistance='20' showShadow='0' pivotRadius='6' pivotFillColor='FFFFFF' annRenderDelay='0'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>dials</ParamName>
+			<ParamValue>color='FFFFFF' baseWidth='3' topWidth='1' radius='70' rearExtension='12' </ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>annotations</ParamName>
+			<ParamValue>&lt;annotationGroup id='Grp1' showBelow='1'&gt;&lt;annotation type='circle' x='150' y='150' color='EBF0F4,85898C,484C4F,C5C6C8' fillRatio='30,30,30,10' fillAngle='270' radius='120' fillPattern='linear' /&gt; &lt;annotation type='circle' x='150' y='150' color='8E8E8E,83878A,E7E7E7' fillAngle='270' radius='105' fillPattern='linear' /&gt;&lt;annotation type='circle' x='150' y='150' color='07476D,19669E,186AA6,D2EAF6' fillRatio='5,45,40,10' fillAngle='270' radius='103' fillPattern='linear' /&gt; &lt;annotation type='circle' x='150' y='150' color='07476D,19669E,07476D' fillRatio='5,90,5' fillAngle='270' radius='100' fillPattern='linear' /&gt; &lt;/annotationGroup&gt;&lt;annotationGroup id='Grp2' showBelow='1'&gt;&lt;annotation type='circle' x='150' y='150' radius='12' color='012A46' /&gt; &lt;/annotationGroup&gt;</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>styles</ParamName>
+			<ParamValue>&lt;definition&gt;&lt;style name='TTipFont' type='font' color='FFFFFF' bgColor='012A46' borderColor='706C11' font='Verdana' size='10' /&gt; &lt;style name='ValueFont' font='Times New Roman' italic='1' type='font' size='18' color='FFFFFF' bold='1' /&gt; &lt;/definition&gt;&lt;application&gt;&lt;apply toObject='TOOLTIP' styles='TTipFont' /&gt; &lt;apply toObject='TICKVALUES' styles='ValueFont' /&gt; &lt;apply toObject='LIMITVALUES' styles='ValueFont' /&gt; &lt;/application&gt;</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+	</ConfigItem>
+	<ConfigItem>
+		<ConfigName>framed</ConfigName>
+		<ConfigDesc>带框的仪表盘</ConfigDesc>
+		<ConfigParam>
+			<ParamName>chart</ParamName>
+			<ParamValue>palette='4' gaugeOriginX='150' gaugeOriginY='150' gaugeStartAngle='220' gaugeEndAngle='-40' numberSuffix='%25' bgColor='FFFFFF' showBorder='0' basefontColor='FFFFFF' gaugeOuterRadius='90' gaugeInnerRadius='75' chartTopMargin='45' toolTipBgColor='AEC0CA' toolTipBorderColor='FFFFFF' pivotRadius='6'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>dials</ParamName>
+			<ParamValue>rearExtension='10' baseWidth='6'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>annotations</ParamName>
+			<ParamValue>&lt;annotationGroup id='Grp1' showBelow='1'&gt;&lt;annotation type='rectangle' x='0' y='0' toX='300' toY='300' radius='10' fillColor='AEC0CA, 333333, AEC0CA' fillAngle='90' /&gt; &lt;annotation type='rectangle' x='5' y='5' toX='295' toY='295' radius='10' fillColor='333333, C3D0D8, 333333' fillAngle='90' /&gt; &lt;annotation type='rectangle' x='10' y='10' toX='290' toY='290' radius='10' fillColor='C4D5DC, A3A5A4' fillAngle='180' /&gt; &lt;/annotationGroup&gt;</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>styles</ParamName>
+			<ParamValue></ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+	</ConfigItem>
+	<ConfigItem>
+		<ConfigName>framed2</ConfigName>
+		<ConfigDesc>带框的仪表盘</ConfigDesc>
+		<ConfigParam>
+			<ParamName>chart</ParamName>
+			<ParamValue>bgColor='FFFFFF' gaugeOriginX='150' gaugeOriginY='150' bgAlpha='0' showBorder='0' majorTMNumber='12' majorTMHeight='9' minorTMNumber='5' minorTMColor='000000' minorTMHeight='3' majorTMThickness='2' gaugeInnerRadius='0' gaugeScaleAngle='360' displayValueDistance='15' chartTopMargin='30' chartLeftMargin='30' chartRightMargin='30' chartBottomMargin='30' baseFontColor='333333'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>dials</ParamName>
+			<ParamValue>radius='85'</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>annotations</ParamName>
+			<ParamValue>&lt;annotationGroup&gt;&lt;annotation type='rectangle' xPos='1' yPos='1' radius='15' toXPos='299' toYPos='299' showBorder='1' fillColor='333333' borderColor='333333' borderThickness='2' /&gt; &lt;annotation type='rectangle' xPos='8' yPos='8' radius='15' toXPos='292' toYPos='292' showBorder='1' fillColor='FFFFFF,009999,FFFFFF' fillAngle='45' fillAlpha='60' borderColor='333333' /&gt; &lt;/annotationGroup&gt;</ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+		<ConfigParam>
+			<ParamName>styles</ParamName>
+			<ParamValue></ParamValue>
+			<ParamDesc></ParamDesc>
+		</ConfigParam>
+	</ConfigItem>
+</CommonConfig>

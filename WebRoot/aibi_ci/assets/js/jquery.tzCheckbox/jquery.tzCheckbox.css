@@ -1,0 +1,31 @@
+.tzCheckBox{
+	background:url('background.png') no-repeat right bottom;
+	display:inline-block;
+	width:67px;
+	height:28px;
+	white-space:nowrap;
+	position:relative;
+	cursor:pointer;
+	margin-left:13px;
+}
+
+.tzCheckBox.checked{
+	background-position:top left;
+	margin:0 13px 0 0;
+}
+
+.tzCBPart{
+	background:url('background.png') no-repeat left bottom;
+	width:13px;
+	position:absolute;
+	top:0;
+	left:-13px;
+	height:28px;
+	overflow: hidden;
+}
+
+.tzCheckBox.checked .tzCBPart{
+	background-position:top right;
+	left:auto;
+	right:-13px;
+}

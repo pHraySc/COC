@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comps>	
+		<!-- 数据源，可选 -->
+		<dataSource id="aiomni4">
+			<jndiName>jdbc/aiomni</jndiName>
+			<desc></desc>
+		</dataSource>
+		<dataSource id="enbox">
+			<jndiName>jdbc/enbox</jndiName>
+			<desc></desc>
+		</dataSource> 
+		
+		<!-- 权限类型定义 -->
+		<authDefine>
+			<resourceType id='4'>
+				<desc>kPI</desc>
+			</resourceType>
+			<resourceType id='5'>
+				<desc>地市权限</desc>
+			</resourceType>			
+			<resourceType id='7'>
+				<desc>报表</desc>
+			</resourceType>
+			<resourceType id='50'>
+				<desc>菜单</desc>
+			</resourceType>
+		</authDefine>
+		
+		<!-- 组件定义 -->
+		<comp id='city' name='地市'>
+			<table>user_city</table>
+			<idCol>cityId</idCol>
+			<nameCol>cityName</nameCol>
+			<parentidCol>parentId</parentidCol>
+			<orderBy>parentidCol,nameCol</orderBy>
+			<jndi>aiomni4</jndi>
+			<resourceType></resourceType>
+			<desc>地市</desc>
+		</comp>
+		<comp id='company' name='部门'>
+			<table>user_company</table>
+			<idCol>deptid</idCol>
+			<nameCol>title</nameCol>
+			<parentidCol>parentId</parentidCol>
+			<orderBy>pid,text</orderBy>
+			<jndi>aiomni4</jndi>
+			<desc>部门</desc>
+		</comp>
+</comps>

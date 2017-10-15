@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+/* dialog */
+.ui-dialog{padding:0px; background:#fff;border:none;}
+.ui-dialog .ui-dialog-titlebar{background:#4590ce url(images/jqueryui/ui-dialog-bg.png) repeat-x}
+.ui-dialog .ui-state-default span.ui-icon{background:url(images/jqueryui/ui_close.png) no-repeat!important; background-position:0px 0px!important;width:19px;height:19px;border:none;}
+.ui-dialog .ui-dialog-titlebar-close{padding-right:2em}
+.ui-dialog .ui-dialog-content{padding:0px}
+.ui-widget-overlay {background: #666666;opacity: .5;filter: Alpha(Opacity=50);}
+.ui-dialogFixed{position:fixed;}
+
+
+

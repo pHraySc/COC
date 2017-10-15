@@ -1,0 +1,44 @@
+﻿@charset "utf-8";
+/*
+#pager{border-top:none;}
+.pagenum{height:42px; line-height:42px; border-bottom:1px solid #000;}
+.pagenum .total{float:left; padding:0 10px;}
+.pagenum .total span{margin:0 5px;}
+.pagenum ul{float:right;}
+.pagenum ul li{float:left; text-align:center; display:inline; height:22px; line-height:22px; margin-top:10px; margin-right:7px;}
+.pagenum ul li a{text-decoration:none; display:block; height:22px; line-height:22px; color:#333; _float:left;}
+.pagenum ul li .num{width:34px; background:url(images/pageNum.gif) no-repeat; color:#333; overflow:hidden;}
+.pagenum ul li .num:hover{background-position:left -27px;}
+.pagenum ul li .num_on,.pagenum ul li .num_on:hover{width:34px; background:url(images/pageNum_on.gif) no-repeat; color:#fff;}
+.pagenum ul li .prev_next{width:51px; overflow:hidden; background:url(images/prev_next.gif) no-repeat; color:#333;}
+.pagenum ul li .prev_next:hover{background-position:left -27px;}
+.pagenum ul li .prev_next_dis{color:#a3a3a3;}
+.pagenum ul li .prev_next_dis:hover{background:url(images/prev_next.gif) no-repeat;}
+.pagenum ul li.jump{margin:10px 9px 0 2px;}
+.pagenum ul li.jump span{height:22px; line-height:22px; display:block;float:left;}
+.pagenum ul li.jump input{float:left;width:43px; height:20px; line-height:20px; margin:0 4px; padding:0 3px; border:1px solid #aaa;}
+.pagenum ul.short_page li{height:18px; line-height:18px;margin-top:12px;}
+.pagenum ul.short_page li a{height:18px;width:18px;line-height:18px; cursor:default}
+.pagenum ul.short_page .prev_icon,.pagenum ul.short_page .prev_icon:hover,.pagenum ul.short_page .prev_icon_dis,.pagenum ul.short_page .next_icon,.pagenum ul.short_page .next_icon:hover,.pagenum ul.short_page .next_icon_dis{background:url(images/page.gif) no-repeat;}
+.pagenum ul.short_page .prev_icon{cursor:pointer}
+.pagenum ul.short_page .prev_icon:hover{background-position:0px -24px}
+.pagenum ul.short_page .prev_icon_dis{background-position:0px -48px}
+.pagenum ul.short_page .next_icon{background-position:0px -72px;cursor:pointer}
+.pagenum ul.short_page .next_icon:hover{background-position:0px -96px}
+.pagenum ul.short_page .next_icon_dis{background-position:0px -120px}*/
+
+/** 新分页 **/
+#pager{border-top:none;}
+.dialogPageBox .total{float:left; padding:0 10px;line-height: 42px;}
+.dialogPageBox .total span{margin:0 5px;}
+.dialogPageBox{  margin:0px 10px;  height:42px;}
+.dialogPageBox ul{height:20px;padding-bottom:11px;float:right;padding-top:11px;}
+.dialogPageBox ul li{float:left;height:20px;padding:0px 6px;}
+.dialogPageBox ul li a {display:block;height:18px;line-height:18px;padding:0px 7px;border:1px solid #cdcdcd;text-decoration:none;}
+.dialogPageBox ul li a.disabled {border:1px solid #ededed; color:#898989;}/*上一页下一页不可用状态CSS*/
+.dialogPageBox ul li a:hover{border:1px solid #0194e9;}
+.dialogPageBox ul li a.disabled:hover {border:1px solid #ededed;}
+.dialogPageBox ul li a.num_on{border:1px solid #0194e9;background-color:#0194e9;color:#fff;}
+.dialogPageBox ul li.jump{margin:0px 9px 0 2px;}
+.dialogPageBox ul li.jump span{height:22px; line-height:22px; display:block;float:left;}
+.dialogPageBox ul li.jump input{float:left;width:43px; height:20px; line-height:20px; margin:0 4px; padding:0 3px; border:1px solid #aaa;}

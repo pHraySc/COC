@@ -1,0 +1,11 @@
+﻿@charset "utf-8";
+/* search */
+.aibi_search{width:100%;background:#eee url(images/search_bg.png) repeat-x;border-top:#b5b5b5 solid 1px;border-bottom:#959595 solid 1px;}
+.aibi_search ul{float:left;}
+.aibi_search li{height:24px; line-height:24px; padding-top:6px;padding-left:8px;float:left;padding-bottom:7px;}
+.aibi_search li.more{padding-left:15px;}
+.aibi_search li a{text-decoration:none; color:#000;}
+.aibi_search li a:hover{text-decoration:underline;color:#418ccb}
+.aibi_input{border:#b9b9b9 solid 1px; background:#fff;height:22px;line-height:22px; vertical-align:top;padding-left:6px;padding-right:6px;width:130px; color:#39f9f9f}
+.aibi_search_btn{width:66px;height:24px;background:#fafafa url(images/search.png) no-repeat; cursor:hand}
+

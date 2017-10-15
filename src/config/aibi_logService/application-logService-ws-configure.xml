@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="  
+ 	 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+ 	 http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd  
+ 	 http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <!-- IWSLogService接口cxf版 -->
+	<jaxws:server id="right_logService_webService"
+		serviceClass="com.asiainfo.biframe.unilog.log.webservices.service.IWSLogService" address="/WsLogService">
+		<jaxws:serviceBean>  
+		 <bean class="com.asiainfo.biframe.unilog.log.webservices.service.impl.WSLogServiceImpl" > 
+          	<property name="logService">
+   				<ref bean="logService"/>
+   			</property> 
+   		  </bean>
+   		  </jaxws:serviceBean>
+		<jaxws:dataBinding>
+			<bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+		</jaxws:dataBinding>
+	</jaxws:server>
+	
+	<!-- IWSLogService接口客户端bean -->
+	<jaxws:client id="right_logService_webService_client"
+		address="http://${WEBSERVICE_SERVER_IP}:${WEBSERVICE_SERVER_PORT}/services/WsLogService"
+		serviceClass="com.asiainfo.biframe.unilog.log.webservices.service.IWSLogService">
+		<jaxws:dataBinding>
+			<bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+		</jaxws:dataBinding>
+	</jaxws:client>
+
+</beans> 
+

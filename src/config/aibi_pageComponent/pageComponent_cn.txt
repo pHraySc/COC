@@ -1,0 +1,5 @@
+pagecomponent.java.unbeknown=未知
+pagecomponent.java.rootnode=根节点
+pagecomponent.java.nopage=没有第{0}页
+pagecomponent.java.inputaint=请输入一个整数
+pagecomponent.java.page=第{0}页

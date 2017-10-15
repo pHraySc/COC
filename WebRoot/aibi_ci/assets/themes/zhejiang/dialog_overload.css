@@ -1,0 +1,461 @@
+@charset "utf-8";
+/**************** 重写弹出框样式开始 ****************/
+
+.ui-dialog{
+	border:1px solid #ddd;
+	-webkit-box-shadow:0px 0px 15px #666;
+	-moz-box-shadow:0px 0px 15px #666;
+	box-shadow:0px 0px 15px #666;
+    padding:0px; 
+    font-size:12px;
+	background:#fff;
+	/* z-index: 1010 !important; */
+}
+.ui-widget{font-family: tahoma/*,SimSun*/, Helvetica Neue, Luxi Sans, DejaVu Sans,Tahoma, Hiragino Sans GB ;}
+.ui-widget-header{border:none;  font-family: tahoma/*,SimSun*/, Helvetica Neue, Luxi Sans, DejaVu Sans,Tahoma, Hiragino Sans GB ;}
+.ui-dialog .ui-dialog-titlebar{ padding:0px;height:34px;  line-height:34px; background:none;background-color:#0a80c5;}
+.ui-dialog .ui-widget-header .ui-icon{ margin-right:5px;width: 22px;  height: 22px; background:url(images/icon_dialog_active.png) no-repeat left top;}
+.ui-dialog .ui-state-default span.ui-icon{background:url(images/icon_dialog_active.png) no-repeat; background-position:0px 0px!important;width:19px;height:19px;border:none;}
+.ui-dialog .ui-dialog-titlebar-close{top:0px;  right:0px;  display:block;  width: 22px;  height: 22px;  margin-top:6px;  margin-right:6px; padding:0px;}
+.ui-dialog .ui-dialog-titlebar-close span{margin:0px;border:none;}
+.ui-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close{padding:0px; cursor:pointer; background:url(images/icon_dialog_active.png) no-repeat left 1px; border:none;}
+.ui-dialog .ui-dialog-titlebar-close:hover,.ui-dialog-titlebar .ui-state-hover  {border:none;margin-top:6px;  padding:0px;  margin-right:6px; background:url(images/icon_dialog_active.png) no-repeat left bottom;}
+/*.ui-multiselect-menu .ui-widget-header {	display:block;	background:#eaf4fd;}*/
+.ui-dialog .ui-widget-header .ui-helper-reset{display:none;}
+.ui-dialog{padding:0px; font-size:1em;}
+.ui-dialog .ui-dialog-content{   padding:0px; background:#fff; }
+.ui-dialog .ui-dialog-title{
+	margin:0px;color:#FFF;  font-size:14px;  font-weight:bold;  text-align:left;  text-indent:15px; 
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	}
+.ui-widget-overlay { filter:Alpha(Opacity=0);opacity:0;} 
+
+/* 去圆角 */
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+-moz-border-radius-bottomright:0px;
+-webkit-border-bottom-right-radius: 0px;
+-khtml-border-bottom-right-radius: 0px;
+border-bottom-right-radius: 0px;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+-moz-border-radius-bottomleft: 0px;
+-webkit-border-bottom-left-radius: 0px;
+-khtml-border-bottom-left-radius: 0px;
+border-bottom-left-radius: 0px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+-moz-border-radius-topright: 0px;
+-webkit-border-top-right-radius: 0px;
+-khtml-border-top-right-radius: 0px;
+border-top-right-radius: 0px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+-moz-border-radius-topleft: 0px;
+-webkit-border-top-left-radius: 0px;
+-khtml-border-top-left-radius: 0px;
+border-top-left-radius: 0px;
+}
+/* 关闭按钮、帮助  */
+.dialogHeaderTitle{ display:none; position:relative;  width:100%;  height:34px;  line-height:34px;  background:#7cb027 url(images/icon_dialog_title_bg.png) repeat-y ;
+  color:#FFF;  font-size:14px;  font-weight:bold;  text-align:left;  text-indent:15px;}
+.dialogClose ,.dialogHelp{
+  position:absolute;  top:0px;  right:0px;  display:block;  width: 22px;  height: 22px;  margin-top:6px;
+  margin-right:6px;  background: transparent url(images/icon_dialog_active.png) no-repeat 0px 0px;  overflow: hidden;}
+.dialogClose:hover{}
+.dialogHelp{ background-position: 0px -28px; right:34px;}
+/* 弹出层操作按钮样式  */
+.btnActiveBox{  position:absolute;bottom:0px; width:100%; height:36px;  padding-top:14px;  background-color:#efefef;}
+.btnActiveBox input ,.btnActiveBox button{ font-family: tahoma/*,SimSun*/, Helvetica Neue, Luxi Sans, DejaVu Sans,Tahoma, Hiragino Sans GB ;padding-top:1px; float:right;  width:75px; line-height:24px; line-height:24px; line-height:20px\9; *line-height:20px; vertical-align:middle; height:24px; margin:0px 10px;  color:#fff;  font-size:14px;  cursor:pointer; border:none;}
+.btnActiveBox a{
+    display:inline;
+    float:right;  
+    width:75px; 
+    height:24px; 
+    line-height:24px; 
+    margin:0px 10px;  
+    text-decoration:none;
+    font-family::'tahoma';
+    color:#fff;  
+    font-size:14px;  
+    cursor:pointer; 
+    
+}
+.ui-dialog-buttonset .ui-button{
+	background:#7eb019; 
+	border:none;
+	border-bottom:1px solid #456406 ;
+	display:inline; 
+    width:75px; 
+    height:24px; 
+    line-height:24px; 
+    margin:0px 10px;  
+    text-decoration:none;
+    font-family::'tahoma';
+    color:#fff;  
+    font-size:14px;  
+    cursor:pointer; 
+    font-weight:normal;
+}
+.ui-dialog-buttonset .ui-button .ui-button-text{
+	 padding:0;
+}
+.btnActiveBox a.cancelBtnLong , .btnActiveBox  a.ensureBtnLong{width:106px;}
+.btnActiveBox a.cancelBtn ,.btnActiveBox a.cancelBtnLong{
+   background-color:#ababab;  border-bottom:1px solid #626262;
+}
+.btnActiveBox a.cancelBtn:hover , .btnActiveBox a.cancelBtnLong:hover{
+   background-color:#9c9c9c;  
+}
+.btnActiveBox a.cancelBtn:active , .btnActiveBox a.cancelBtnLong:active{
+   background-color:#9c9c9c; 
+}
+.btnActiveBox a.ensureBtn,.btnActiveBox  a.ensureBtnLong{
+   background-color:#7eb019;  border-bottom:1px solid #456406;
+}
+.btnActiveBox a.ensureBtn:hover , .btnActiveBox a.ensureBtnLong:hover{
+   background-color:#69950c;  border-bottom:1px solid #456309;
+}
+.btnActiveBox a.ensureBtn:active , .btnActiveBox a.ensureBtnLong:active{
+   background-color:#69950c;  border-bottom:1px solid #456407;
+}
+
+
+/* “取消按钮” */
+.btnActiveBox input.cancelBtn ,.btnActiveBox button.cancelBtn,button.cancelBtn{  background:#ababab !important;  border-bottom:1px solid #626262 !important;}
+.btnActiveBox input.cancelBtn:hover ,.btnActiveBox button.cancelBtn:hover{background:#9c9c9c;}
+.btnActiveBox input.cancelBtnLong ,.btnActiveBox button.cancelBtnLong{width:106px;background-color:#ababab;  border-bottom:1px solid #626262;}
+.btnActiveBox input.cancelBtnLong:hover , .btnActiveBox button.cancelBtnLong:hover{background-color:#9c9c9c;}
+/* “确定或者保存按钮” */
+.btnActiveBox input.ensureBtn , .btnActiveBox button.ensureBtn {  background-color:#7eb019;  border-bottom:1px solid #456407;}
+.btnActiveBox input.ensureBtn:hover,.btnActiveBox button.ensureBtn:hover{background-color:#68950c;}
+.btnActiveBox input.ensureBtnLong , .btnActiveBox button.ensureBtnLong{ width:106px; background-color:#7eb019;  border-bottom:1px solid #456407;}
+.btnActiveBox input.ensureBtnLong:hover , .btnActiveBox button.ensureBtnLong:hover{background-color:#68950c;}
+/**************** 重写弹出框样式结束 ******************/
+
+/* 常用的基本样式定义 */
+.labFmt100 , .labFmt110 , .labFmt90 , .labFmt80 ,.labFmt30,.labFmt76{  display:block;  width:95px;  text-align:right;  padding-right:10px;height:22px;line-height:22px;}
+.labFmt110{width:110px; }
+.labFmt90 {width:78px;}
+.labFmt80{width:80px;}
+.labFmt30{width:30px;padding-left:10px; line-height: 200%;}
+.labFmt76{width:76px;}
+
+.inputFmt620 , .inputFmt140 , .inputFmt478 , .dateInputFmt180 ,  .inputFmt180 ,.inputFmt235 ,.inputFmt100 ,
+.dateInputFmt325 , .inputFmt150 , .inputFmt305 , .inputFmt460 , .inputFmt455 , .inputFmt310 , .inputFmt230 ,
+ .dateInputFmt80 , .inputFmt60 , .inputFmt170{color:#8e8e8e;width:620px;height:22px;line-height:22px;border:1px solid #b0becb;padding:0px 5px;background-color:#fff;}
+.inputFmt140{width:140px;}
+.inputFmt150{width:150px;}
+.inputFmt478{width:478px;}
+.inputFmt455{width:448px;}
+.inputFmt305{width:298px;}
+.inputFmt460{width:450px;}
+.inputFmt180{width:180px;}
+.inputFmt310{width:310px;background-color:#fff; }
+.inputFmt230{width:228px;}
+.inputFmt235{width:235px;}
+.inputFmt100{width:75px;}
+.inputFmt60{width:50px;}
+.inputFmt170{width:160px;height:18px;line-height:18px;}
+.dateInputFmt180 , .dateInputFmt325 , .dateInputFmt80{width:150px;padding-right:35px;background:#fff url(images/datepicker_bg.png) no-repeat right;}
+ .dateInputFmt325{width:283px;}
+ .dateInputFmt80{width:70px;}
+.textarea628{width:628px;height:60px;}
+.textarea600{width:600px;height:60px;}
+.textarea550{width:550px;height:60px;}
+.textarea628_30{width:550px;height:30px;text-align: left;padding-left: 0px;}
+.textarea628_60{width:425px;height:60px;text-align: left;padding-left: 0px;border: 1px solid #b0becb;}
+.textarea455 , .textarea478 , .textarea510{width:458px;height:65px; border:1px solid #b0becb; overflow-x:hidden;}
+ .textarea478{width:488px;}
+ .textarea510{width:510px; height:75px;}
+ .textarea456{width:456px; height:75px; border:1px solid #b0becb; overflow-x:hidden;}
+ .textarea374{width:374px; height:75px; border:1px solid #b0becb; overflow-x:hidden;}
+.width430{width:430px;}
+.width360{width:360px;}
+.width515{width:515px;}
+.width495{width:495px;}
+.height30{height:30px;}
+select.selectWidth180 , select.selectWidth377{width:180px; height:22px;line-height:22px;border:1px solid #b0becb;}
+select.selectWidth377{width:377px;}
+.importFileModelBtn , .importFileBtn ,.addFileImportBtn{ display:block;cursor:pointer;margin-left:0px;padding:2px 7px 0px;  height:22px; overflow:hidden;  line-height:20px;  background-color:#409edc;  color:#fff;}
+.importFileBtn{margin-left:10px;text-indent:20px;width:60px;background:#409edc url(images/icon_import_btn_bg.png) no-repeat 9px 4px;}
+/* 表单信息提示 */
+p.tipMsg{line-height:22px;color:green;margin-left:5px;}
+a.downAndHelp ,a.fileUploadHelp{display:block; cursor:pointer;margin-left:5px;width:60px;text-indent:20px;height:22px;line-height:22px;color:#fff;background:#409edc url(images/downAndHelp.png) no-repeat 9px center;}
+a.downAndHelp:hover , a.fileUploadHelp:hover{text-decoration:none;}
+a.fileUploadHelp{height:23px;border:1px solid transparent;width:20px;background:#409edc url(images/downAndHelp.png) no-repeat 3px center;}
+
+/* 信息提示 */
+.newTip{height:35px;line-height:35px;color:#8e8e8e;text-align:left;width:215px;}
+
+
+/* 客户名称信息 */
+.clientMsgBox{ background-color:#f4f9fd;   padding-top:10px;}
+.star{height:20px; background:transparent url(images/icon_dialog_content.gif) no-repeat left 5px;overflow:hidden;}
+.clientMsgBox ol {padding:0px 6px;}
+.clientMsgBox  ol li , .moreSetBox ol li{  float:left; width:100%;  }
+.clientMsgBox ol li{ margin-bottom:8px;}
+
+.selectBox , .createDateBox ,.createPeriodBox{cursor:pointer;width:58px;height:22px;line-height:22px;color:#fff;padding:1px; float:left;margin-right:15px;background:#0294ea;}
+.selectBox .selectText{width:34px;text-align:center;}
+.selectBox .selectOption ,.createDateBox .selectOption {width:24px;height:22px;background:#fff url(images/icon_dialog_content.gif) no-repeat 8px -11px; }
+.createDateBox{width:88px;}
+.createDateBox .selectText{width:64px;text-align:center;}
+.createPeriodBox{width:auto;}
+.createPeriodBox div{float:left;width:54px;background:#Fff;color:#323232;}
+.createPeriodBox .periodSegLine{background:#Fff url(images/select_box_seg_border.png) no-repeat right center;}
+.createPeriodBox div.current{background:none;color:#Fff;}
+select.sceneWidth{width:322px;float:left;height:22px;line-height:22px;}
+/* 客户群列表信息 */
+.clientBaseListBox {  /*padding:5px 6px;*/}
+.clientBaseListBox h4{border-top:1px solid #d1d1d1;margin:2px 8px;}
+.clientBaseListBox .clientBaseList{  height:80px;  overflow-y:auto;  clear:both; margin:0 0px 0px 8px;  }
+.clientBaseListBox .clientBaseList li , .fontDescBox ol li{ overflow:hidden;text-overflow:ellipsis; cursor:pointer;
+	height:20px;line-height:20px;float:left; width:150px; text-indent:10px; text-align:left; margin-bottom:10px; margin-right:15px; white-space: nowrap; word-break:keep-all; }
+.clientBaseListBox .clientBaseList  li input ,.fontDescBox ol li input{margin-right:5px;margin-top:2px; float:left;}
+ .sysAutoMatch{height:22px;line-height:22px;padding-left:20px;}
+  .sysAutoMatch input{margin-right:7px;margin-top:4px;}
+ /* 搜索框 */
+.clientSearchBox ,.itemSearchBox{  width:177px;  height:22px;  background:#fff url(images/icon_dialog_search_bg.png) no-repeat center center;  padding:1px; }
+.clientSearchBox .clientSearchInput ,.itemSearchBox .searchInput{    width:140px;padding-left:12px;	height:22px;background:transparent;line-height:22px;color:#b2b2b2;}
+.itemSearchBox{ width:116px; height:20px; padding:1px; background:#fff url(images/icon_dialog_search_short_bg.png) no-repeat left top; margin-top:3px;}
+.itemSearchBox .searchInput{  width:81px;  height:20px;  line-height:20px;}
+.searchBtn{  width:15px;  height:15px;  background:transparent url(images/icon_dialog_content.gif) no-repeat left bottom;  margin-top:2px;}
+ 
+ .clientBaseTitle{overflow:hidden;}
+ .clientBaseTitle , .moreSetTitle{     height:24px;   /*background:transparent url(images/icon_dialog_title_seg_bg.png) repeat-x left center; */  margin:5px 0px; padding:0px 5px; }
+ .clientBaseMainTitle , .clientBaseMainDescTitle{   height:22px;   line-height:22px;  /* background:#fff url(images/icon_dialog_content.gif) no-repeat left -29px;*/    color:#333;   text-align:left;   text-indent:10px;   margin-top:1px; }
+ .clientBaseMainDescTitle{   width:250px;    padding:0px 5px;   margin-left:0px;    /*background-position:251px -29px; */  color:#757575;   text-indent:0px; }
+/********** 更多设置 ***********/
+.moreSetBox{  padding:5px 6px;display:none;}
+.moreSetTitle{   height:22px;   margin:0px;}
+.moreSetTitleLeft ,.moreSetMainTitle{   width:10px;   height:22px;   background:#fff url(images/icon_dialog_content.gif) no-repeat left -29px;   margin-left:20px;   margin-top:1px;   text-align:left;}
+.moreSetMainTitle{   width:66px;   padding:0px 2px 0px 5px;   margin-left:0px;   background-position:65px -29px;   color:#333;   text-indent:0px;}
+.moreSetBox textarea{text-align:left;padding:0px;}
+.moreSetBox ol li{margin-top:10px;}
+/* 说明 */
+.tagDesc{height:24px;line-height:24px;background-color:#f4f9fd;padding-left:10px;color:#747474; text-align:left;}
+.tagDesc strong{color:#e40079; padding:0px 5px;font-weight:normal;}
+
+/** 保存模板弹出层 **/
+.templateMsgBox{ background-color:#f4f9fd;   padding-top:10px; clear:both;}
+.templateMsgBox .star{height:20px; background:transparent url(images/icon_dialog_content.gif) no-repeat left 5px;overflow:hidden;}
+.templateMsgBox ol {padding:0px 6px;}
+.templateMsgBox  ol li{  float:left; width:100%;  margin-bottom:10px; }
+/*说明文字*/
+.fontDescBox {padding:0px 5px;}
+.fontDescBox h4{color: #0194e9;font-weight: bold;height:24px;line-height: 24px;text-align:left; text-indent:10px;border-bottom:1px solid #d1d1d2;}
+.fontDescBox ol, .fontDesc{max-height:65px; padding-top: 5px;  overflow-y:auto;  clear:both; padding-left:10px;}
+.clientSelectListBox{max-height:65px; overflow-x:hidden;overflow-y:auto;   margin:0px 0px 5px;   background: #f6f6f6 url(images/icon_select_option_bg.png) repeat-x left top ; }
+.clientSelectListBox ol li{display:inline;float:left;}
+.foldActionBox{padding:5px 0px 0px 15px;}
+.foldAction ,.unfoldAction{display:none;float:left;width: 20px;height: 14px;background: transparent url(images/icon_shopCart08.png) no-repeat -22px -12px ;}
+.foldAction:hover{background-position: 0px -12px ;}
+.unfoldAction{display:inline;background-position: -77px -12px;}
+.unfoldAction:hover{background-position: -49px -12px;}
+
+.clientSelectItem{float:left;height:20px;color: #0997ed;margin: 0px 20px 5px;height:14px;text-align: left;}
+.clientSelectItem span{float:left;}
+.clientSelectItem:hover .clientSelectItemClose{visibility:visible;}
+.clientSelectItem .clientSelectItemClose{visibility:hidden ;float:left;width:14px;height:12px;padding:0 3px;margin-top:4px;background: transparent url(images/icon_shopCart08.png) no-repeat 3px 0px ;}
+.clientSelectItem .clientSelectItemClose:hover{background-position: -19px 0px;}
+.clientSelectItem .clientSelectItemClose:active{background-position: -40px 0px;}
+
+/********* 客户群完整规则展示  *******/
+.rule-title{position: fixed;width:100%;height:30px;z-index:2;top:0px;}
+.ruleBox{max-height:340px;overflow:auto;background: #ffffff;width:100%;}
+.ruleBoxInner{height:auto;padding:10px; background: #fff; text-align:left;margin: 40px 0 0; word-wrap: break-word; word-break: break-all;}
+.ruleBoxInner.ruleBoxTable{margin: 0;}
+
+/********* 表导入创建客户群弹出层  *******/
+.importBox{max-height:450px; overflow-x:hidden;overflow-y:auto;background: #ffffff;height:auto;}
+
+/*********  系统提示  *******/
+.systemTipTextBox{  height:90px;  line-height:90px;  font-size:32px;  color:#73a311;}
+.systemTipDescBox{  height:42px;    border-top:1px solid #8599b1;  color:#323232;  background-color:#e6edf5;}
+.systemTipDescBox p{line-height:42px;}
+.systemTipDescBox strong , .systemTipDescBox a{font-weight:normal; padding:0px 5px; color:#3081b9; text-decoration:none;}
+.systemTipNextStepBox{height:245px; background-color:#fbfaf8; padding: 20px 35px 30px;}
+.systemTipNextStepLeft , .systemTipNextStepRight{width:252px;}
+.systemTipNextStepBox .tipNextStepImg ,.systemTipNextStepBox .tipNextStepImg2{  height:145px;  background:transparent url(images/icon_save_success_01.png) no-repeat center center;}
+.systemTipNextStepBox .tipNextStepImg2{   background:transparent url(images/icon_save_success_02.png) no-repeat center center;}
+.systemTipNextStepBox h4{color:#3180b8;font-size:14px;margin:20px auto;}
+.systemTipNextStepBox p{line-height:18px;text-align:left;}
+.systemTipNextStepBox p strong , .systemTipNextStepBox p a{font-weight:normal;padding:0px 3px;color:#3282b7;text-decoration:none;}
+/*** 修改后提示  ***/
+.systemAlterTipBox{height:90px;  line-height:90px;  font-size:23px;  color:#323232;}
+.systemAlterTipBox strong{padding:0px 5px; color:#3282B7;}
+
+/********设置********************/
+.switchOptionBox{  height:42px;   background-color:#f4f9fe;  color:#323232;}
+.switchOptionBox ol{ width:300px;margin:0 auto; padding-top:12px;}
+.switchOptionBox ol li{float:left; margin-right:30px;}
+.switchOptionBox .radioBox ,.userListBox .userListOption{     width:75px;	padding-left:40px; 	height:18px;    background:transparent url(images/icon_radio_bg.png) no-repeat left top;	cursor:pointer;}
+.switchOptionBox .current , .switchOptionBox .hover ,.userListBox .current , .userListBox .hover{   background-position: left -22px;}
+.switchOptionBox .disabled , .userListBox .disabled{   background-position: left -44px;}
+.userListBox {height:180px;}
+.userListBox .userListOption{width:70px; padding-left:25px;}
+.userListBox ol {padding:10px 0px; height:130px; overflow-y:auto;}
+.userListBox ol li{float:left; padding: 10px 15px  15px;}
+.importFontStyleBox{height:33px; line-height:33px;color:#323232;background-color:#f4f9fe;text-align:left;padding-left:20px;}
+.useRuleContent{padding:10px 0px; height:130px; overflow-y:auto;}
+.useRuleContent p{ height:79px; padding:10px 25px 30px 35px;  text-align:left;  line-height:22px;word-break:break-all; /*支持IE，chrome，FF不支持*/word-wrap:beak-word;/*支持IE，chrome，FF*/}
+/*********条件选择********************/
+.itemChooseTopBox{  height:34px;  line-height:34px;  background-color:#f4f9fe;  padding:0px 8px 0px 15px;  text-align:left;}
+.itemChooseTopBox.uploadify_div{ position: absolute;left:225px;top:-1px; width: 60px;height: 24px;padding:0;margin:0;}
+.uploadify_div .tMargin5{ padding:0;margin:0;}
+.itemChooseTopBox .importBtn{cursor:pointer;width:45px;height:24px;line-height:24px;overflow:hidden;color:#fff;text-align:center;border:1px solid #dbdbdb; background-color:#409edc;}
+.itemChooseActionBox{padding:9px; }
+.itemChooseActionBox  .itemChooseBox{width:305px;height:350px;border:1px solid #dadada;}
+.itemChooseActionBox  .itemChooseCenterBox{width:65px;float:left;}
+.addActionBox , .removeActionBox{ cursor:pointer; width:52px;  height:45px;  line-height:42px;  background:transparent url(images/icon_arrow_action.png) no-repeat left top;  text-align:left; margin: 40px auto 0px;}
+.addActionBox.allAddActionBox{width:65px;margin-left:8px; background-position: right top;}
+.removeActionBox.allRmoveActionBox{width:65px;margin-left:6px;}
+.removeActionBox{ background-position: left bottom;text-align:right; margin-top:12px;}
+.itemChooseCenterBox a , .itemActionTopBox  a{text-decoration:none;color:#323232;}
+.itemChooseCenterBox a:hover , .itemActionTopBox  a:hover{text-decoration:underline;color:#007ebc;}
+.itemActionTopBox{ height:28px;border-bottom:1px dotted  #a7b0b2; padding:0px 9px;}
+.itemActionTopBox ol li{float:left;  line-height:28px;height:28px; margin-right:10px;}
+.itemActionTopBox strong{color:#3580be;}
+.itemChooseContentSegLine{border-top:1px solid #e9e9e9;  margin:0px 10px; }
+/************ 分页 ***********/
+.newPagerBox{  border-top:1px solid #e9e9e9;  margin:0px 10px;  height:42px;}
+.newPagerBox ol{height:20px;padding-bottom:5px;float:right;padding-top:18px;}
+.newPagerBox ol li{float:left;height:20px; line-height:20px;padding:0px 2px; }
+.newPagerBox  a.pageUp , .newPagerBox  a.pageNext , .newPagerBox  a.pageFirst , .newPagerBox  a.pageLast{    display:block; padding:0px 3px; width:9px; height:15px;    background: transparent url(images/pagination_icons.png) no-repeat -16px 0;	border:1px solid #fff;}
+.newPagerBox  a.pageNext{    background-position: -32px 0px; }
+.newPagerBox  a.pageFirst {    background-position: 0px 0px; }
+.newPagerBox  a.pageLast {  background-position: -48px 0px; text-indent:-100px;overflow:hidden;}
+.newPagerBox ol li p span{padding:0px 5px;  }
+.newPagerBox ol li p strong{font-weight:normal;margin:0px 5px; font-size:14px;}
+.newPagerBox ol li div{font-size:12px;}
+.newPagerBox ol li a:hover{border:1px solid #0194e9;}
+.newPagerBox ol li input.pageInput{margin:1px 5px; font-weight:normal;background-color:#fff;font-size:12px;width:40px;height:18px;line-height:18px;border:1px solid #b0becb;padding:0px 3px 0px 2px ;}
+/************ 分页旧版 **************/
+.dialogPageBox{  border-top:1px solid #e9e9e9;  margin:0px 10px;  height:42px;}
+.dialogPageBox ol{height:20px;padding-bottom:5px;float:right;padding-top:18px;}
+.dialogPageBox ol li{float:left;height:20px;padding:0px 6px;}
+.dialogPageBox ol li a {display:block;height:18px;line-height:18px;padding:0px 7px;border:1px solid #cdcdcd;text-decoration:none;}
+.dialogPageBox ol li a:hover{border:1px solid #0194e9;}
+.dialogPageBox ol li a.current{border:1px solid #0194e9;background-color:#0194e9;color:#fff;}
+
+/***********选择具体的内容 *************/
+.itemChooseContentBox{  height:270px;  overflow-y:auto;overflow-x:hidden;}
+.itemChooseContentBox  li{  float:left;  width:300px;  height:25px;  text-align:left;  text-indent:10px;}
+.addItemDetailBox li{width:100%;}
+.itemChooseContentBox  li a , .addItemDetailBox li a{  display:block;   overflow:hidden;  white-space: nowrap;  text-overflow: ellipsis; width:100%;  height:25px;  line-height:25px;  text-decoration:none;  color:#323232;}
+.itemChooseContentBox  li a:hover , .itemChooseContentBox  li a.itemLiNextAHover{background-color:#72b6f0;color:#fff; text-decoration:none;}
+/************客户群模版*************/
+.importWayBox{  padding:15px 10px 0px;}
+.importWayBox li{float:left;width:100%;padding-bottom:15px;}
+.switchImportWayBox{  height:34px;  line-height:34px;  background-color:#f4f9fe;  color:#323232;}
+.switchImportWayBox ol{ padding-left:20px;}
+.switchImportWayBox ol li{float:left; margin-right:40px;}
+.switchImportWayBox ol li div{cursor:pointer;font-weight:bold;}
+.switchImportWayBox ol li div.current{color:#0081cc;background:transparent url(images/icon_dialog_nav_bg.gif) no-repeat center bottom;}
+.importWayBox .addAttributeBox{   float:left;   width:378px; max-height:96px;overflow-x:hidden;overflow-y:auto; padding-top:3px;}
+.importWayBox .addAttributeBox dd{height:22px;padding-bottom:10px;}
+a.addAttributeBtn{display:block; width:11px; margin-top:5px; height:12px; margin-left:10px;float:left; background:transparent url(images/icon_shop_cart_active.png) no-repeat left top;	overflow:hidden;}
+a.addAttributeBtn:hover{   background-position:left -16px;}
+.customGroupFile{ float:left; width:69px; height:24px; font-size:1.7em; overflow:hidden; margin-left:-70px;  opacity: 0; filter:alpha(opacity=0); cursor:pointer;}
+a.importFileModelBtn{text-decoration:none;color:#fff;}
+/************标签计算中心保存成功系统提示1**************/
+.successTipBox{height:210px; background-color:#fbfaf8; padding: 60px 35px 25px;}
+.successTipLeftBox , .successTipRightBox , .clientSuccessTipLeftBox{width:260px; text-align:left;}
+.successTipLeftBox , .clientSuccessTipLeftBox{  height:145px;  background:transparent url(images/icon_save_success_01.png) no-repeat center center;}
+.successTipBox h4{color:#3180b8;font-size:14px;margin:10px auto 20px;}
+.successTipRightH4 h4{margin-bottom:10px;}
+.successTipBox p{line-height:22px;text-align:left; font-size:14px;}
+.successTipBox p strong , .successTipBox p a{font-weight:normal;padding:0px 3px;color:#3282b7; text-decoration:none;}
+.successTipBox p a.active{text-decoration:underline;font-size:18px;color: #0194e9;font-weight: 700;}
+.successTipBox .pushSetTipBox{line-height:20px; padding-top:40px;}
+.successTipBox .pushSetTipBox .pushSetTip{display:inline;padding:3px 2px;height:24px;line-height:24px; margin-left:15px;background: #409edd;color:#fff; font-size: 12px;}
+.successTipBox .pushSetTipBox .pushSetTip:active{background: #007cc4;}
+/** 保存客户群成功提示 **/
+.clientSuccessTipLeftBox{background:transparent url(images/icon_save_success_02.png) no-repeat center center;}
+
+/************日期标签设置**************/
+.date-setting-box{padding:30px 20px 10px;height:200px; background:transparent url(images/icon_date_setting.png) no-repeat 20px 50px;}
+.date-setting-box .left-box{  width:120px;  height:200px;  background:transparent url(images/icon_date_setting.png) no-repeat center 50px;}
+.date-setting-box .right-box{  width:325px;  padding-left:15px;  text-align:left;}
+.date-setting-box .right-box ol li{ font-size:12px; width:100%;  height:24px;  line-height:24px;  margin-bottom:7px;}
+.date-setting-box .right-box ol li p{padding-left:37px; padding-top:10px;}
+.date-setting-box .right-box ol li p input{margin-right:8px;margin-top:5px;}
+.date-setting-box dl{ padding:5px 10px 5px 80px;margin:0 auto 5px;overflow:hidden;text-align:left;font-size: 12px;}
+.date-setting-box  dl dt{ float:left;  width:95px;}
+.date-setting-box  dl p{padding-right:10px;}
+.date-setting-box  dl p.rPadding88{padding-right:88px;}
+.date-setting-box  dl p.rPadding88Margin3{padding-right:88px;margin-top:3px}
+.date-setting-box  dl p.rPadding100Margin3{padding-right:100px;margin-top:3px}
+.date-setting-box  dl p label{margin-top:-2px;margin-left: 5px;}
+.methodSel{ font-weight:bold;width:85px;  padding-left:25px; line-height:18px;  height:18px;    background:transparent url(images/icon_radio_bg.png) no-repeat left top;  cursor:pointer;}
+.methodSelCurrent , .methodSelHover{background-position: left -22px;}
+.methodSelDisabled{background-position: left -44px;}
+/***********数值标签设置**************/
+.number-value-setting-box{padding:20px 0px;}
+.number-value-setting-box dl{ padding:5px 12px;margin:0 auto 5px;overflow:hidden;text-align:left;font-size:	12px;}
+.number-value-setting-box dl.moddel{background-color:#f4f9fe;}
+.number-value-setting-box dl dt{ float:left;  width:105px;}
+.number-value-setting-box dl dt .queryMethod{ font-weight:bold;width:85px;	padding-left:25px; line-height:18px;	height:18px;    background:transparent url(images/icon_radio_bg.png) no-repeat left top;	cursor:pointer;}
+.number-value-setting-box dl dt .current{background-position: left -22px;}
+.number-value-setting-box dl dt .hover{background-position: left -22px;}
+.number-value-setting-box dl dd{  float:left;  width:375px;}
+.number-value-setting-box .numberBoxUl li{clear:both;}
+.inputSegSpace{padding:0px 7px;color:#c1c1c1;margin-top:4px;}
+.number-value-setting-box dl dd .sectionBox{   height:26px;   padding-top:12px;   padding-right:42px;}
+.number-value-setting-box dl dd .slectionBox{   height:26px;   padding-top:3px; padding-right:42px; padding-left:15px;}
+.number-value-setting-box dl dd .slectionBox input{margin-right:10px;margin-top:1px;}
+.number-value-setting-box dl dd .sectionBox input{margin-right:10px;margin-top:1px;}
+.number-value-setting-box dl dd .useTip{clear:both;width:190px; padding:6px 0px 4px 7px;border:1px solid #96d5fa;background-color:#ecf8ff; margin-top:5px;}
+.nullItemBox{cursor:pointer;width:58px;height:22px;line-height:22px;color:#fff;padding:1px; float:left;margin-right:15px;background:#0294ea;}
+.nullItemBox .nullItemText{width:34px;text-align:center;margin: 0;}
+.nullItemBox .nullItemOption {width:24px;height:22px;background:#fff url(images/icon_dialog_content.gif) no-repeat 8px -11px; }
+
+.exactQueryBox{ width:373px;border:1px solid  #b0becb;height:20px;background-color:#fff;padding:1px;}
+.exactQueryInput{width:188px;height:20px;border:1px solid  #b0becb;padding:0px 5px; background-color:#fff;}
+.exactQueryBtn{height:20px;padding-right:15px; background:url(images/icon_arrow_down_aaa.png) no-repeat right center;}
+/** 模糊匹配设置  **/
+.dim-match-box{padding:60px 20px 20px; height:130px;}
+.dim-match-left-box{ width:106px;height:100px; background:url(images/icon_input_edit.png) no-repeat center top; }
+.dim-match-right-box{width:215px;text-align:left;position: relative;}
+.dim-match-right-box h6{font-size:14px;font-weight:normal;margin-bottom:15px;}
+.dim-match-box dl{ padding:5px 12px;margin:0 auto 15px;overflow:hidden;text-align:left;font-size:	12px;}
+.dim-match-box dl.moddel{background-color:#f4f9fe;}
+.dim-match-box dl dt{ float:left;  width:105px;}
+.dim-match-box dl dt .dimMatchMethod{ font-weight:bold;width:85px;	padding-left:25px; line-height:18px;	height:18px;    background:transparent url(images/icon_radio_bg.png) no-repeat left top;	cursor:pointer;}
+.dim-match-box dl dt .current{background-position: left -22px;}
+.dim-match-box dl dt .hover{background-position: left -22px;}
+.dim-match-box dl dd{  float:left;  width:215px;}
+.dimMatchInput{border:1px solid #d3d3d3;width:210px;height:22px; padding-left:5px;line-height:22px;}
+/** 拖动提示 **/
+.selectDragBox{  margin:0 5px;  width:490px;  height:245px;  background:#fff url(images/icon_select_drag.png) no-repeat right 20px;}
+.selectDragBox h5{  color:#f34d04;  font-family:'tahoma';  font-size:18px;  padding-top:35px;  padding-right:95px;  text-align:right;}
+/**应用场景分类**/
+.selectIsNotBox{float:left;height:22px;line-height:22px;color:#fff;padding:1px; float:left;margin-right:15px;background:#0294ea;}
+.selectIsNotBox .nullItemOption {width:24px;height:22px;background:#fff url(images/icon_dialog_content.gif) no-repeat 8px -11px; }
+.selectIsNotBox .nullItemText{width:60px;text-align:center;}
+
+/* 使用说明提示  */
+.userTipDesc{
+	clear:both;
+	padding-left:120px;
+	line-height:18px;
+	padding-top:2px;
+	text-align:left;
+}
+.userTipDesc span{color:#f00;}
+
+/*分类单词*/
+.clientMsgBox ol li.enumCategory{height:40px;margin-top: 20px;}
+.bgwhite{background-color: #fff;}
+
+/**标签发布-新加css*/
+a.removeColumnInfoBtn{ width:11px; margin-top:5px; height:12px; margin-left:10px;margin-right:10px;float:right; background:transparent url(images/icon_shop_cart_active.png) no-repeat left top;	overflow:hidden;}
+a.removeColumnInfoBtn:hover{   background-position:left -16px;}
+
+/**标签分类-新加css*/
+.aibi_button_title li.width110{width:110px;}
+.aibi_button_title li.width110 a.icon_button_add{width:110px;}
+.aibi_button_title li.width110 a:hover{width:110px; background:url(images/btn_bg1.png) no-repeat 0px -50px;}
+.aibi_button_title li a.icon_button_add span.width90{width:90px;}

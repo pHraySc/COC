@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://cxf.apache.org/jaxws 
+		http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+    <!-- 定时任务 start -->
+    <!-- 定义调用对象和调用对象的方法 -->
+    <bean id="dailyFeedbackInfoRefreshtask"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 自动关闭“已处理”的反馈信息 -->
+            <ref bean="feedbackCloseJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>closeCiFeedbackInfo</value>
+        </property>
+    </bean>
+    <bean id="refreshMonthlyLabelAndCustomtask"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 月标签客户数更新和月周期创建客户群 -->
+            <ref bean="monthlyCacheRefreshJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>refreshLabelNumAndCreateCustomList</value>
+        </property>
+    </bean>
+    <bean id="refreshDailyLabelAndCustomtask"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 日标签客户数更新和日周期创建客户群 -->
+            <ref bean="dailyCacheRefreshJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>refreshLabelNumAndCreateCustomList</value>
+        </property>
+    </bean>
+    <bean id="updateMonthlyCustomGroupRingNumtask"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 日标签客户数更新和日周期创建客户群 -->
+            <ref bean="monthlyCustomGroupRingJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>work</value>
+        </property>
+    </bean>
+    <bean id="refreshNoticetask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 月周期创建客户群 -->
+            <ref bean="cacheRefreshJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>refreshUserNoticeCache</value>
+        </property>
+    </bean>
+
+    <bean id="monthlyLabelAlarmtask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 月周期创建客户群 -->
+            <ref bean="labelAlarmJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>createMonthlyAlarmRecord</value>
+        </property>
+    </bean>
+    <bean id="dailyLabelAlarmtask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 月周期创建客户群 -->
+            <ref bean="labelAlarmJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>createDailyAlarmRecord</value>
+        </property>
+    </bean>
+    <bean id="monthlyCustomersAlarmtask"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 月周期创建客户群 -->
+            <ref bean="customersAlarmJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>createMonthlyAlarmRecord</value>
+        </property>
+    </bean>
+    <bean id="dailyLabeUseStattask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 标签使用统计类 -->
+            <ref bean="labelUseStatJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>dayCount</value>
+        </property>
+    </bean>
+    <bean id="monthlyLabeUseStattask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 标签使用统计类 -->
+            <ref bean="labelUseStatJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>monthCount</value>
+        </property>
+    </bean>
+    <bean id="dailyLogTransfertask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 日志迁移类 -->
+            <ref bean="logTransferJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>transportLogMain</value>
+        </property>
+    </bean>
+
+    <bean id="monthlyCustomUseStattask"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 客户群使用统计类 -->
+            <ref bean="customUseStatJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>monthCount</value>
+        </property>
+    </bean>
+
+    <bean id="dailyCustomClientCacheRefreshTask"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 日标签客户数更新和日周期创建客户群 -->
+            <ref bean="dailyCustomClientCacheRefreshJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>refreshLabelNumAndCreateCustomList</value>
+        </property>
+    </bean>
+
+    <bean id="monthlyCustomClientCacheRefreshTask"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 日标签客户数更新和日周期创建客户群 -->
+            <ref bean="monthlyCustomClientCacheRefreshJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>refreshLabelNumAndCreateCustomList</value>
+        </property>
+    </bean>
+
+    <!-- 标签、客户群每天初始化最热标签、客户群
+    <bean id="hotLabelAndCustomJob" class="com.ailk.biapp.ci.task.DailyHotLabelAndCustomJob" /> -->
+    <bean id="refreshDailyHotLabelAndHotCustomTask"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <!-- 日周期初始化最热标签、客户群到缓存 -->
+            <ref bean="dailyHotLabelAndCustomJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>refreshHotLabelCustomList</value>
+        </property>
+    </bean>
+
+    <!-- 每天定时跑客户群，标签没有最新数据，所以需要预约到晚上让客户群重新跑一次清单 -->
+    <bean id="appointmentCustomerTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <ref bean="appointmentCustomerJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>creatCustomerList</value>
+        </property>
+    </bean>
+
+    <!-- 每天定时重新生成索引 -->
+    <bean id="createIndexTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <ref bean="createIndexJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>createIndex</value>
+        </property>
+    </bean>
+
+    <!-- 标签生成数据失败，需要重新生成的标签发公告，一小时轮询一次-->
+    <bean id="labelSysAnnouncementTask"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <ref bean="labelSysAnnouncementJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>refreshLabelSysAnnouncement</value>
+        </property>
+    </bean>
+
+    <!-- 定时更新客户群标签与场景对应关系表，批量更新营销导航中标签与客户群的最新时间、评分、使用次数及名称-->
+    <bean id="customLabelRereshTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <ref bean="customLabelRereshJob"/>
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>refreshCutomLabelSceneInfo</value>
+        </property>
+    </bean>
+
+    <!-- 定义触发时间 -->
+    <bean id="dailyFeedbackInfoRefreshTriger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="dailyFeedbackInfoRefreshtask"/>
+        </property>
+        <!-- 每天00:00:00更新意见反馈信息	1、过期的“已处理”信息进行关闭	2、过期的“已关闭”和“已取消”信息进行逻辑删除 -->
+        <property name="cronExpression">
+            <value>0 0 0 * * ?</value>
+        </property>
+    </bean>
+    <bean id="monthlyLabelAndCustomTriger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="refreshMonthlyLabelAndCustomtask"/>
+        </property>
+        <!-- cron表达式   月标签用户数刷新和月周期客户群清单创建 每月11号1点到13号1点-->
+        <property name="cronExpression">
+            <value>0 0 1 11-13 * ?</value>
+        </property>
+    </bean>
+    <bean id="dailyLabelAndCustomTriger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="refreshDailyLabelAndCustomtask"/>
+        </property>
+        <!-- cron表达式   日标签用户数刷新和日周期客户群清单创建 每天10点到14点-->
+        <property name="cronExpression">
+            <!-- <value>0 0/30 10-14 * * ?</value> -->
+            <value>0 0 11,14,17,23 * * ?</value>
+        </property>
+    </bean>
+    <bean id="monthlyCustomGroupRingNumTriger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="updateMonthlyCustomGroupRingNumtask"/>
+        </property>
+        <!-- cron表达式   月周期客户群环比增长量 每月13号3点-->
+        <property name="cronExpression">
+            <value>0 0 3 13 * ?</value>
+        </property>
+    </bean>
+    <bean id="monthlyLabeUseStatTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="monthlyLabeUseStattask"/>
+        </property>
+        <!-- cron表达式   月标签使用次数的调度 每月1号早晨1点-->
+        <property name="cronExpression">
+            <value>0 0 1 1 * ?</value>
+        </property>
+    </bean>
+    <bean id="dailyLabeUseStatTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="dailyLabeUseStattask"/>
+        </property>
+        <!-- cron表达式  日标签使用次数的调度  每天早晨 2 点触发 -->
+        <property name="cronExpression">
+            <value>0 0 2 * * ?</value>
+        </property>
+    </bean>
+    <bean id="refreshNoticeTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="refreshNoticetask"/>
+        </property>
+        <!-- cron表达式  刷新通知任务的调度  每隔CI_NOTICE_REFRESH_INTERVAL分钟执行一次 -->
+        <property name="cronExpression">
+            <value>0 0/${CI_NOTICE_REFRESH_INTERVAL} * * * ?</value>
+        </property>
+    </bean>
+    <bean id="monthlyLabelAlarmTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="monthlyLabelAlarmtask"/>
+        </property>
+        <!-- cron表达式  月标签预警的调度  每小时触发 -->
+        <property name="cronExpression">
+            <value>0 0 0/1 * * ?</value>
+        </property>
+    </bean>
+    <bean id="dailyLabelAlarmTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="dailyLabelAlarmtask"/>
+        </property>
+        <!-- cron表达式  日标签预警的调度  每小时触发 -->
+        <property name="cronExpression">
+            <value>0 0 0/1 * * ?</value>
+        </property>
+    </bean>
+    <bean id="monthlyCustomersAlarmTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="monthlyCustomersAlarmtask"/>
+        </property>
+        <!-- cron表达式  月客户群预警的调度  每小时触发 -->
+        <property name="cronExpression">
+            <value>0 0 0/1 * * ?</value>
+        </property>
+    </bean>
+    <bean id="dailyLogTransferTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="dailyLogTransfertask"/>
+        </property>
+        <!-- cron表达式 日志迁移 每天晚上12点进行一次迁移   -->
+        <property name="cronExpression">
+            <value>0 0 3 * * ?</value>
+        </property>
+    </bean>
+
+    <bean id="monthlyCustomUseStatTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="monthlyCustomUseStattask"/>
+        </property>
+        <!-- cron表达式   客户群使用次数的调度 每月1号早晨1点-->
+        <property name="cronExpression">
+            <value>0 0 1 1 * ?</value>
+        </property>
+    </bean>
+
+    <bean id="refreshDailyHotLabelAndHotCustomTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="refreshDailyHotLabelAndHotCustomTask"/>
+        </property>
+        <!-- 最热客户群、最热标签  每天晚上12点进行一次初始化到缓存操作   -->
+        <property name="cronExpression">
+            <value>0 0 3 * * ?</value>
+        </property>
+    </bean>
+
+    <bean id="appointmentCustomerTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="appointmentCustomerTask"/>
+        </property>
+        <property name="cronExpression">
+            <value>0 0 0-23 * * ?</value>
+        </property>
+    </bean>
+
+    <bean id="createIndexTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="createIndexTask"/>
+        </property>
+        <property name="cronExpression">
+            <value>0 25 6,12,19,23 * * ?</value>
+        </property>
+    </bean>
+
+    <!-- 标签数据生成失败时，发公告 ，15分开始，一小时轮询一次-->
+    <bean id="labelSysAnnouncementTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="labelSysAnnouncementTask"/>
+        </property>
+        <property name="cronExpression">
+            <value>0 15 * * * ?</value>
+        </property>
+    </bean>
+
+    <bean id="dailyCustomClientCacheRefreshTriger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="dailyCustomClientCacheRefreshTask"/>
+        </property>
+        <!-- cron表达式   日标签用户数刷新和日周期客户群清单创建 每天10点到14点-->
+        <property name="cronExpression">
+            <!-- <value>0 0/30 10-14 * * ?</value> -->
+            <value>0 55/10 * * * ?</value>
+        </property>
+    </bean>
+    <bean id="monthlyCustomClientCacheRefreshTriger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="monthlyCustomClientCacheRefreshTask"/>
+        </property>
+        <!-- cron表达式   月标签用户数刷新和月周期客户群清单创建 每月11号1点到13号1点-->
+        <property name="cronExpression">
+            <value>0 0 1 11-13 * ?</value>
+        </property>
+    </bean>
+    <bean id="customLabelRereshTriger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="customLabelRereshTask"/>
+        </property>
+        <!-- 批量更新营销导航中标签与客户群的最新时间、评分、使用次数及名称-->
+        <property name="cronExpression">
+            <value>0 0 23 * * ?</value>
+        </property>
+    </bean>
+
+    <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
+    <bean id="startQuertz" lazy-init="false" autowire="no"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="refreshNoticeTrigger"/>
+                <!--
+                <ref bean="monthlyLabelAlarmTrigger"/>
+                <ref bean="dailyLabelAlarmTrigger"/>
+                <ref bean="monthlyCustomersAlarmTrigger"/>
+                 -->
+
+                <!-- 标签使用统计自动刷新 -->
+                <ref bean="monthlyLabeUseStatTime"/>
+                <ref bean="dailyLabeUseStatTime"/>
+
+                <ref bean="dailyLabelAndCustomTriger"/>
+                <ref bean="monthlyLabelAndCustomTriger"/>
+                <ref bean="monthlyCustomGroupRingNumTriger"/>
+
+                <!-- <ref bean="dailyLogTransferTrigger"></ref> -->
+                <!-- <ref bean="monthlyCustomUseStatTrigger"></ref>
+                <ref bean="refreshDailyHotLabelAndHotCustomTrigger"/> -->
+
+                <ref bean="appointmentCustomerTrigger"/>
+                <ref bean="createIndexTrigger"/>
+
+                <!-- <ref bean="labelSysAnnouncementTrigger"/> -->
+
+                <!-- <ref bean="dailyCustomClientCacheRefreshTriger"/> -->
+                <!-- <ref bean="monthlyCustomClientCacheRefreshTriger"/> -->
+
+                <ref bean="dailyFeedbackInfoRefreshTriger"/>
+
+                <ref bean="customLabelRereshTriger"/>
+            </list>
+        </property>
+    </bean>
+    <!-- 定时任务 end -->
+</beans>

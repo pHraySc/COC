@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+  	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.directwebremoting.org/schema/spring-dwr
+    http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+            <list>
+               <value>classpath:config/aibi_core/core.properties</value>
+               <value>classpath:config/aibi_core/requestUrl.properties</value>
+           </list>
+		</property>
+	</bean>
+
+	<!-- JNDI DataSource for J2EE environments -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName"><value>${JNDI_PREFIX}${JDBC_AIOMNI}</value></property>
+	</bean>
+
+    <!-- ====================== Method CACHE Begin  ======================= -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation">
+            <value>classpath:/config/aibi_core/ehcache.xml</value>
+        </property>
+    </bean>
+
+    <bean id="methodCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+        <property name="cacheManager">
+            <ref local="cacheManager"/>
+        </property>
+        <property name="cacheName">
+            <value>com.asiainfo.bi.cache.METHOD_CACHE</value>
+        </property>
+    </bean>
+
+    <bean id="methodCacheInterceptor" class="com.asiainfo.biframe.common.cache.MethodCacheInterceptor">
+        <property name="cache">
+            <ref local="methodCache"/>
+        </property>
+    </bean>
+
+    <bean id="methodCachePointCut" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice">
+            <ref local="methodCacheInterceptor"/>
+        </property>
+        <property name="patterns">
+            <list>
+                <value>.*Cache</value>
+                <value>.*NameById</value>
+            </list>
+        </property>
+    </bean>
+	<!-- ====================== Method CACHE End  ======================= -->
+
+	<!-- ====================== SessionFactory and TransactionManager Begin  ======================= -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <!-- <prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop> -->
+                <prop key="hibernate.dialect">org.hibernate.dialect.DB2Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.max_fetch_depth">2</prop>
+				<prop key="hibernate.default_batch_fetch_size">20</prop>
+				<prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">validate</prop> -->
+            </props>
+        </property>
+        <property name="mappingLocations">
+	        <list>
+	        	<value>classpath*:/com/asiainfo/**/*.hbm.xml</value>
+	        	<value>classpath*:/org/light/**/*.hbm.xml</value>
+        	</list>
+        </property>
+    </bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+	<bean id="baseProxy" class="org.springframework.aop.framework.ProxyFactoryBean" abstract="true">
+        <property name="interceptorNames">
+            <list>
+                <value>methodCachePointCut</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="baseTrasactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+          abstract="true">
+        <property name="transactionManager">
+            <ref bean="transactionManager"/>
+        </property>
+        <property name="transactionAttributes">
+            <props>
+            	<prop key="save*">PROPAGATION_REQUIRED</prop>
+            	<prop key="clone*">PROPAGATION_REQUIRED</prop>
+            	<prop key="update*">PROPAGATION_REQUIRED</prop>
+            	<prop key="delete*">PROPAGATION_REQUIRED</prop>
+            	<prop key="do*">PROPAGATION_REQUIRED</prop>
+            	<prop key="add*">PROPAGATION_REQUIRED,-java.lang.Exception</prop>
+            	<prop key="log*">PROPAGATION_REQUIRED</prop>
+              <prop key="*">PROPAGATION_SUPPORTS,readOnly</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- ====================== SessionFactory and TransactionManager End  ======================= -->
+
+	<!-- mda_sys_code_type,mda_sys_code,mda_sys_datasource -->
+	<bean id="adminJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<bean id="adminMdaSysCodeDao" class="com.asiainfo.biframe.mda.dao.impl.MdaSysCodeDaoImpl">
+		<property name="template">
+			<ref bean="adminJdbcTemplate" />
+		</property>
+	</bean>
+	<bean id="adminMdaSysCodeTypeDao" class="com.asiainfo.biframe.mda.dao.impl.MdaSysCodeTypeDaoImpl">
+		<property name="template">
+			<ref bean="adminJdbcTemplate" />
+		</property>
+	</bean>
+	
+	<bean id="adminMdaSysDatasourceDao" class="com.asiainfo.biframe.mda.dao.impl.MdaSysDatasourceDaoImpl">
+		<property name="template">
+			<ref bean="adminJdbcTemplate" />
+		</property>
+	</bean>
+	
+	<bean id="adminMdaSysDataTransferDao" class="com.asiainfo.biframe.mda.dao.impl.MdaSysDataTransferDaoImpl">
+		<property name="template">
+			<ref bean="adminJdbcTemplate" />
+		</property>
+	</bean>
+	
+	<bean id="mdaSysCodeService" class="com.asiainfo.biframe.mda.service.impl.MdaSysCodeServiceImpl">
+		<property name="mdaSysCodeDao">
+			<ref bean="adminMdaSysCodeDao" />
+		</property>
+	</bean>
+	<bean id="mdaSysCodeTypeService" class="com.asiainfo.biframe.mda.service.impl.MdaSysCodeTypeServiceImpl">
+		<property name="mdaSysCodeTypeDao">
+			<ref bean="adminMdaSysCodeTypeDao" />
+		</property>
+	</bean>
+	<bean id="mdaSysDatasourceService" class="com.asiainfo.biframe.mda.service.impl.MdaSysDatasourceServiceImpl">
+		<property name="mdaSysDatasourceDao">
+			<ref bean="adminMdaSysDatasourceDao" />
+		</property>
+	</bean>
+	
+	<bean id="mdaSysDataTransferService" class="com.asiainfo.biframe.mda.service.impl.MdaSysDataTransferServiceImpl">
+		<property name="mdaSysDataTransferDao">
+			<ref bean="adminMdaSysDataTransferDao" />
+		</property>
+	</bean>
+	<!-- end -->
+
+	<!--  ========================= Dao Bean Definitions Begin =========================== -->
+	<bean id="core_sysSynCacheDao" class="com.asiainfo.biframe.dao.impl.SysSynCacheDaoImpl">
+		<property name="dataSource">
+			<ref local="dataSource"/>
+		</property>
+	</bean>
+	<!--  ========================= Dao Bean Definitions End =========================== -->
+
+	<!--  ========================= Service Bean Definitions Begin =========================== -->
+	<bean id="core_cacheRefreshTask" class="com.asiainfo.biframe.service.impl.CacheRefreshTask"></bean>
+	<bean id="core_scheduledCacheRefreshTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<property name="delay">
+			<value>300000</value>
+		</property>
+		<property name="period">
+			<value>600000</value>
+		</property>
+		<property name="timerTask">
+			<ref local="core_cacheRefreshTask" />
+		</property>
+	</bean>
+	<bean id="core_timerFactory" class="com.asiainfo.biframe.manager.timertask.BITimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<ref local="core_scheduledCacheRefreshTask" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="core_sysSynCacheService" parent="baseProxy">
+		<property name="target">
+			<bean class="com.asiainfo.biframe.service.impl.SynCacheServiceImpl">
+				<property name="sysSynCacheDao">
+					<ref local="core_sysSynCacheDao"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!--  ========================= Service Bean Definitions End =========================== -->
+</beans>

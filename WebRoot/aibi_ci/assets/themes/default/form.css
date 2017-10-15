@@ -1,0 +1,153 @@
+@charset "utf-8";
+/* search */
+.aibi_search{background-color:#fafafa; border:1px solid #d5d5d5; /*background:#eee url(images/search_bg.png) repeat-x;border-top:#b5b5b5 solid 1px;border-bottom:#959595 solid 1px; */}
+.aibi_search ul{}
+.aibi_search li{float:left;margin:5px; height:24px; line-height:24px;}
+.aibi_search li span{line-height:24px;vertical-align:middle; display:inline-block;padding-left:6px;}
+.aibi_search li.more{padding-right:5px;}
+.aibi_search li a{text-decoration:none; color:#000;}
+.aibi_search li a:hover{text-decoration:underline;color:#418ccb}
+.aibi_input{border:#b9b9b9 solid 1px; background:#fff;height:22px;line-height:22px; vertical-align:top;padding-left:6px;padding-right:6px;width:130px; color:#39f9f9f}
+.search_line1 .aibi_input,.search_line2 .aibi_input{padding:0 6px; width:90px;}
+.aibi_search_btn{width:66px;height:24px;background:#fafafa url(images/search.png) no-repeat; cursor:pointer}
+.aibi_search_btn:hover{width:66px;height:24px;background:#fafafa url(images/search_hover.png) no-repeat;}
+.aibi_search .aibi_input,.aibi_search .ui-state-default{color:#666;}
+.aibi_search .removeDefaultFont{color:#333;}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br{border-bottom-right-radius:0px;}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl{border-bottom-left-radius:0px;}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr{border-top-right-radius:0px;}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl{border-top-left-radius:0px;}
+
+.likeSelect{background:#fff url(images/arr.gif) no-repeat right!important;padding-right:26px;width:110px;}
+.aibi_date{background:#fff url(images/icon_date.gif) no-repeat right!important;padding-right:26px;width:110px;}
+.new_tag_textarea{width:93%;height:70px;border:#a6a6a6 solid 1px; border-bottom:#d9d9d9 solid 1px; border-right:#d9d9d9 solid 1px;color:#9a9a9a;}
+.textarea_look{width:95%;overflow:auto}
+.new_tag_selectBox{height:24px;}
+ input.new_tag_input::-ms-clear{display : none; }
+.new_tag_input{border:none;background:none;width:280px;*width:284px;height:22px;line-height:22px; vertical-align:middle;margin:0px;padding:0px;padding-left:3px;padding-right:3px;float:left;border:#c9c9c9 solid 1px;background:#f4f4f4 url(images/input.png) repeat-x; cursor:pointer;color:#9a9a9a}
+.new_tag_input_edit{border:none;background:none;width:280px;*width:284px;height:22px;line-height:22px; vertical-align:middle;margin:0px;padding:0px;padding-left:3px;padding-right:3px;float:left;border:#c9c9c9 solid 1px;background:#fefefe; cursor:pointer;color:#444}
+.tag_date_input{width:135px;*width:139px;background:#f4f4f4 url(images/date_bg.png) no-repeat right;}
+.new_tag_selectBox .btn_img{float:left;display:block;height:22px;width:22px;background:url(images/arr.png) no-repeat;margin:0px;padding:0px;border:#c9c9c9 solid 1px;border-left:none; cursor:pointer;}
+.new_tag_selectBox .date{background:url(images/icon_date.png) no-repeat;}
+.new_tag_selectBox .search_img{background:transparent url(images/icon_search.png) no-repeat;border:none;margin-left:5px;}
+.btn_img_addPage{float:left;display:block;height:22px;width:22px;background:url(images/arr.png) no-repeat;margin:8px 0 0;padding:0px;border:#c9c9c9 solid 1px;border-left:none; cursor:pointer;}
+.search_img_addPage{background:transparent url(images/icon_search.png) no-repeat;border:none;margin-left:5px;}
+
+/* 文件域 */
+.input_text{float:left;width:300px;height:22px;line-height:22px;border:#c9c9c9 solid 1px;background:#f4f4f4 url(images/input.png) repeat-x;padding-left:5px;padding-right:5px;}
+.input_file{float:left;width:384px;height:22px; margin-left:-384px; filter:alpha(opacity=0); opacity:0;cursor:pointer}
+.button_file{float:left;width:64px;height:22px;background:url(images/button_file.gif) no-repeat;margin-top:1px;margin-left:8px;}
+
+
+/* 选择框组建 */
+.dialog_select{width:302px;*width:316px;}
+.like_select{width:144px;}
+/* .ui-multiselect-single,.dialog_table .ui-multiselect,.aibi_search .ui-multiselect{font-family: Microsoft YaHei;background:#fff;font-size:1em} */
+.dialog_table .ui-state-default{background:#f4f4f4 url(images/input.png) repeat-x;}
+.aibi_search .ui-state-default{ background:#fff;border:#b9b9b9 solid 1px;}
+.aibi_search .ui-icon{_text-indent:1px;}
+/* .ui-multiselect{padding-top:0px;padding-bottom:0px;height:24px;line-height:24px;*line-height:21px;vertical-align:middle} */
+/* .aibi_search li .ui-multiselect span{_line-height:21px;} */
+.ui-state-default{color:#252525;font-weight:normal;border:#c9c9c9 solid 1px;}
+.dialog_table .ui-state-default .ui-icon{background:transparent url(images/arr.png) no-repeat;width:22px;height:22px;border-left:#c9c9c9 solid 1px;}
+.dialog_table .ui-icon-triangle-1-s{ background-position:left top;}
+.aibi_search .ui-state-default .ui-icon{background:transparent url(images/arr.gif) no-repeat;width:22px;height:22px;padding-left:0px;}
+.aibi_search .ui-icon-triangle-1-s{ background-position:left top;}
+
+/* .ui-multiselect-single .ui-widget-header{border:#d3d3d3 solid 1px;background:#fff;} */
+/* .ui-multiselect-header{padding-left:0px;} */ 
+/* .ui-multiselect-menu{padding:0px;} */
+/* .ui-multiselect-checkboxes li{padding-right:0px;font-size:1em} */
+/* .ui-multiselect-checkboxes label{border:none;} */
+/* .ui-multiselect-single .ui-corner-all{background:#fff;border:none;color:#333;font-weight:normal;} */
+/* .ui-multiselect-checkboxes li.odd .ui-corner-all{background:#f8f8f8;} */
+/* .ui-multiselect-single .ui-state-active,.ui-multiselect-checkboxes li.odd .ui-state-active{background:#72b6f0;color:#fff;_color:#ff3f3f;border:none;font-weight:normal;} */
+/* .ui-multiselect-single .ui-state-hover,.ui-multiselect-checkboxes li.odd .ui-state-hover{background:#e0eef9;border:none;color:#333;font-weight:normal;} */
+/* .aibi_search li .ui-multiselect span{line-height:22px; *padding-left:0;} */
+
+/********************
+ui-multiselect 样式修改
+********************/
+.ui-multiselect{
+	background:#fff;
+	border-radius:0px;
+	cursor:pointer;
+	max-width:298px;
+	outline: none;
+	margin: 0px;
+	zoom:1;
+}
+.ui-multiselect span.ui-icon{
+	background-image: url(../../../assets/js/jqueryUI/ui-lightness/images/ui-icons_222222_256x240.png);
+	height:18px;
+	margin:2px 3px;
+	border-left: 1px solid #cccccc;
+}
+.ui-multiselect span.ui-multiselect-txt { 
+	color:#172c45;
+	font-size:12px;
+	font-weight:normal;
+}
+.ui-multiselect.ui-state-active,
+.ui-multiselect.ui-state-hover { 
+	border: 1px solid #56b3ef;
+}
+.ui-multiselect-header.ui-widget-header{
+	background:#56b3ef;
+	border:1px solid #0294e9;
+	border-radius:0px;
+}
+.ui-multiselect-menu.ui-widget-content{
+	background:#FFF; 
+	border-radius:0px;
+	border:1px solid #56b3ef;
+	border-top:0px;
+}
+.ui-multiselect-checkboxes li{
+	padding:0;
+}
+.ui-multiselect-single .ui-multiselect-checkboxes label.ui-state-active,
+.ui-multiselect-single .ui-multiselect-checkboxes label.ui-state-hover {
+	line-height:26px;
+	height:26px; 
+	margin:0;
+	overflow:hidden;
+	color:#FFF;
+	font-size:12px;
+	font-weight:normal;
+	background:#088bd9;
+	border:none;
+	border-radius:0px;
+	padding:0 5px !important; 
+	cursor:pointer;
+}
+.ui-multiselect-filter input {
+	width: 266px;
+	font-size: 10px;
+	margin-left: 5px;
+	height: 18px;
+	padding: 2px;
+	border: 1px solid #BAB6B6;
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+}
+
+/* 选择框弹出 */
+.x-form-field{position:absolute;z-index:99999;border:#d3d3d3 solid 1px;background:#fff;font-size:12px;display:none; overflow:auto;}
+.x-form-field li{margin:0px;padding:0px;padding-left:5px;padding-right:5px;line-height:20px; vertical-align:middle;overflow:hidden;white-space:nowrap;text-overflow: ellipsis;}
+.x-form-field li.odd{background:#f8f8f8;}
+.x-form-field li:hover,.x-form-field li.odd:hover{background:#e0eef9;}
+.x-form-field li.on,.x-form-field li.on:hover{background:#72b6f0;color:#fff}
+
+/* 弹出框按钮 */
+.tag_btn{ display:inline-block; *display:inline; zoom:1; text-decoration:none; background:#7eb019 url(images/btn.png) repeat-x; height:27px; line-height:27px; vertical-align:middle;padding-left:10px;padding-right:10px;color:#fff; border:none;margin-right:10px; cursor:pointer;}
+.tag_btn_disable{background:#bbc6cb url(images/btn.png) left -28px repeat-x;}
+.tag_btn_dis{background:#bbc6cb url(images/btn.png) left -28px repeat-x; cursor:default}
+
+div.tishi{float:left; background-color:#e5f5ff; border:#40b3ff solid 1px;padding:0px 5px; margin:0 0 0 3px; position:relative;z-index:5; }
+div.tishi-page{float:left; background-color:#e5f5ff; border:#40b3ff solid 1px;padding:0px 5px; margin:11px; position:relative;z-index:5; }
+div.tishi-page.recom_tishi{margin: 0 11px;}
+div.tishi-new{float:left; background-color:#e5f5ff; border:#40b3ff solid 1px;padding:0px 5px; margin-left:25px; position:relative;z-index:5; }
+div.error{ background-color:#ffefe5; border:#ff8b40 solid 1px;}
+
+

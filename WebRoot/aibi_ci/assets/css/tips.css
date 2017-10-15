@@ -1,0 +1,75 @@
+@charset "utf-8";
+/*
+Aisainfolinkage All copyright reserved
+Date: 2010.10.18
+Version: v1.0
+Creator: Wulei
+E-mail: wulei@asiainfo-linkage.com
+*/
+/* aibi_tips start */
+.aibi_tips_basis{
+	margin:5px 0;
+	padding:5px;
+}
+.aibi_tips_basis p{
+	line-height:20px;
+	padding:0 5px;
+}
+.aibi_tips_basis .aibi_icon_notice{
+	margin-right:5px;
+	vertical-align:middle;
+}
+.aibi_tips_basis .aibi_icon_close{
+	float:right;
+	text-decoration:none;
+}
+.aibi_tips_warm{
+	margin:5px 0;
+	padding:5px;
+}
+.aibi_tips_warm h6{
+	height:25px;
+	font:bold 12px/25px;
+}
+.aibi_tips_warm li{
+	line-height:25px;
+	padding-left:15px;
+	background:url(../images/aibi_icon.gif) -484px 5px no-repeat;
+}
+.aibi_tips_little{
+	display:inline-block;
+	margin:0 5px 0 0;
+	padding:1px 5px;
+	vertical-align:top;
+}
+.aibi_tips_opeation {
+	padding:5px;
+	text-align:center;
+}
+.aibi_tips_opeation span.success{
+	width:40px;
+	height:32px;
+	display:inline-block;
+	background:url(../images/aibi_icon.gif) no-repeat -400px -50px;
+	vertical-align:top;
+}
+.aibi_tips_opeation span.failed{
+	width:40px;
+	height:32px;
+	display:inline-block;
+	background:url(../images/aibi_icon.gif) no-repeat -400px -100px;
+	vertical-align:top;
+}
+.aibi_tips_opeation span.confirm{
+	width:32px;
+	height:32px;
+	display:inline-block;
+	background:url(../images/aibi_icon.gif) no-repeat -400px -150px;
+	vertical-align:top;
+}
+.aibi_tips_opeation .text{
+	display:inline-block;
+	margin:0 5px;
+	font:bold 14px/32px "微软雅黑";
+}
+/* aibi_tips end */

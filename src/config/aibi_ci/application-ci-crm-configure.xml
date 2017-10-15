@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://cxf.apache.org/jaxws 
+		http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	<bean id="data2MongTaskBean"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 调用的类 -->
+		<property name="targetObject">
+			<!-- 月周期创建客户群 -->
+			<ref bean="data2MongTask" />
+		</property>
+		<!-- 调用类中的方法 -->
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean>
+	<bean id="data2MongTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="data2MongTaskBean" />
+		</property>
+		<!-- cron表达式 每天早晨1点 -->
+		<property name="cronExpression">
+			<value>0 0 1 * * ?</value>
+			<!-- 每1分钟 ，测试用 -->
+			<!-- <value>0 0/1 * * * ?</value> -->
+		</property>
+	</bean>
+	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
+	<bean id="startQuertz2" lazy-init="false" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="data2MongTaskTrigger" />
+			</list>
+		</property>
+		<property name="autoStartup">
+			<!--BMCC mongoDB 的 TOMCAT应用中改成true -->
+			<value>false</value>
+		</property>
+	</bean>
+	<!-- 定时任务 end -->
+	<!-- 使用annotation 自动注册bean,并保证@Required,@Autowired的属性被注入 name-generator="com.asiainfo.biapp.kmcc.utils.AsiainfoBeanNameGenerator" -->
+	<context:component-scan base-package="com.ailk.biapp.ci.dataservice" />
+
+</beans>

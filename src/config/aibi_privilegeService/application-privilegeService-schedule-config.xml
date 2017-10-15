@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+  	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.directwebremoting.org/schema/spring-dwr
+    http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+    
+    <!-- NO.1 -->
+    <bean id="rightAdmin_userExtTask" class="com.asiainfo.biframe.privilege.sysmanage.task.UserExtTask"></bean>
+    <bean id="rightAdmin_userExtJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+    	<property name="targetObject" ref="rightAdmin_userExtTask"/>
+    	<property name="targetMethod" value="run"/>
+    	<property name="concurrent" value="false"/>
+    </bean>
+    <bean id="rightAdmin_userExtJobTrigger" class="com.asiainfo.biframe.manager.timertask.BISimpleTriggerBean">
+    	<property name="jobDetail" ref="rightAdmin_userExtJobDetail"/>
+    	<property name="startDelay" value="120000"/><!-- delay 120 seconds -->
+    	<property name="repeatInterval" value="3600000"/><!-- interval 1 hour -->
+    </bean>
+    
+    <!-- NO.2 -->
+    <bean id="rightAdmin_validateCodeTask" class="com.asiainfo.biframe.privilege.pwdpolicy.task.UserValidateCodeRefreshTask"></bean>
+    <bean id="rightAdmin_validateCodeJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+    	<property name="targetObject" ref="rightAdmin_validateCodeTask"/>
+    	<property name="targetMethod" value="run"/>
+    	<property name="concurrent" value="false"/>
+    </bean>
+    <bean id="rightAdmin_validateCodeJobTrigger" class="com.asiainfo.biframe.manager.timertask.BISimpleTriggerBean">
+    	<property name="jobDetail" ref="rightAdmin_validateCodeJobDetail"/>
+    	<property name="startDelay" value="120000"/><!-- delay 120 seconds -->
+    	<property name="repeatInterval" value="300000"/><!-- interval 5 minutes -->
+    </bean>
+    
+     <!-- NO.3 -->
+    <bean id="rightAdmin_passwordTask" class="com.asiainfo.biframe.privilege.pwdpolicy.task.PasswordTask"></bean>
+    <bean id="rightAdmin_passwordJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+    	<property name="targetObject" ref="rightAdmin_passwordTask"/>
+    	<property name="targetMethod" value="run"/>
+    	<property name="concurrent" value="false"/>
+    </bean>
+    <bean id="rightAdmin_passwordJobTrigger" class="com.asiainfo.biframe.manager.timertask.BICronTriggerBean">
+    	<property name="jobDetail" ref="rightAdmin_passwordJobDetail"/>
+    	<property name="cronExpression" value="0 30 9 * * ?"/><!-- 每天早上9:30 -->
+    </bean>
+    
+    
+    <!-- schedulerFactory -->
+    <bean id="rightAdmin_schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    	<property name="triggers">
+    		<list>
+    			<ref bean="rightAdmin_userExtJobTrigger"/>
+    			<ref bean="rightAdmin_validateCodeJobTrigger"/>
+    			<ref bean="rightAdmin_passwordJobTrigger"/>
+    		</list>
+    	</property>
+    </bean>
+    
+</beans>    

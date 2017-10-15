@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="cia" extends="struts-default" namespace="/cia">
+		<interceptors>
+			<!-- 登录拦截器 -->
+			<interceptor name="loginCheck" class="com.ailk.biapp.ci.interceptor.CILoginCheckInterceptor"></interceptor>
+			<!-- action日志拦截器 -->
+			<interceptor name="ciLog" class="com.ailk.biapp.ci.interceptor.CILogInterceptor"></interceptor>
+            <interceptor-stack name="sysDefaultStack">
+                <interceptor-ref name="loginCheck"></interceptor-ref>
+                <interceptor-ref name="ciLog"></interceptor-ref>
+                <!-- struts2 default interceptor stack -->
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+		</interceptors>
+		<!-- set the app interceptor -->
+        <default-interceptor-ref name="sysDefaultStack"></default-interceptor-ref>
+		<global-results>
+			<result name="index">/aibi_ci/index.jsp</result>
+			<result name="noauth" type="redirect">/aibi_ci/relogin.jsp</result>
+			<result name="exception">/aibi_ci/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="exception"/>
+		</global-exception-mappings>
+	
+		<action name="ciaEchartDemoAction" class="com.ailk.biapp.ci.ia.action.CiaEchartDemoAction">
+			<result name="demo">/aibi_cia/pages/demo/demo.jsp</result>
+		</action>
+		
+		<action name="toushiAnalysisAction" class="com.ailk.biapp.ci.ia.action.ToushiAnalysisAction">
+			<result name="main">/aibi_ci/ia/pages/main/main.jsp</result>
+			<result name="demo">/aibi_cia/pages/demo/demo.jsp</result>
+		</action>
+		
+	</package>
+</struts>

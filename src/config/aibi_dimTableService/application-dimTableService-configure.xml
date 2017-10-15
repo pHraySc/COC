@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>   
+<beans   
+    xmlns ="http://www.springframework.org/schema/beans"     
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"                                        
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd  
+    http://www.directwebremoting.org/schema/spring-dwr  
+    http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+    
+	<!-- DWR -->   
+	<dwr:configuration>
+		 <dwr:convert class="org.apache.struts.util.LabelValueBean" type="bean"/>   
+	     <dwr:convert class="com.asiainfo.biframe.dimtable.model.LabelValueBean" type="bean"/>
+	     <dwr:convert class="com.asiainfo.biframe.dimtable.model.DimTableDefine" type="bean"/>
+	     <dwr:convert class="com.asiainfo.biframe.dimtable.model.DsContext" type="bean"/>    
+	</dwr:configuration>
+	<!-- DWR --> 
+
+	
+	<bean id="dimTable_propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />	
+		<property name="location"><value>classpath:config/aibi_dimTableService/dimTableService.properties</value></property>
+	</bean>
+	
+	<bean id="dimTable_dao" class="com.asiainfo.biframe.dimtable.dao.impl.DimTableDaoImpl">
+		<property name="sessionFactory">
+		 	<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean id="dimTable_serviceTarget" class="com.asiainfo.biframe.dimtable.service.impl.DimTableServiceImpl">
+		<property name="dimTableDao">
+			<ref bean="dimTable_dao" />
+		</property>
+		<property name="dimTableCacheService">
+		 	<ref bean="dimTable_cacheService"/>
+		</property>
+		<property name="jndiNames">
+			<value>${default_jndi}</value>
+		</property>
+		<property name="jndiEncoding">
+			<value>${default_jndi_encoding}</value>
+		</property>
+		<property name="localJndi">
+			<value>${JDBC_AIOMNI}</value>
+		</property>
+	</bean>
+	
+	<bean id="dimTable_service" parent="baseTrasactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="target"> 
+			<ref bean="dimTable_serviceTarget" />
+		</property>
+		
+		<property name="transactionAttributes">
+            <props>
+              <prop key="*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+		
+		<dwr:remote javascript="dimTableService">   
+		   <dwr:include method="getRoleTypeList" />   
+		   <dwr:include method="getResourceList" />   
+		   <dwr:include method="findDefineById" />  
+		   <dwr:include method="refreshSettingCache" />
+		   <dwr:include method="refreshDataCache" />
+		   <dwr:include method="getLabelValueBeans4DWR" />  
+		</dwr:remote>
+		
+	</bean>
+	
+	<!-- bean id="dimTableService_cacheService" class="com.asiainfo.biframe.dimtable.service.impl.DimTableCacheServiceImpl">
+		<property name="dimTableDao">
+			<ref bean="dimTableService_dao" />
+		</property>
+	</bean-->
+	
+	<bean id="dimTable_cacheService" class="com.asiainfo.biframe.dimtable.service.impl.DimTableCacheServiceEhcacheImpl">
+		<property name="dimTableDao">
+			<ref bean="dimTable_dao" />
+		</property>
+	</bean>
+	
+	<!-- schedule the dimTableCacheRefreshTask -->
+	<bean id="dimTable_cacheRefreshTask" class="com.asiainfo.biframe.dimtable.service.impl.CacheRefreshTask">
+		<property name="cacheService">
+			<ref bean="dimTable_cacheService" />
+		</property>
+	</bean>
+	<bean id="dimTable_scheduledCacheRefreshTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<property name="delay">
+			<value>30000</value>
+		</property>
+		<property name="period">
+			<value>${dimTable_refresh_interval}</value>
+		</property>
+		<property name="timerTask">
+			<ref local="dimTable_cacheRefreshTask" />
+		</property>
+	</bean>		
+	<bean id="dimTable_timerFactory" class="com.asiainfo.biframe.manager.timertask.BITimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<ref local="dimTable_scheduledCacheRefreshTask" />
+			</list>
+		</property>
+	</bean>
+		
+	<!-- new dimTable configuration by zhanglei8 -->
+	<bean id="dimTable_newCacheService" class="com.asiainfo.biframe.dimtable.service.impl.DimTableCacheServiceImpl2">
+		<property name="dimTableDao">
+			<ref bean="dimTable_dao" />
+		</property>
+	</bean>
+	
+	<bean id="dimTable_newService" class="com.asiainfo.biframe.dimtable.service.impl.DimTableServiceImpl2">
+		<property name="dimTableDao">
+			<ref bean="dimTable_dao" />
+		</property>
+		<property name="dimTableCacheService">
+			<ref bean="dimTable_newCacheService" />
+		</property>
+	</bean>
+</beans>

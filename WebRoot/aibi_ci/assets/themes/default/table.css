@@ -1,0 +1,58 @@
+@charset "utf-8";
+
+/* table */
+.showTable tr{background:#fff;}
+.showTable th{ text-align:right; font-weight:bold;line-height:30px;color:#444}
+.showTable td{ text-align:left;line-height:30px; color:#000}
+.showTable td a{color:#057ed8; text-decoration:none}
+
+.showTable tr.odd{background:#fafafa;}
+.showTable tr.even{background:#fff;}
+.showTable tr.hover,.showTable tr.aibi_tr_selected{background:#74b6ec; color:#fff;}
+.showTable tr.hover th,.showTable tr.hover td,.showTable tr.aibi_tr_selected th,.showTable tr.aibi_tr_selected td{color:#fff;}
+.showTable tr.hover td a,.showTable tr.hover td a:hover,.showTable tr.aibi_tr_selected td a,.showTable tr.aibi_tr_selected td a:hover{color:#fff; text-decoration:underline;}
+
+.mainTable td{line-height:12px;}
+.mainTable td div.nowrap{text-overflow:ellipsis; overflow:hidden; white-space:nowrap; padding:2px 0;}
+.mainTable td.stickie_td{background:url(images/stickie.gif) no-repeat 245px 8px; font-weight:bold;}
+.mainTable tr.odd td.stickie_td{background:#fafafa url(images/stickie.gif) no-repeat 245px 8px;}
+.mainTable tr.hover td.stickie_td,.mainTable tr.aibi_tr_selected td.stickie_td{background-color:#74b6ec}
+
+
+/* 弹出框 table */
+.dialog_table .showTable tr.odd{background:#fff;}
+.dialog_table .showTable tr.even{background:#f8fbfd;}
+.dialog_table .showTable th,.dialog_table .showTable td{padding-top:13px;padding-bottom:13px;line-height:24px;}
+.dialog_table .new_tag_table th{ font-weight:normal}
+.dialog_table .showTable th span{padding-right:3px;color:#f00}
+.dialog_table .showTable tr.hover,.dialog_table .showTable tr.aibi_tr_selected{background:#74b6ec; color:#fff;}
+.dialog_table .new_tag_table tr.odd{background:#fff!important;}
+.dialog_table .new_tag_table tr.even{background:#f8fbfd!important;}
+.dialog_table .new_tag_table tr th,.dialog_table .new_tag_table tr td{color:#444}
+
+
+.dialog_full_table .showTable td{padding:10px;}
+.dialog_full_table .showTable tr{background:#fafafa}
+.dialog_full_table .showTable .mainTable{border-left:#ccc solid 1px;border-right:#ccc solid 1px;}
+.dialog_full_table .showTable .mainTable tr th{ text-align:center;padding:0 5px; color:#000}
+.dialog_full_table .showTable .mainTable td{ text-align:center;padding:10px 8px; line-height:normal}
+.dialog_full_table .showTable .mainTable td.align_right{text-align:right;}
+.treeTable td{padding-top:8px;padding-bottom:8px; }
+
+
+/* 对齐 */
+table td.align_left{ text-align:left}
+table td.align_right{ text-align:right}
+
+/* 颜色 */
+.red{color:#d82e2e}
+.green{color:#2c7d08}
+
+
+/* 排序 */
+th.header{cursor: pointer;margin:0px;}
+th.header span.sort{display:inline-block; *display:inline; zoom:1; width:15px;height:25px;background-image: url(images/sorter.gif)!important;background-repeat: no-repeat!important;background-position:0px 3px!important;cursor: pointer; overflow:hidden; vertical-align:middle;}
+th.headerSortUp span.sort{background-position:-15px 3px!important;}
+th.headerSortDown span.sort{background-position:-30px 3px!important;}
+
+.parimg {border:none;padding:0px;margin:0px;width:16px;height:16px;vertical-align:middle; cursor:hand;margin-right:3px;}

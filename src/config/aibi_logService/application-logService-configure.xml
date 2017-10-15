@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="gb2312"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+  	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.directwebremoting.org/schema/spring-dwr
+    http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+
+    <!--  ========================= DAO Bean Definitions Begin =========================== -->
+   <bean id="logService_systemFunctionUriDao" class="com.asiainfo.biframe.unilog.hit.dao.SystemFunctionURIDao">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+   
+   <bean id="logService_hitrateLogQueryDao" class="com.asiainfo.biframe.unilog.hit.dao.HitrateLogQueryDaoImpl">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+   <bean id="logService_userOperLogDao" class="com.asiainfo.biframe.unilog.log.dao.impl.UserOperLogDao">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+   <bean id="logService_userLoginHistoryDao" class="com.asiainfo.biframe.unilog.log.dao.impl.UserLoginHistoryDao">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+   <bean id="logService_logDetailDao" class="com.asiainfo.biframe.unilog.log.dao.impl.LogDetailDao">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+   <bean id="logService_esbProxyServiceDetailLogDao" class="com.asiainfo.biframe.unilog.log.dao.impl.EsbProxyServiceDetailLogDaoImpl">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+   
+   <!--  ========================= 	DAO Bean Definitions Begin =========================== -->
+   
+   
+   <!--  ========================= SERVICE Bean Definitions Begin =========================== -->
+   
+    <bean id="logService_systemFunctionUriService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.unilog.hit.service.SystemFunctionURIService">
+            	<property name="systemFunctionUriDao">
+	        		<ref bean="logService_systemFunctionUriDao"/>
+       			</property>
+            </bean>
+        </property>
+    </bean> 
+    
+    <bean id="logService_hitrateLogQueryService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.unilog.hit.service.HitrateLogQueryService">
+            	<property name="hitrateLogQueryDao">
+	        		<ref bean="logService_hitrateLogQueryDao"/>
+       			</property>
+            </bean>
+        </property>
+    </bean> 
+    
+    <bean id="logService_userOperLogService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.unilog.log.service.impl.UserOperLogService">
+            	<property name="userOperLogDao">
+			        <ref bean="logService_userOperLogDao"/>
+		       </property>  
+            </bean>
+        </property>
+    </bean> 
+    <bean id="logService_userLoginHistoryService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.unilog.log.service.impl.UserLoginHistoryService">
+            	<property name="userLoginHistoryDao">
+			        <ref bean="logService_userLoginHistoryDao"/>
+		       </property>  
+            </bean>
+        </property>
+    </bean> 
+    
+     <bean id="log_UserTreeServiceImpl" class="com.asiainfo.biframe.unilog.base.xtree.UserTreeServiceImpl">
+   </bean>
+
+    <bean id="logService_esbProxyServiceDetailogService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.unilog.log.service.impl.EsbProxyServiceDetailLogServiceImpl">
+            	<property name="esbProxyServiceDetailLogDao">
+			        <ref bean="logService_esbProxyServiceDetailLogDao"/>
+		       </property>  
+            </bean>
+        </property>
+    </bean> 
+    
+	<!--  ========================= Service Bean Definitions End =========================== -->
+	
+    <bean id="logService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.unilog.log.publish.LogService">
+            	<property name="logDetailDao">
+			        <ref bean="logService_logDetailDao"/>
+		       </property>  
+		       <property name="hitrateLogQueryDao">
+			        <ref bean="logService_hitrateLogQueryDao"/>
+		       </property> 
+		       <property name="esbProxyServiceDetailLogDao">
+			        <ref bean="logService_esbProxyServiceDetailLogDao"/>
+		       </property>  
+            </bean>
+        </property>
+    </bean> 
+
+</beans>

@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.directwebremoting.org/schema/spring-dwr
+    http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
+    http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd  
+ 	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	
+	<bean id="alarm_propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">	
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+		  <value>classpath:config/aibi_alarm/alarm.properties</value>
+		</property>
+	</bean>
+
+	<bean id="alarm_dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>${JNDI_PREFIX}${JDBC_ALARM}</value>
+		</property>
+	</bean>
+	<!--  database end -->
+
+	<!-- hibernate Session -->
+	<bean id="alarm_sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="alarm_dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+			
+				<!--<prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop>-->
+			
+				<prop key="hibernate.dialect">org.hibernate.dialect.DB2Dialect</prop>
+				
+				<!-- mySql -->
+				<!-- 
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				 -->
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.max_fetch_depth">2</prop>
+				<prop key="hibernate.default_batch_fetch_size">20</prop>
+				<prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
+			</props>
+		</property>
+		<!--
+			<property name="mappingDirectoryLocations"> <list>
+			<value>classpath:/com/asiainfo/biframe/act/model</value> </list>
+			</property>
+		-->
+		<property name="mappingLocations">
+			<value>classpath*:/com/asiainfo/**/*.hbm.xml</value>
+		</property>
+	</bean>
+	<!-- hibernate Session end -->
+	
+	
+	
+	
+	<!--	========================= Dao Bean Definitions Begin===========================		-->
+
+	<bean id="thresholdDao"
+		class="com.asiainfo.biframe.alarm.dao.impl.AlarmThresholdDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="alarm_sessionFactory" />
+		</property>
+	</bean>
+	<bean id="varRefDao"
+		class="com.asiainfo.biframe.alarm.dao.impl.AlarmThresholdVarRefDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="alarm_sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="levelDao" class="com.asiainfo.biframe.alarm.alarmLevel.dao.impl.AlarmLevelDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="alarm_sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="typeDao" class="com.asiainfo.biframe.alarm.alarmType.dao.impl.AlarmTypeDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="alarm_sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="recordDao" class="com.asiainfo.biframe.alarm.alarmRecord.dao.impl.AlarmRecordDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="alarm_sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="replyDao" class="com.asiainfo.biframe.alarm.alarmRecord.dao.impl.AlarmRecordReplyDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="alarm_sessionFactory" />
+		</property>
+	</bean>	
+	
+	<bean id="thresholdTempDao" class="com.asiainfo.biframe.alarm.dao.impl.AlarmThresholdTempDaoImpl">
+		<property name="dataSource">
+			<ref bean="alarm_dataSource" />
+		</property>
+	</bean>	
+	<bean id="recordCountDao" class="com.asiainfo.biframe.alarm.dao.impl.AlarmRecordCountDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="alarm_sessionFactory" />
+		</property>
+	</bean>	
+	<bean id="productRelationDao"
+		class="com.asiainfo.biframe.alarm.dao.impl.AlarmProductRelationDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="alarm_sessionFactory" />
+		</property>
+	</bean>
+	<!--  ========================= Dao Bean Definitions End ===========================  -->
+
+	<!-- ========================= Service Bean Definitions Begin =========================== -->
+
+	<bean id="varRefService" class="com.asiainfo.biframe.alarm.service.impl.AlarmThresholdVarRefServiceImpl">
+		<property name="varRefDao">
+			<ref bean="varRefDao" />
+		</property>
+	</bean>
+
+	<bean id="thresholdService" class="com.asiainfo.biframe.alarm.service.impl.AlarmThresholdServiceImpl">
+		<property name="thresholdDao">
+			<ref bean="thresholdDao" />
+		</property>
+		<property name="varRefDao">
+			<ref bean="varRefDao" />
+		</property>
+		<property name="productRelationDao">
+			<ref bean="productRelationDao"/>
+		</property>
+	</bean>
+
+	<bean id="alarmGenService" class="com.asiainfo.biframe.alarm.service.impl.AlarmGenServiceImpl">
+		<property name="thresholdDao">
+			<ref bean="thresholdDao" />
+		</property>
+		<property name="varRefDao">
+			<ref bean="varRefDao" />
+		</property>
+		<property name="levelDao">
+			<ref bean="levelDao" />
+		</property>
+	</bean>
+	
+	<bean id="levelService" class="com.asiainfo.biframe.alarm.alarmLevel.service.impl.AlarmLevelServiceImpl">
+		<property name="levelDao">
+			<ref bean="levelDao" />
+		</property>
+	</bean>
+	
+	<bean id="typeService" class="com.asiainfo.biframe.alarm.alarmType.service.impl.AlarmTypeServiceImpl">
+		<property name="typeDao">
+			<ref bean="typeDao" />
+		</property>
+	</bean>
+	
+	<bean id="recordService" class="com.asiainfo.biframe.alarm.alarmRecord.service.impl.AlarmRecordServiceImpl">
+		<property name="recordDao">
+			<ref bean="recordDao" />
+		</property>
+	</bean>
+
+	<bean id="replyService" class="com.asiainfo.biframe.alarm.alarmRecord.service.impl.AlarmRecordReplyServiceImpl">
+		<property name="replyDao">
+			<ref bean="replyDao" />
+		</property>
+	</bean>
+	
+	<bean id="recordCountService" class="com.asiainfo.biframe.alarm.service.impl.AlarmRecordCountServiceImpl">
+		<property name="thresholdTempDao">
+			<ref bean="thresholdTempDao" />
+		</property>
+		<property name="recordCountDao">
+			<ref bean="recordCountDao" />
+		</property>
+	</bean>
+	
+	<!-- ========================= Service Bean Definitions End =========================== -->
+	
+	<!-- ========================= Facade Bean Definitions Begin =========================== -->
+	<bean id="alarmFacade" class="com.asiainfo.biframe.alarm.facade.impl.AlarmFacadeImpl">
+		<property name="thresholdService">
+			<ref bean="thresholdService" />
+		</property>
+		<property name="varRefService">
+			<ref bean="varRefService" />
+		</property>
+		<property name="alarmGenService">
+			<ref bean="alarmGenService" />
+		</property>					
+		
+		<property name="levelService">
+			<ref bean="levelService" />
+		</property>
+		<property name="typeService">
+			<ref bean="typeService" />
+		</property>
+		<property name="recordService">
+			<ref bean="recordService" />
+		</property>
+		<property name="replyService">
+			<ref bean="replyService" />
+		</property>	
+		<property name="recordCountService">
+			<ref bean="recordCountService" />
+		</property>	
+		
+	</bean>
+	<!-- ========================= Facade Bean Definitions End ===========================  -->
+
+
+	
+</beans>

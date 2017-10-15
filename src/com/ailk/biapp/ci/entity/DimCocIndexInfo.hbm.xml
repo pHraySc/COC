@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.ailk.biapp.ci.entity.DimCocIndexInfo" table="DIM_COC_INDEX_INFO">
+        <id name="indexCode" type="java.lang.String">
+            <column name="INDEX_CODE" length="128" />
+            <generator class="assigned" />
+        </id>
+        <property name="indexDesc" type="java.lang.String">
+            <column name="INDEX_DESC" length="128" />
+        </property>
+        <property name="targetTableCode" type="java.lang.String">
+            <column name="TARGET_TABLE_CODE" length="128" />
+        </property>
+        <property name="dataType" type="java.lang.String">
+            <column name="DATA_TYPE" length="128" />
+        </property>
+        <property name="statCycle" type="java.lang.Integer">
+            <column name="STAT_CYCLE" />
+        </property>
+        <property name="defaultValue" type="java.lang.String">
+            <column name="DEFAULT_VALUE" length="128" />
+        </property>
+        <property name="dataSrcColName" type="java.lang.String">
+            <column name="DATA_SRC_COL_NAME" length="100" />
+        </property>
+        <property name="dataSrcCode" type="java.lang.String">
+            <column name="DATA_SRC_CODE" length="100" />
+        </property>
+        <property name="effectiveTime" type="java.util.Date">
+            <column name="EFFECTIVE_TIME" />
+        </property>
+        <property name="invalidTime" type="java.util.Date">
+            <column name="INVALID_TIME" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="gb2312"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+  	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.directwebremoting.org/schema/spring-dwr
+    http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+    
+    <!-- NO.1 -->
+    <bean id="logService_logCleanerTask" class="com.asiainfo.biframe.unilog.hit.servlet.LogCleaner"></bean>
+    <bean id="logService_logCleanerJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+    	<property name="targetObject" ref="logService_logCleanerTask"/>
+    	<property name="targetMethod" value="run"/>
+    	<property name="concurrent" value="false"/>
+    </bean>
+    <bean id="logService_logCleanerJobTrigger" class="com.asiainfo.biframe.manager.timertask.BICronTriggerBean">
+    	<property name="jobDetail" ref="logService_logCleanerJobDetail"/>
+    	<property name="cronExpression" value="0 0 15,16 * * ?"/><!-- 每天15:00和16:00 -->
+    </bean>
+    
+    <!-- NO.2 -->
+    <!--BEGIN added by yindm on 2011-3-17-->
+   <!-- ************************** BEGIN Quartz SETTING *********************************-->
+	<bean id="sysSynJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="logService_hitrateLogQueryService" />
+		<property name="targetMethod" value="getRelatedRecommend" />
+	</bean>
+	<bean id="sysSynCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="sysSynJobDetail" />
+		<property name="cronExpression" value="0 10 18 * * ?" />
+	</bean>
+<!-- ************************** END Quartz SETTING *********************************-->
+	<!--END added by yindm on 2011-3-17-->
+    
+    <!-- schedulerFactory -->
+    <bean id="logService_schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    	<property name="triggers">
+    		<list>
+    			<ref bean="logService_logCleanerJobTrigger"/>
+    			<ref bean="sysSynCronTrigger" />
+    		</list>
+    	</property>
+    </bean>
+    
+</beans>    

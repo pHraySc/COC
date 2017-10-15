@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.directwebremoting.org/schema/spring-dwr
+    http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
+    http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd  
+ 	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	
+	
+	<bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+       <property name="transactionManager" ref="transactionManager" />
+       <property name="transactionAttributes">
+           <props>
+              <prop key="save*">PROPAGATION_REQUIRED</prop>
+              <prop key="clone*">PROPAGATION_REQUIRED</prop>
+              <prop key="update*">PROPAGATION_REQUIRED</prop>
+              <prop key="delete*">PROPAGATION_REQUIRED</prop>
+              <prop key="do*">PROPAGATION_REQUIRED</prop>
+              <prop key="add*">PROPAGATION_REQUIRED,-java.lang.Exception</prop>
+              <prop key="log*">PROPAGATION_REQUIRED</prop>
+              <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+            </props>
+       </property>
+    </bean>
+	
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+       <property name="beanNames">
+           <list>
+              	<value> varRefService      </value> 
+				<value> thresholdService   </value>
+				<value> alarmGenService    </value>
+				<value> levelService       </value> 
+				<value> typeService        </value>
+				<value> recordService      </value>
+				<value> replyService       </value>
+				<value> recordCountService </value>  
+				<value> alarmFacade        </value>
+              
+           </list>
+       </property>
+       <property name="interceptorNames">
+           <list>
+              <value>transactionInterceptor</value>
+           </list>
+       </property>
+    </bean>
+</beans>

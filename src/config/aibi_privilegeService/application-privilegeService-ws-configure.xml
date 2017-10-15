@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="  
+ 	 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+ 	 http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd  
+ 	 http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<bean id="privpropertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="location">
+			<value>classpath:config/aibi_privilegeService/privilege.properties
+			</value>
+		</property>
+	</bean>
+	<!-- lwlu添加的cxf接口 -->
+	
+    <jaxws:server id="right_jaxwsService" serviceClass="com.asiainfo.biframe.privilege.webservices.service.IWsPrivilegeService" address="/QueryUserInfoSoap">  
+      <jaxws:serviceBean>  
+          <bean class="com.asiainfo.biframe.privilege.webservices.service.impl.WsPrivilegeService" > 
+          	<property name="userAdminService">
+   				<ref bean="right_userAdminService"/>
+   			</property> 
+   		  </bean>
+      </jaxws:serviceBean>  
+    </jaxws:server> 
+    
+    <!-- IUserPrivilegeService接口cxf版 -->
+	<jaxws:server id="right_userPrivilegeService_webService"
+		serviceClass="com.asiainfo.biframe.privilege.IUserPrivilegeService"
+		address="/WsUserPrivilegeService">
+		<jaxws:serviceBean>
+			<ref bean="right_privilegeService" />
+		</jaxws:serviceBean>
+		<jaxws:inInterceptors>
+            <bean class="com.asiainfo.biframe.privilege.sysmanage.publish.WSInInterceptors"/>
+        </jaxws:inInterceptors> 
+		<jaxws:dataBinding>
+			<bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+		</jaxws:dataBinding>
+	</jaxws:server>
+	
+	<!-- IUserPrivilegeCUDService接口cxf版 -->
+		<jaxws:server id="right_userPrivilegeCUDService_webService"
+		serviceClass="com.asiainfo.biframe.privilege.IUserPrivilegeCUDService"
+		address="/WsUserPrivilegeCUDService">
+		<jaxws:serviceBean>
+			<ref bean="right_privilegeCUDService" />
+		</jaxws:serviceBean>
+		<jaxws:dataBinding>
+			<bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+		</jaxws:dataBinding>
+	</jaxws:server>
+	
+	<!-- IUserPrivilegeService接口客户端bean -->
+	<jaxws:client id="right_userPrivilegeService_webService_client"
+		address="http://${WEBSERVICE_SERVER_IP}:${WEBSERVICE_SERVER_PORT}/services/WsUserPrivilegeService"
+		serviceClass="com.asiainfo.biframe.privilege.IUserPrivilegeService">
+		<jaxws:dataBinding>
+			<bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+		</jaxws:dataBinding>
+	</jaxws:client>
+
+	<!-- IUserPrivilegeCUDService接口客户端bean -->
+	<jaxws:client id="right_userPrivilegeCUDService_webService_client"
+		address="http://${WEBSERVICE_SERVER_IP}:${WEBSERVICE_SERVER_PORT}/services/WsUserPrivilegeCUDService"
+		serviceClass="com.asiainfo.biframe.privilege.IUserPrivilegeService">
+		<jaxws:dataBinding>
+			<bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+		</jaxws:dataBinding>
+	</jaxws:client>
+	
+	<!-- yuli add 2011-05-31 -->
+	<!-- WsPrivilege4AService接口cxf版 -->
+	<jaxws:server id="right_privilege4AService_webService" 
+		serviceClass="com.asiainfo.biframe.privilege.webservices.service.IWsPrivilege4AService" 
+		address="/WsPrivilege4AService">  
+      <jaxws:serviceBean>  
+          <ref bean="rightAdmin_wsPrivilege4AService" />
+      </jaxws:serviceBean>  
+    </jaxws:server> 
+    
+    <bean id="rightAdmin_wsPrivilege4AService" class="com.asiainfo.biframe.privilege.webservices.service.impl.WsPrivilege4AService" > 
+          	<property name="userAdminService">
+   				<ref bean="right_userAdminService"/>
+   			</property> 
+   			<property name="userGroupAdminService">
+	        	<ref bean="right_userGroupAdminService"/>
+	        </property>
+	        <property name="userPrvilegeService">
+	        	<ref bean="right_privilegeService"/>
+	        </property>
+   	</bean>
+</beans> 
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+  <beans xmlns="http://www.springframework.org/schema/beans"  
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+        xmlns:jaxws="http://cxf.apache.org/jaxws"  
+        xmlns:soap="http://cxf.apache.org/bindings/soap"  
+        xsi:schemaLocation="  
+ 	 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+ 	 http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd  
+ 	 http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	
+	<!-- web serivce 定义支持-->	
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	<jaxws:endpoint id="wsIndexDifferentialServer" implementor="#wsIndexDifferentialServerImpl" address="/wsIndexDifferentialServer" />
+	
+	<jaxws:endpoint id="mockServer" implementor="#mockServerImpl" address="/mockServer" />
+	
+	<jaxws:endpoint id="iCustomerMarketCampaignWsServer" implementor="#customerMarketCampaignWsServerImpl" address="/iCustomerMarketCampaignWsServer" />
+	<!-- 自助取数推送到COC -->
+	<jaxws:endpoint id="wsCustomersPushedServer" implementor="#wsCustomersPushedServerImpl" address="/wsCustomersPushedServer" />
+	<jaxws:endpoint id="wsCustomersCreateJobServer" implementor="#wsCustomersCreateJobServerImpl" address="/wsCustomersCreateJobServer" />
+	<!-- COC与IMCD接口 -->
+	<jaxws:endpoint id="wsMcdInterfaceServer" implementor="#wsMcdInterfaceServerImpl" address="/wsMcdInterfaceServer" />
+	<!-- COC枚举标签和客户群计算接口 -->
+	<jaxws:endpoint id="wsCustomerGroupCreateServer" implementor="#wsCustomerGroupCreateServerImpl" address="/wsCustomerGroupCreateServer" />
+	
+</beans>

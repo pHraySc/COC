@@ -1,0 +1,36 @@
+ 驱动器 E 中的卷是 self
+ 卷的序列号是 14A3-8A92
+
+ E:\__sysframe\AiTools\appfront\ROOT\toolbox\chartswf 的目录
+
+2008-12-01  11:23            62,383 Area2D.swf
+2008-12-01  11:23            61,441 Bar2D.swf
+2008-12-01  11:23            65,897 Bubble.swf
+2008-12-01  11:23            62,147 Column2D.swf
+2008-12-01  11:23            47,553 Doughnut2D.swf
+2008-12-01  11:23            61,740 Line.swf
+2008-12-01  11:23            66,222 MSArea.swf
+2008-12-01  11:23            65,041 MSBar2D.swf
+2008-12-01  11:23            65,959 MSColumn2D.swf
+2008-12-01  11:23            69,340 MSCombi2D.swf
+2008-12-01  11:23            71,347 MSCombiDY2D.swf
+2008-12-01  11:23            65,529 MSLine.swf
+2008-12-01  11:23            66,850 MSStackedColumn2D.swf
+2008-12-01  11:23            71,294 MSStackedColumn2DLineDY.swf
+2008-12-01  11:23            47,111 Pie2D.swf
+2008-12-01  11:23            65,591 Scatter.swf
+2008-12-01  11:23            70,493 ScrollArea2D.swf
+2008-12-01  11:23            70,054 ScrollColumn2D.swf
+2008-12-01  11:23            73,525 ScrollCombi2D.swf
+2008-12-01  11:23            75,285 ScrollCombiDY2D.swf
+2008-12-01  11:23            69,639 ScrollLine2D.swf
+2008-12-01  11:23            70,528 ScrollStackedColumn2D.swf
+2008-12-01  11:23            37,067 SSGrid.swf
+2008-12-01  11:23            66,762 StackedArea2D.swf
+2008-12-01  11:23            65,536 StackedBar2D.swf
+2008-12-01  11:23            66,406 StackedColumn2D.swf
+2008-12-04  09:11            56,746 _AngularGauge.swf
+2008-12-04  09:11            56,746 _AngularGauge1.swf
+2008-12-04  09:11            53,223 _Cylinder.swf
+              29 个文件      1,847,455 字节
+               0 个目录    516,689,920 可用字节

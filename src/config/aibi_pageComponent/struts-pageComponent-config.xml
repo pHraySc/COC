@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="indexForm" type="com.asiainfo.biframe.pagecomponent.form.IndexForm" />
+	</form-beans>
+
+	<action-mappings>
+		<action path="/indexAction" attribute="indexForm" name="indexForm" type="com.asiainfo.biframe.pagecomponent.action.IndexAction" 
+			parameter="cmd" scope="request">
+			<forward name="index" path="/aibi_pageComponent/nav/index.jsp" contextRelative="true" />
+			<forward name="menufragment" path="/aibi_pageComponent/nav/menufragment.jsp" contextRelative="true" />
+		</action>
+	</action-mappings>
+</struts-config>

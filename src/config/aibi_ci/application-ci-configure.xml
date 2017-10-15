@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://cxf.apache.org/jaxws 
+		http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	
+	<bean id="ci_propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:config/aibi_ci/ci.properties</value>
+				<value>classpath:config/aibi_ci/ci-sichuan.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="ciDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>${JNDI_CI}</value>
+		</property>
+	</bean>
+	
+	<bean id="ciBackDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>${JNDI_CI_BACK}</value>
+		</property>
+	</bean>
+	
+	<!-- 配置事务管理器 -->
+ 	<bean id="ciHibernateTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+ 			<ref local="ciSessionFactory"/>
+ 		</property>
+ 	</bean>
+	
+	<bean id="ciSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="ciDataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${CI_HIBERNATE_DIALECT}</prop>
+				<prop key="hibernate.show_sql">${CI_HIBERNATE.SHOW_SQL}</prop>
+				<prop key="hibernate.format_sql">no</prop>
+				<prop key="hibernate.max_fetch_depth">3</prop>
+				<prop key="hibernate.default_batch_fetch_size">25</prop>
+				<prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
+				<prop key="hibernate.connection.SetBigStringTryClob">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>		
+			</props>
+		</property>
+		<property name="mappingLocations">
+			<list>
+				<value>classpath*:/com/ailk/**/*.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 使用annotation定义事务 -->
+	<tx:annotation-driven transaction-manager="ciHibernateTransactionManager" proxy-target-class="true"/>
+
+	<!-- 使用annotation 自动注册bean,并保证@Required,@Autowired的属性被注入   name-generator="com.asiainfo.biapp.kmcc.utils.AsiainfoBeanNameGenerator"-->
+	<context:component-scan base-package="com.ailk.biapp.ci"/>
+	
+	<!--浙江本地数据源-->
+    <!-- <jee:jndi-lookup id="zjDataSource" jndi-name="${JNDI_JYFX_PORTAL}"/>
+
+    <bean id="zjTxManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="zjDataSource" />
+    </bean>
+    <bean id="zjTxTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="zjTxManager"/>
+    </bean> -->
+	
+</beans>

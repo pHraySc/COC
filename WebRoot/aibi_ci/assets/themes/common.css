@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+margin:0; padding:0; } 
+ul,ol{list-style:none;}
+li{list-style-type:none;}
+dt,th{font-weight:normal}
+.clear{clear:both;font-size:0px; overflow: hidden;height:0px;}
+.inline_block{display:inline-block; *display:inline; zoom:1;}
+input,img{border:none;}
+textarea{resize:none;overflow:auto;}
+body{
+   /*font-size:12px;font-family: "宋体",Arial, Helvetica, sans-serif;*/
+   text-align:center; /* IE brower div in the middle */
+}
+html{overflow-x:auto;overflow-y:scroll;} /* ie7 scrollbar show */
+.clearfix:after{content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+.clearfix{display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix{height: 1%;}
+.clearfix{display: block;}
+table{border-collapse: collapse; border-spacing: 0;}
+.align_left{text-align:left;}
+.align_right{text-align:right;}
+.fleft{float:left;}
+.fright{float:right;}
+.mleft_25{margin-left:25px;}
+.mleft_15{margin-left:15px;}
+.mleft_10{margin-left:10px;}
+.mright_10{margin-right:10px;}
+.font_normal{font-weight:normal;}
+.v_top{ vertical-align:top}
+.v_middle{vertical-align:middle;}
+.hidden_text{display:none; overflow:hidden;}
+.hidden{display:none;}
+.hand{cursor:pointer;}
+.fB{font-weight:bold;}
+
+input.inputFocusColor{color:#323232;}
+
+/* 无数据 */
+.wushuju {
+	text-align:center;
+	font-family: tahoma;
+	font-size: 12px;
+	color:#EB5991;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.datagrid-cell{
+	word-wrap: break-word !important; 
+	word-break: normal; 
+	
+}

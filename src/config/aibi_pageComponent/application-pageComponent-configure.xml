@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+
+    <bean id="pagecomponent_propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:/config/aibi_pageComponent/pageComponent.properties</value>
+				<value>classpath:/config/aibi_pageComponent/pageComponent_JQPlugin.properties</value>
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+
+	</bean>
+
+    <bean id="pageComponent_jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+	</bean>
+
+	<bean id="pageComponent_daoService" class="com.asiainfo.biframe.utils.database.spring.DaoService" singleton="false">
+		<!--support multi-source -->
+		<property name="jndiName">
+			<value>${JNDI_PREFIX}${JDBC_AIOMNI}</value>
+		</property>
+	</bean>
+
+	<!-- to dic service -->
+	<bean id="pageComponent_dicService" class="com.asiainfo.biframe.pagecomponent.service.impl.DicServiceImpl" singleton="false">
+		<property name="daoService">
+			<ref local="pageComponent_daoService"/>
+		</property>
+	</bean>
+
+	<!--to page service -->
+	<bean id="pageComponent_pageService" class="com.asiainfo.biframe.pagecomponent.service.impl.PageServiceImpl" singleton="false">
+		<property name="daoService">
+			<ref local="pageComponent_daoService"/>
+		</property>
+		<!--count of cpu,this will improve the capability when use oracle db. 4 is the default.-->
+		<property name="cpuCount">
+			<value>4</value>
+		</property>
+	</bean>
+	<bean id="pageComponent_tableService" class="com.asiainfo.biframe.pagecomponent.service.impl.TableServiceImpl" singleton="false">
+		<property name="daoService">
+			<ref local="pageComponent_daoService"/>
+		</property>
+	</bean>
+
+	<bean id="pageComponent_AuthService" class="com.asiainfo.biframe.pagecomponent.service.impl.AuthServiceImpl">
+	</bean>
+</beans>

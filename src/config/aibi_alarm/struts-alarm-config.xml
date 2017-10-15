@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+                               "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+ <data-sources/>
+ <!--
+		========== Form Bean Definitions ==================================
+	-->
+ <form-beans>
+  <form-bean name="thresForm" type="com.asiainfo.biframe.alarm.example.threshold.form.AlarmThresholdForm"/>
+  <form-bean name="busiForm" type="com.asiainfo.biframe.alarm.example.generate.form.AlarmBusinessForm"/>
+  <form-bean name="recordDetailForm" type="com.asiainfo.biframe.alarm.example.generate.formAlarmDetailForm"/> 
+ </form-beans>
+ <global-exceptions/>
+ <global-forwards/>
+ <!--
+		========== Action Mapping Definitions ===============================
+	-->
+ <action-mappings>
+  <action parameter="cmd" path="/alarmTypeAction" scope="request" type="com.asiainfo.biframe.alarm.alarmType.action.AlarmTypeAction">
+   <forward contextRelative="true" name="alarmTypeView" path="/aibi_alarm/alarmType/alarmsTypeTree.jsp"/>
+   <forward contextRelative="true" name="alarmTypeEdit" path="/aibi_alarm/alarmType/alarmTypeTree.jsp"/>
+   <forward contextRelative="true" name="modAlarmType" path="/aibi_alarm/alarmType/alarmTypeMod.jsp"/>
+   <forward contextRelative="true" name="alarmHelp" path="/aibi_alarm/alarmType/alarmHelp.jsp"/>
+  </action>
+  <action parameter="cmd" path="/alarmLevelAction" scope="request" type="com.asiainfo.biframe.alarm.alarmLevel.action.AlarmLevelAction">
+   <forward contextRelative="true" name="alarmLevelEdit" path="/aibi_alarm/alarmLevel/alarmLevelModify.jsp"/>
+  </action>
+  <action parameter="cmd" path="/alarmRecordAction" scope="request" type="com.asiainfo.biframe.alarm.alarmRecord.action.AlarmRecordAction">
+   <forward contextRelative="true" name="recordSearch" path="/aibi_alarm/alarmRecord/alarmRecordSearchList.jsp"/>
+   <forward contextRelative="true" name="reply" path="/aibi_alarm/alarmRecord/alarmRecordReply.jsp"/>
+   <forward contextRelative="true" name="search" path="/aibi_alarm/alarmRecord/alarmRecordSearchList.jsp"/>
+  </action>
+  <action name="thresForm" parameter="cmd" path="/thresAction"
+   scope="request" type="com.asiainfo.biframe.alarm.example.threshold.action.AlarmThresholdAction">
+   <forward contextRelative="true" name="toThreshold" path="/aibi_alarm/example/alarmThreshold/alarmThresholdBasic.jsp"/>
+   <forward contextRelative="true" name="listThreshold" path="/aibi_alarm/example/alarmThreshold/alarmThresholdList.jsp"/>
+  </action>
+  <action name="busiForm" parameter="cmd" path="/alarmGenAction"
+   scope="request" type="com.asiainfo.biframe.alarm.example.generate.action.AlarmGenerateAction">
+   <forward contextRelative="true" name="editBusinessInfo" path="/aibi_alarm/example/alarmGenerate/inputBusinessInfo.jsp"/>
+   <forward contextRelative="true" name="showAlarmInfo" path="/aibi_alarm/example/alarmGenerate/alarmResult.jsp"/>
+  </action>
+ </action-mappings>
+ <controller/>
+</struts-config>

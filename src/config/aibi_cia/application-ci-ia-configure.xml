@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+  <beans xmlns="http://www.springframework.org/schema/beans"  
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+        xmlns:jaxws="http://cxf.apache.org/jaxws"  
+        xmlns:soap="http://cxf.apache.org/bindings/soap"  
+        xsi:schemaLocation="  
+ 	 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+ 	 http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd  
+ 	 http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	
+	<bean id="column" class="com.ailk.biapp.ci.ia.chart.echarts.EChartColumnImpl" />
+	<bean id="bar" class="com.ailk.biapp.ci.ia.chart.echarts.EChartBarImpl" />
+	<bean id="stackColumn" class="com.ailk.biapp.ci.ia.chart.echarts.EChartStackColumnImpl" />
+	<bean id="bubble" class="com.ailk.biapp.ci.ia.chart.echarts.EChartBubbleImpl" />
+	<bean id="line" class="com.ailk.biapp.ci.ia.chart.echarts.EChartLineImpl" />
+	<bean id="pie" class="com.ailk.biapp.ci.ia.chart.echarts.EChartPieImpl" />
+	<bean id="scatter" class="com.ailk.biapp.ci.ia.chart.echarts.EChartScatterImpl" />
+	<bean id="combin" class="com.ailk.biapp.ci.ia.chart.echarts.EChartCombinImpl" />
+</beans>

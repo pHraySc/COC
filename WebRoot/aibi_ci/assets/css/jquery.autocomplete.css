@@ -1,0 +1,43 @@
+.ac_results {
+	padding: 0px;
+	overflow: hidden;
+	z-index: 99999;
+	border:1px solid #ddd;
+	background:#fff;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	float:left;
+}
+.ac_results li {
+	padding:2px 5px;
+	border-bottom:1px solid #ddd;
+	cursor:default;zoom:1;
+	height: 15px;
+}
+.ac_results li p{
+   float:left;
+   margin:0;
+   padding:0;
+   font-size: 16px;
+}
+.ac_results li span{
+   margin:0;
+   padding:0;
+   float:right;
+}
+.ac_loading {
+	background : Window url('../images/indicator.gif') right center no-repeat;
+}
+
+.ac_over {
+	background:#6399CD; color:#fff;
+}
+.ac_even {
+	background:#E8F2FE;
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-4-3 11:39:20 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ailk.biapp.ci.entity.CiUserUseCustom" table="CI_USER_USE_CUSTOM">
+        <composite-id name="id" class="com.ailk.biapp.ci.entity.CiUserUseCustomId">
+            <key-property name="userId" type="java.lang.String">
+                <column name="USER_ID" length="32" />
+            </key-property>
+            <key-property name="deptId" type="java.lang.String">
+                <column name="DEPT_ID" length="32" />
+            </key-property>
+            <key-property name="customId" type="java.lang.String">
+                <column name="CUSTOM_ID" length="32" />
+            </key-property>
+            <key-property name="useTime" type="java.sql.Timestamp">
+                <column name="USE_TIME" />
+            </key-property>
+        </composite-id>
+        <property name="useTypeId" type="java.lang.Integer">
+            <column name="USE_TYPE_ID"  />
+        </property>
+        <property name="isTemplate" type="java.lang.Integer">
+            <column name="IS_TEMPLATE" />
+        </property>
+    </class>
+</hibernate-mapping>

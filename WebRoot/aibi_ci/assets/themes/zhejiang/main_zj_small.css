@@ -1,0 +1,141 @@
+/*标签分类 浙江版*/
+.tagNavMapListBox , .tagNavMapListBoxOther{
+	display: none;
+	position: fixed;
+	top: 30px;
+	padding: 10px 10px 3px;
+	left: 50%;
+	width: 838px;
+	margin-left: -505px;
+	background-color: #fff;
+	border: 1px solid #acacac;
+	border-top: none;
+	z-index: 1002;
+   
+}
+/* .tagNavMapListBoxOther{border:1px solid #0081cc;} */
+.tagNavItem{width:820px;text-align: left;margin:0 auto 5px;overflow:hidden;}
+.tagNavItem h4{font-size: 16px;color: #323232; line-height: 17px;  padding-bottom: 10px;}
+.secondTagNavListBox {
+    width:820px;
+    overflow:hidden;
+    height:auto;
+    position: relative;	
+}
+.tagLeftBox{
+	width:400px;
+	border-right:1px solid #d1d1d1;
+	margin-right:15px;
+}
+.tagleftContent{
+	position: relative;	
+	height: 100%;
+	overflow:hidden;
+	left:0px;
+}
+.tagRightBox{
+	position: relative;	
+	height: 100%;
+	overflow:hidden; 
+	width:400px;
+}
+.secondTagNavListBox dl {
+    clear:both; 
+    width:400px;    
+}
+.secondTagNavListBox dl dt ,.secondTagNavListBoxOther dl dt{
+    float: left;
+    min-width: 105px;
+    width: auto;
+    padding-right: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    color: #0194e9;
+}
+.secondTagNavListBox dl dd , .secondTagNavListBoxOther dl dd{
+    float: left;
+    width: 370px; 
+    text-align: left;
+    overflow: hidden;
+    font-size: 12px;
+}
+.secondTagNavListBox dl dd em {
+    float: left;
+    font-size: 12px;
+    white-space: nowrap;
+    word-wrap:break-word;
+    overflow: hidden;
+    font-style: normal;
+    margin-bottom: 1px;
+    margin-right: 5px;
+}
+.secondTagNavListBox dl dd em a {
+    padding: 5px;
+    text-decoration: none;
+    color: #686868;
+}
+.secondTagNavListBox dl dd em a:hover {
+    color: #fff;
+    background: #48a7e6;
+    text-decoration: none;
+}
+.secondTagNavListBoxOther dl dt {
+	float:none;
+	padding-bottom: 1px;
+    text-indent: 5px;
+}
+ .secondTagNavListBoxOther dl dd{
+ 	width:400px;
+ }
+ .tagNavItemOther h4{display:none;}
+/*
+.secondTagNavListBox h5 {
+    float: left;
+    width: 90px;
+    padding-right: 10px;
+    font-weight: bold;
+    line-height: 14px;
+    font-size: 14px;
+    color: #686868;
+}
+.secondTagNavListBox  em {
+    float: left;
+    font-size: 12px;
+    white-space: nowrap;
+    word-wrap:break-word;
+    overflow: hidden;
+    font-style: normal;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+.secondTagNavListBox  em a {
+    padding: 5px;
+    text-decoration: none;
+    color: #686868;
+}
+.secondTagNavListBox  em a:hover {
+    color: #fff;
+    background: #48a7e6;
+    text-decoration: none;
+}
+*/
+.tagNavItemSegLine{width:800px;margin:5px 0px;border-bottom: 1px solid #eee;font-size: 0px;overflow: hidden;}
+.tagNavMapCenter{float:left;min-height:300px;border-right:1px solid #d1d1d1;width:12px;margin:0 auto; overflow: hidden;}
+/* width 1004 mainBody */
+/* .mainBody{width:1004px; margin:0 auto;} */
+/* .bottomFix70{padding-bottom:70px;} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

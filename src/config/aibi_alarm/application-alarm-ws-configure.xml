@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd  
+ 	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<!-- <jaxws:server id="alarmService"
+		serviceClass="com.asiainfo.biframe.alarm.facade.IAlarmFacade"
+		address="/alarm">
+		<jaxws:serviceBean>
+			<bean
+				class="com.asiainfo.biframe.alarm.facade.impl.AlarmFacadeImpl">
+				<property name="thresholdService">
+					<ref bean="thresholdService" />
+				</property>
+				<property name="varRefService">
+					<ref bean="varRefService" />
+				</property>
+				<property name="alarmGenService">
+					<ref bean="alarmGenService" />
+				</property>					
+				
+				<property name="levelService">
+					<ref bean="levelService" />
+				</property>
+				<property name="typeService">
+					<ref bean="typeService" />
+				</property>
+				<property name="recordService">
+					<ref bean="recordService" />
+				</property>
+				<property name="replyService">
+					<ref bean="replyService" />
+				</property>				
+			</bean>
+		</jaxws:serviceBean>
+	</jaxws:server> -->
+	
+	
+	<jaxws:server id="alarmManager" address="/AlarmManager"
+        serviceClass="com.asiainfo.biframe.alarm.facade.IAlarmFacade">
+        <jaxws:serviceBean>
+            <bean id="alarmServiceImpl"
+                class="com.asiainfo.biframe.alarm.facade.impl.AlarmFacadeImpl">
+                <property name="thresholdService">
+					<ref bean="thresholdService" />
+				</property>
+				<property name="varRefService">
+					<ref bean="varRefService" />
+				</property>
+				<property name="alarmGenService">
+					<ref bean="alarmGenService" />
+				</property>					
+				
+				<property name="levelService">
+					<ref bean="levelService" />
+				</property>
+				<property name="typeService">
+					<ref bean="typeService" />
+				</property>
+				<property name="recordService">
+					<ref bean="recordService" />
+				</property>
+				<property name="replyService">
+					<ref bean="replyService" />
+				</property>		
+            </bean>
+        </jaxws:serviceBean>
+        <jaxws:dataBinding>
+       <bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+    </jaxws:dataBinding>
+ </jaxws:server>
+ <!-- 
+  <jaxws:client id="alarmWebService"
+       address="http://localhost:38080/Alarm/services/AlarmManager"
+
+       serviceClass="com.asiainfo.biframe.alarm.facade.IAlarmFacade">
+	<jaxws:dataBinding>
+       <bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />
+    </jaxws:dataBinding>
+    </jaxws:client>
+  -->
+	
+</beans>

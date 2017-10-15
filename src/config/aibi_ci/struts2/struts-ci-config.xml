@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="ci" extends="struts-default" namespace="/ci">
+		<interceptors>
+			<!-- 登录拦截器 -->
+			<interceptor name="loginCheck" class="com.ailk.biapp.ci.interceptor.CILoginCheckInterceptor"></interceptor>
+			<!-- action日志拦截器 -->
+			<interceptor name="ciLog" class="com.ailk.biapp.ci.interceptor.CILogInterceptor"></interceptor>
+            <interceptor-stack name="sysDefaultStack">
+                <interceptor-ref name="loginCheck"></interceptor-ref>
+                <interceptor-ref name="ciLog"></interceptor-ref>
+                <!-- struts2 default interceptor stack -->
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+		</interceptors>
+		<!-- set the app interceptor -->
+        <default-interceptor-ref name="sysDefaultStack"></default-interceptor-ref>
+		<global-results>
+			<result name="index">/aibi_ci/index.jsp</result>
+			<result name="noauth" type="redirect">/aibi_ci/relogin.jsp</result>
+			<result name="exception">/aibi_ci/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="exception"/>
+		</global-exception-mappings>
+		<!-- 标签 begin-->
+		<action name="ciLabelInfoAction" class="com.ailk.biapp.ci.action.CiLabelInfoAction">
+			<result name="labelManageIndex">/aibi_ci/ciLabelInfo/ciLabelInfoIndex.jsp</result>
+			<result name="index">/aibi_ci/ciLabelInfo/labelInfoMyselfIndex.jsp</result>
+			<result name="query">/aibi_ci/ciLabelInfo/ciLabelInfoList.jsp</result>
+			<result name="labelDifferential">/aibi_ci/ciLabelInfo/labelDifferential.jsp</result>
+			<result name="labelUseNumDetail">/aibi_ci/ciLabelAnalysis/labelUseNumDetail.jsp</result>	
+			<result name="queryMore">/aibi_ci/ciLabelInfo/loadMoreList.jsp</result>
+			<result name="loadMapList">/aibi_ci/ciLabelInfo/loadPagedLabelMapList.jsp</result>
+			<result name="labeldimvaluelist">/aibi_ci/dialog/itemChooseList.jsp</result>
+			<result name="querySearchMoreLabel">/aibi_ci/ciLabelInfo/loadPagedLabelSearchList.jsp</result>
+			<result name="itemChooseList4VerticalLabel">/aibi_ci/dialog/itemChooseList4VerticalLabel.jsp</result>
+			<result name="sysHotLabelRankingList">/aibi_ci/ciLabelInfo/sysHotLabelRankingList.jsp</result>
+			<result name="vertAndEnumLabelIndex">/aibi_ci/ciLabelInfo/vertAndEnumLabelIndex.jsp</result>
+			<result name="vertAndEnumLabelList">/aibi_ci/ciLabelInfo/vertAndEnumLabelList.jsp</result>		
+			<result name="enumCategoryInfoIndex">/aibi_ci/ciLabelInfo/enumCategoryInfoIndex.jsp</result>
+			<result name="enumCategoryInfoList">/aibi_ci/ciLabelInfo/enumCategoryInfoList.jsp</result>		
+			<result name="enumValueListView">/aibi_ci/ciLabelInfo/enumValueListView.jsp</result>		
+			<result name="addLabel">/aibi_ci/ciLabelInfo/addLabel.jsp</result>		
+		</action>
+		<!-- 标签 end-->
+		<!-- 标签审批 begin-->
+		<action name="ciLabelInfoApproveAction" class="com.ailk.biapp.ci.action.CiLabelInfoApproveAction">
+			<result name="index">/aibi_ci/ciLabelInfo/ciLabelInfoApproveIndex.jsp</result>
+			<result name="query">/aibi_ci/ciLabelInfo/ciLabelInfoApproveList.jsp</result>
+			<result name="queryApproved">/aibi_ci/ciLabelInfo/ciLabelInfoHasApprovedList.jsp</result>
+		</action>
+		<!-- 标签审批 end-->
+		<!-- 资源审批 begin -->
+		<action name="ciApproveAction" class="com.ailk.biapp.ci.action.CiApproveAction">
+			<result name="resourceApproveMain">/aibi_ci/resourceApprove/resourceApproveMain.jsp</result>
+			<result name="resourceApproveIndex">/aibi_ci/resourceApprove/resourceApproveIndex.jsp</result>
+			<result name="resourceApproveList">/aibi_ci/resourceApprove/resourceApproveList.jsp</result>
+			<result name="resourceHasApprovedList">/aibi_ci/resourceApprove/resourceHasApprovedList.jsp</result>
+		</action>
+		<!-- 资源审批 end -->
+		<!-- 客户群 begin-->
+		<action name="customersManagerAction" class="com.ailk.biapp.ci.action.CustomersManagerAction">
+			<result name="index">/aibi_ci/ciLabelInfo/ciLabelInfoIndex.jsp</result>
+			<result name="viewSqlList">/aibi_ci/customers/viewSqlList.jsp</result>
+			<result name="search">/aibi_ci/customers/customersManagerList.jsp</result>
+			<result name="preEdit">/aibi_ci/customers/customerForm.jsp</result>
+			<result name="toSelectForEdit">/aibi_ci/customers/selectLabel.jsp</result>
+			<result name="init">/aibi_ci/customers/search.jsp</result>
+			<result name="customersSearch">/aibi_ci/customers/customersSearch.jsp</result>
+			<result name="customersList">/aibi_ci/customers/customersList.jsp</result>
+			<result name="saveManyCustomers">/aibi_ci/customers/saveManyCustomers.jsp</result>
+			<result name="customerDifferential">/aibi_ci/customers/customerDifferential.jsp</result>
+			<result name="pushCustomerGroupSingleInit">/aibi_ci/customers/pushCustomerGroupSingleInit.jsp</result>
+			<result name="pushCustomerGroupBatchInit">/aibi_ci/customers/pushCustomerGroupBatchInit.jsp</result>
+			<result name="queryGroupList">/aibi_ci/customers/queryGroupList.jsp</result>
+			<result name="queryGroupInfoList">/aibi_ci/customers/queryGroupInfoList.jsp</result>
+			<result name="customGroupMarketIndex">/aibi_ci/customers/loadPagedCustomGroupMarketIndex.jsp</result>
+			<result name="customGroupMarket">/aibi_ci/customers/loadPagedCustomGroupMarket.jsp</result>
+			<result name="createCustomer">/aibi_ci/customers/createCustomerPage.jsp</result>
+			<result name="sysHotCustomRankingList">/aibi_ci/customers/sysHotCustomRankingList.jsp</result>
+			<result name="showRule">/aibi_ci/customers/showRule.jsp</result>
+			<result name="queryGroup">/aibi_ci/customers/queryGroup.jsp</result>
+		</action>
+		
+		<!-- 客户群 end-->
+		<!-- 客户群分析 begin-->
+		<action name="customersAnalysisAction" class="com.ailk.biapp.ci.action.CustomersAnalysisAction">
+		    <result name="customersAnalysisIndex">/aibi_ci/customersAnalysis/customersAnalysisIndex.jsp</result>
+		    <result name="customersAnalysis">/aibi_ci/customersAnalysis/customersAnalysis.jsp</result>
+		    <result name="customerAnalysisMain">/aibi_ci/customersAnalysis/customerAnalysisMain.jsp</result>
+		</action>
+		<!-- 客户群分析 end-->
+		<!-- 客户群对比分析 begin-->
+		<action name="customersCompareAnalysisAction" class="com.ailk.biapp.ci.action.CustomersCompareAnalysisAction">
+		    <result name="customGroupConstrast">/aibi_ci/customersAnalysis/customGroupConstrast.jsp</result>
+		    <result name="customersCompareAnalysis">/aibi_ci/customersAnalysis/customersCompareAnalysis.jsp</result>
+		    <result name="customContrastSave">/aibi_ci/customersAnalysis/customContrastSave.jsp</result>
+		</action>
+		<!-- 客户群构成分析 end-->
+		<action name="customersFormAnalysisAction" class="com.ailk.biapp.ci.action.CiCustomersFormAnalysisAction">
+		    <result name="customersForm">/aibi_ci/customersAnalysis/form/customersForm.jsp</result>
+		    <result name="customersBrandFormChartData">/aibi_ci/customersAnalysis/form/customersBrandFormChartData.jsp</result>
+		    <result name="customersBrandTrendChartData">/aibi_ci/customersAnalysis/form/customersBrandTrendChartData.jsp</result>
+		    <result name="customersSubBrandFormChartData">/aibi_ci/customersAnalysis/form/customersSubBrandFormChartData.jsp</result>
+		    <result name="customersBrandHistoryData">/aibi_ci/customersAnalysis/form/customersBrandHistoryData.jsp</result>
+		    <result name="customersCityFormChartData">/aibi_ci/customersAnalysis/form/customersCityFormChartData.jsp</result>
+		    <result name="customersMoreCityFormChartData">/aibi_ci/customersAnalysis/form/customersMoreCityFormChartData.jsp</result>
+		    <result name="customersCityTrendFormChartData">/aibi_ci/customersAnalysis/form/customersCityTrendFormChartData.jsp</result>
+		    <result name="customersCityTrendFormChartDataById">/aibi_ci/customersAnalysis/form/customersCityTrendFormChartDataById.jsp</result>
+		    <result name="vipFormChartData">/aibi_ci/customersAnalysis/form/vipFormChartData.jsp</result>
+		    <result name="vipTrendChartDataByVipLevelId">/aibi_ci/customersAnalysis/form/vipTrendChartDataByVipLevelId.jsp</result>
+		    <result name="vipTrendChartData">/aibi_ci/customersAnalysis/form/vipTrendChartData.jsp</result>
+		    <result name="vipHistoryData">/aibi_ci/customersAnalysis/form/vipHistoryData.jsp</result>
+		    <result name="cityHistoryData">/aibi_ci/customersAnalysis/form/cityHistoryData.jsp</result>
+		</action>
+		<!-- 客户群关联分析 -->
+		<action name="customersRelAnalysisAction" class="com.ailk.biapp.ci.action.CustomersRelAnalysisAction">
+		    <result name="customGroupRel">/aibi_ci/customersAnalysis/relation/customGroupRel.jsp</result>
+		    <result name="customRelMain">/aibi_ci/customersAnalysis/relation/customRelMain.jsp</result>
+		    <result name="customGroupRelChar">/aibi_ci/customersAnalysis/relation/customGroupRelChar.jsp</result>
+		    <result name="customRelChar">/aibi_ci/customersAnalysis/relation/customRelChar.jsp</result>
+		    <result name="customGroupRelAnalysis">/aibi_ci/customersAnalysis/relation/customGroupRelAnalysis.jsp</result>
+		    <result name="relCustomByCustomGroup">/aibi_ci/customersAnalysis/relation/relCustomByCustomGroup.jsp</result>
+		</action>
+		<!-- 营销策略管理 -->
+		<action name="marketingStrategyAction" class="com.ailk.biapp.ci.action.CiMarketingStrategyAction">
+		    <result name="marketingStrategy">/aibi_ci/marketingStrategy/marketingStrategy.jsp</result>
+		    <result name="customProductView">/aibi_ci/marketingStrategy/customProductView.jsp</result>
+		    <result name="initSaveMarketing">/aibi_ci/marketingStrategy/initSaveMarketing.jsp</result>
+            <result name="initSavePrecisionMarketing">/aibi_ci/marketingStrategy/initSavePrecisionMarketing.jsp</result>
+            <result name="marketingStategyList">/aibi_ci/marketingStrategy/marketingStategyList.jsp</result>
+		</action>
+	    
+        <!-- 标签预警 begin-->
+		<action name="ciLabelAlarmAction" class="com.ailk.biapp.ci.action.CiLabelAlarmAction">
+            <result name="recordIndex">/aibi_ci/labelAlarm/labelAlarmRecordIndex.jsp</result>
+            <result name="recordList">/aibi_ci/labelAlarm/labelAlarmRecordList.jsp</result>
+			<result name="thresholdList">/aibi_ci/labelAlarm/labelAlarmThresholdList.jsp</result>
+			<result name="editThreshold">/aibi_ci/labelAlarm/labelAlarmThresholdEdit.jsp</result>
+			<result name="thresholdIndex">/aibi_ci/labelAlarm/labelAlarmThresholdIndex.jsp</result>
+		</action>
+        <!-- 标签预警 end-->
+        <!-- 客户群预警 begin-->
+        <action name="ciCustomersAlarmAction" class="com.ailk.biapp.ci.action.CiCustomersAlarmAction">
+        	<result name="alarmMain">/aibi_ci/alarmMain.jsp</result>
+            <result name="recordIndex">/aibi_ci/customersAlarm/customersAlarmRecordIndex.jsp</result>
+            <result name="recordList">/aibi_ci/customersAlarm/customersAlarmRecordList.jsp</result>
+            <result name="thresholdList">/aibi_ci/customersAlarm/customersAlarmThresholdList.jsp</result>
+            <result name="editThreshold">/aibi_ci/customersAlarm/customersAlarmThresholdEdit.jsp</result>
+            <result name="thresholdIndex">/aibi_ci/customersAlarm/customersAlarmThresholdIndex.jsp</result>
+        </action>
+        <!-- 客户群预警 end-->
+        <!-- 系统公告 begin-->
+        <action name="ciSysAnnouncementAction" class="com.ailk.biapp.ci.action.CiSysAnnouncementAction">
+            <result name="index">/aibi_ci/SysConfig/sysAnnouncementIndex.jsp</result>
+            <result name="announcementList">/aibi_ci/SysConfig/sysAnnouncementList.jsp</result>
+            <result name="editSysAnnouncement">/aibi_ci/SysConfig/sysAnnouncementEdit.jsp</result>
+            <result name="showIndex">/aibi_ci/SysConfig/sysAnnouncementShowIndex.jsp</result>
+            <result name="announcementShowList">/aibi_ci/SysConfig/sysAnnouncementShowList.jsp</result>
+        </action>
+        <!-- 系统公告 end-->
+        <!-- 个人通知 begin-->
+        <action name="ciPersonNoticeAction" class="com.ailk.biapp.ci.action.CiPersonNoticeAction">
+            <result name="showIndex">/aibi_ci/SysConfig/personNoticeShowIndex.jsp</result>
+            <result name="noticeShowList">/aibi_ci/SysConfig/personNoticeShowList.jsp</result>
+            <result name="noticeCenter">/aibi_ci/SysConfig/sysNoticeCenter.jsp</result>
+        </action>
+        <!-- 个人通知 end-->
+         <!-- 地图 begin-->
+        <action name="ciMapAction" class="com.ailk.biapp.ci.action.CiMapAction">
+            <result name="showMap">/aibi_ci/map/labelCityMap.jsp</result>
+        </action>
+        <!-- 地图end -->
+        <!-- 标签趋势分析 begin-->
+		<action name="ciLabelTrendAnalysisAction" class="com.ailk.biapp.ci.action.CiLabelTrendAnalysisAction">
+			<result name="success">/aibi_ci/ciLabelAnalysis/labelTrendAnalysis.jsp</result>
+			<result name="trendChart">/aibi_ci/ciLabelAnalysis/labelTrendChart_bak.jsp</result>
+			<result name="trendTable">/aibi_ci/ciLabelAnalysis/labelTrendTable.jsp</result>
+			<result name="labelTrend">/aibi_ci/ciLabelAnalysis/labelTrendChart.jsp</result>
+		</action>
+		<!-- 标签趋势分析 end -->
+		<!-- 客户群导入 begin-->
+		<action name="customersFileAction" class="com.ailk.biapp.ci.action.CustomersFileAction">
+		    <result name="importInit">/aibi_ci/customers/importInit_new.jsp</result>
+		    <result name="importSuccess">/aibi_ci/customers/saveSuccessDialog.jsp</result>
+		    <result name="importFail">/aibi_ci/customers/importFail.jsp</result>
+		    <result name="customFileList">/aibi_ci/customers/customFileList.jsp</result>
+		    <result name="customFileListMain">/aibi_ci/customers/customFileListMain.jsp</result>
+		    <result name="customFileListIndex">/aibi_ci/customers/customFileListIndex.jsp</result>
+		</action>
+		<!-- 客户群导入 end-->
+		<!-- 客户群趋势分析 begin-->
+		<action name="customersTrendAnalysisAction" class="com.ailk.biapp.ci.action.CustomersTrendAnalysisAction">
+		    <result name="initCustomersTrendAnalysis">/aibi_ci/customersAnalysis/initCustomersTrendAnalysis.jsp</result>
+		    <result name="customersTrendAnalysis">/aibi_ci/customersAnalysis/customersTrendAnalysis.jsp</result>
+		    <result name="customersTrendAnalysisTable">/aibi_ci/customersAnalysis/customersTrendAnalysisTable.jsp</result>
+		    <result name="customersTrendTable">/aibi_ci/customersAnalysis/customersTrendTable.jsp</result>
+		    <result name="customersTrendDetail">/aibi_ci/customersAnalysis/customersTrendDetail.jsp</result>
+		    <result name="customersTrendChartData">/aibi_ci/customersAnalysis/customersTrendChart.jsp</result>
+		</action>
+		<!-- 客户群趋势分析 end -->
+		<!-- 标签对比分析 begin-->
+		<action name="ciLabelConstrastAnalysisAction" class="com.ailk.biapp.ci.action.CiLabelConstrastAnalysisAction">
+			<result name="success">/aibi_ci/ciLabelAnalysis/labelConstrastAnalysis.jsp</result>
+			<result name="labelConstrastSave">/aibi_ci/ciLabelAnalysis/labelConstrastSave.jsp</result>
+			<result name="labelConstrast">/aibi_ci/ciLabelAnalysis/labelConstrast.jsp</result>
+		</action>
+		<!-- 标签对比分析 end-->
+		<!-- 标签分析 begin-->
+		<action name="ciLabelAnalysisAction" class="com.ailk.biapp.ci.action.CiLabelAnalysisAction">
+			<result name="success">/aibi_ci/ciLabelAnalysis/labelAnalysis.jsp</result>
+			<result name="labelAnalysisMain">/aibi_ci/ciLabelAnalysis/labelAnalysisMain.jsp</result>
+			<result name="labelAnalysisIndex">/aibi_ci/ciLabelAnalysis/labelAnalysisIndex.jsp</result>
+		</action>
+		<!-- 标签分析 begin-->
+		<!-- 模板 begin-->
+		<action name="templateManageAction" class="com.ailk.biapp.ci.action.TemplateManageAction">
+			<result name="findMore">/aibi_ci/template/loadMoreTemplate.jsp</result>
+			<result name="loadPagedTemplateSearchList">/aibi_ci/template/loadPagedTemplateSearchList.jsp</result>
+			<result name="toList" type="redirect">/aibi_ci/template/templateList.jsp</result>
+			<result name="toEdit">/aibi_ci/template/selectLabel.jsp</result>
+			<result name="toEditPage">/aibi_ci/template/editTemplate.jsp</result>
+			<result name="loadTemplateIndex">/aibi_ci/template/templateIndexList.jsp</result>
+			<result name="loadHotShareTemplateList">/aibi_ci/template/loadHotShareTemplate.jsp</result>
+		</action>
+		<!-- 模板 end-->
+		<!-- 标签构成分析 begin-->
+		<action name="ciLabelFormAnalysisAction" class="com.ailk.biapp.ci.action.CiLabelFormAnalysisAction">
+			<result name="labelForm">/aibi_ci/ciLabelAnalysis/form/labelForm.jsp</result>
+			<result name="brandForm">/aibi_ci/ciLabelAnalysis/form/brandFormChart.jsp</result>
+			<result name="brandTrend">/aibi_ci/ciLabelAnalysis/form/brandFormHisChart.jsp</result>
+			<result name="brandHisTable">/aibi_ci/ciLabelAnalysis/form/brandHisTable.jsp</result>
+			<result name="subBrandForm">/aibi_ci/ciLabelAnalysis/form/subBrandFormChart.jsp</result>
+			<result name="vipForm">/aibi_ci/ciLabelAnalysis/form/vipFormChart.jsp</result>
+			<result name="vipTrend">/aibi_ci/ciLabelAnalysis/form/vipFormHisChart.jsp</result>
+			<result name="vipHisTable">/aibi_ci/ciLabelAnalysis/form/vipHisTable.jsp</result>
+			<result name="vipTrendByVipLevelId">/aibi_ci/ciLabelAnalysis/form/vipTrendChart.jsp</result>
+			<result name="cityForm">/aibi_ci/ciLabelAnalysis/form/cityFormChart.jsp</result>
+			<result name="moreCityForm">/aibi_ci/ciLabelAnalysis/form/moreCityFormChart.jsp</result>
+			<result name="cityTrend">/aibi_ci/ciLabelAnalysis/form/cityFormHisChart.jsp</result>
+			<result name="cityHisTable">/aibi_ci/ciLabelAnalysis/form/cityHisTable.jsp</result>
+			<result name="cityTrendByCityId">/aibi_ci/ciLabelAnalysis/form/cityTrendChart.jsp</result>
+		</action>
+		<!-- 标签构成分析 end-->
+		<!-- 标签关联分析 begin-->
+		<action name="ciLabelRelAnalysisAction" class="com.ailk.biapp.ci.action.CiLabelRelAnalysisAction">
+			<result name="labelRel">/aibi_ci/ciLabelAnalysis/relation/labelRel.jsp</result>
+			<result name="labelRelMain">/aibi_ci/ciLabelAnalysis/relation/labelRelMain.jsp</result>
+			<result name="labelRelAnalysis">/aibi_ci/ciLabelAnalysis/relation/labelRelAnalysis.jsp</result>
+			<result name="labelRelChart">/aibi_ci/ciLabelAnalysis/relation/labelRelChart.jsp</result>
+			<result name="labelRelChartForSaveCustom">/aibi_ci/ciLabelAnalysis/relation/labelRelChartForSaveCustom.jsp</result>
+		</action>
+		<!-- 标签关联分析 end-->
+		<!-- 首页begin -->
+		<action name="ciIndexAction" class="com.ailk.biapp.ci.action.CiIndexAction">
+		    <result name="labelIndex">/aibi_ci/index.jsp</result>
+		    <result name="peopleBasesIndex">/aibi_ci/peopleBaseIndex.jsp</result>
+		    <result name="queryPeopleBase">/aibi_ci/peopleBase/queryPeopleBase.jsp</result>
+		    <result name="queryPeopleBase4OtherProvince">/aibi_ci/peopleBase/queryPeopleBase4OtherProvince.jsp</result>
+		    <result name="queryPeopleCampaign">/aibi_ci/peopleBase/queryPeopleCampaign.jsp</result>
+		    <result name="queryPeopleLife">/aibi_ci/peopleBase/queryPeopleLife.jsp</result>
+		    <result name="loadProductPage">/aibi_ci/product/loadProductPage.jsp</result>
+		    <result name="labelListIndex">/aibi_ci/labelListIndex.jsp</result>
+		    <result name="productIndex">/aibi_ci/productIndex.jsp</result>
+		    <result name="productListIndex">/aibi_ci/productListIndex.jsp</result>
+		    <result name="queryMoreLabel">/aibi_ci/ciLabelInfo/loadMoreList.jsp</result>
+		    <result name="querySearchMoreLabel">/aibi_ci/ciLabelInfo/loadPagedLabelSearchList.jsp</result>
+		    <result name="querySearchMoreLabelIndex">/aibi_ci/ciLabelInfo/loadPagedLabelSearchListIndex.jsp</result>
+		    <result name="labelCategory">/aibi_ci/home/labelCategory.jsp</result>
+		    <result name="loadMapList">/aibi_ci/ciLabelInfo/loadPagedLabelMapList.jsp</result>
+			<result name="loadSimpleMapList">/aibi_ci/ciLabelInfo/simple_loadPagedLabelMapList.jsp</result>
+			<result name="queryMoreProduct">/aibi_ci/product/loadMoreList.jsp</result>
+			<result name="marketingStrategyIndex">/aibi_ci/marketingStrategy/marketingStrategyIndex.jsp</result>
+			<result name="help">/aibi_ci/help.jsp</result>
+			<result name="shopCartList">/aibi_ci/shopCarList.jsp</result>
+			<result name="calculateCenterOld">/aibi_ci/calculateCenterOld.jsp</result>
+			<result name="calculateCenter">/aibi_ci/calculateCenter.jsp</result>
+			<result name="calculateBodyOld">/aibi_ci/calculateBodyOld.jsp</result>
+			<result name="calculateBody">/aibi_ci/calculateBody.jsp</result>
+			<result name="customDialog">/aibi_ci/dialog/customerSetDialog.jsp</result>
+			<result name="verticalLabelSetDialog">/aibi_ci/dialog/verticalLabelSetDialog.jsp</result>
+			<result name="verticalLabelAttrDialog">/aibi_ci/dialog/verticalLabelAttrDialog.jsp</result>
+			<result name="attentionIndex">/aibi_ci/attentionIndex.jsp</result>
+			<result name="marketNavigationIndex">/aibi_ci/marketNavigationIndex.jsp</result>
+			<result name="marketNavigationLabelAndCustoms">/aibi_ci/marketNavigationLabelAndCustom.jsp</result>
+			<result name="rankingListIndex">/aibi_ci/rankingListIndex.jsp</result>
+			<result name="rankingListViewIndex">/aibi_ci/rankingListViewIndex.jsp</result>
+			<!--新增top100页面-->
+			<result name="findAllTop100Map">/aibi_ci/top100/top100Label.jsp</result>
+		</action>
+		<!-- 首页end -->
+		<!-- 日志管理 start -->
+		<action name="ciLogStatAnalysisAction" class="com.ailk.biapp.ci.action.CiLogStatAnalysisAction">
+			<result name="logStatIndex">/aibi_ci/logManage/logStatIndex.jsp</result>
+			<result name="logAnalysisIndex">/aibi_ci/logManage/logAnalysisIndex.jsp</result>
+			<result name="logADeptOpTypesTrendChart">/aibi_ci/logManage/logADeptOpTypesTrendChart.jsp</result>
+			<result name="logADeptOpTypesMain">/aibi_ci/logManage/logADeptOpTypesMain.jsp</result>
+			<result name="logADeptOpTypesList">/aibi_ci/logManage/logADeptOpTypesList.jsp</result>
+			<result name="logIndexTrendChart">/aibi_ci/logManage/logIndexTrendChart.jsp</result>
+			<result name="logAnalysisIndexTable">/aibi_ci/logManage/logAnalysisIndexTable.jsp</result>
+			<result name="logIndexLoadTitle">/aibi_ci/logManage/logIndexLoadTitle.jsp</result>
+			<result name="logMultDeptCompareInit">/aibi_ci/logManage/logMultDeptCompareInit.jsp</result>
+			<result name="initAnaChart">/aibi_ci/logManage/initAnaChart.jsp</result>
+			<result name="logAnaChart">/aibi_ci/logManage/logAnaChart.jsp</result>
+			<result name="logThirdAnaChart">/aibi_ci/logManage/logThirdAnaChart.jsp</result>
+			<result name="logAanMultList">/aibi_ci/logManage/logAanMultList.jsp</result>
+			<result name="logMultDeptOpTypesUserList">/aibi_ci/logManage/logMultDeptOpTypesUserList.jsp</result>	
+		</action>
+		<!-- 日志管理 end -->
+		<!-- 产品begin -->
+		<action name="productManagerAction" class="com.ailk.biapp.ci.action.ProductManagerAction">
+			
+		</action>
+		<!-- 产品end -->
+		<!-- 系统标签、客户群手动初始化数据 begin -->
+		<action name="sysDataInitAction" class="com.ailk.biapp.ci.action.SysDataInitAction">
+		</action>
+		<!-- 系统标签、客户群手动初始化数据 end -->
+		<!-- 个性化通知设置 begin -->
+		<action name="ciUserNoticeSetAction" class="com.ailk.biapp.ci.action.CiUserNoticeSetAction">
+		    <result name="userNoticeSet">/aibi_ci/SysConfig/userNoticeSet.jsp</result>
+		</action>
+		<!-- 个性化通知设置end -->
+		
+		<action name="ciProductVerifyInfoAction" class="com.ailk.biapp.ci.action.CiProductVerifyInfoAction">
+			<result name="analysisProcess">/aibi_ci/verify/analysisProcess.jsp</result>
+			<result name="productHisInfo">/aibi_ci/verify/productHisInfo.jsp</result>
+			<result name="userNumHisInfo">/aibi_ci/verify/userNumHisInfo.jsp</result>
+			<result name="initProductHisInfo">/aibi_ci/verify/initProductHisInfo.jsp</result>
+			<result name="initUserNumHisInfo">/aibi_ci/verify/initUserNumHisInfo.jsp</result>
+			<result name="assessResult">/aibi_ci/verify/assessResult.jsp</result>
+			<result name="verifyIndex">/aibi_ci/verify/verifyIndex.jsp</result>
+		</action>
+		
+		<!-- 标签维护begin -->
+		<action name="ciLabelInfoConfigAction" class="com.ailk.biapp.ci.action.CiLabelInfoConfigAction">
+			<result name="index">/aibi_ci/ciLabelInfo/ciLabelInfoConfigIndex.jsp</result>
+			<result name="query">/aibi_ci/ciLabelInfo/ciLabelInfoConfigList.jsp</result>
+			<result name="configLabel">/aibi_ci/ciLabelInfo/configLabel.jsp</result>
+			<result name="addConfigLabel">/aibi_ci/ciLabelInfo/addConfigLabel.jsp</result>
+			<result name="importSuccess">/aibi_ci/ciLabelInfo/saveSuccessDialog.jsp</result>
+			<result name="importFail">/aibi_ci/ciLabelInfo/importFail.jsp</result>
+			<result name="publishLabel">/aibi_ci/ciLabelInfo/publishLabel.jsp</result>
+			<result name="queryClasses">/aibi_ci/ciLabelInfo/ciLabelInfoClassesList.jsp</result>
+			<result name="classesIndex">/aibi_ci/ciLabelInfo/ciLabelInfoClassesIndex.jsp</result>
+			<result name="queryIndexCode">/aibi_ci/ciLabelInfo/kpiSearchList.jsp</result>
+		</action>
+		<!-- 标签维护end -->
+		<!-- 信息反馈begin -->
+		<action name="ciFeedbackAction" class="com.ailk.biapp.ci.feedback.action.CiFeedbackAction">
+			<result name="feedbackMain">/aibi_ci/feedback/feedbackInfoMain.jsp</result>
+			<result name="feedbackIndex">/aibi_ci/feedback/feedbackInfoIndex.jsp</result>
+			<result name="feedbackList">/aibi_ci/feedback/feedbackInfoList.jsp</result>
+			<result name="feedbackRecord">/aibi_ci/feedback/feedbackReply.jsp</result>
+			<result name="addFeedback">/aibi_ci/feedback/addFeedback.jsp</result>
+			<result name="feedbackHistoryIndex">/aibi_ci/feedback/feedbackHistoryIndex.jsp</result>
+			<result name="feedbackHistoryList">/aibi_ci/feedback/feedbackHistoryList.jsp</result>
+			<result name="showFeedbackDetail">/aibi_ci/feedback/showFeedbackDetail.jsp</result>
+		</action>
+		<!-- 信息反馈end -->
+		
+		<!-- 营销导航首页列表begin-->
+		<action name="ciMarketAction" class="com.ailk.biapp.ci.market.action.CiMarketAction">
+			<result name="recomCustomOrLabel">/aibi_ci/dialog/recomCustomOrLabelDialog.jsp</result>
+			<result name="marketIndex">/aibi_ci/market/pages/marketIndex.jsp</result>
+			<result name="marketList">/aibi_ci/market/pages/marketList.jsp</result>
+			<result name="newMarketIndex">/aibi_ci/market/newMarketIndex.jsp</result>
+			<result name="labelDetailTip">/aibi_ci/market/pages/labelDetailTip.jsp</result>
+			<result name="customGroupDetailTip">/aibi_ci/market/pages/customGroupDetailTip.jsp</result>
+		</action>
+		<!-- 营销导航首页列表end-->
+				
+		
+		<!-- 浙江人为本 -->
+        <action name="peopleBaseAction" class="com.ailk.biapp.ci.action.PeopleBaseAction">
+            <result name="peopleBaseIndex">/aibi_ci/peopleBase4ZJ/peopleBaseIndex.jsp</result>
+            <result name="queryPeopleBaseContent">/aibi_ci/peopleBase4ZJ/queryPeopleBaseContent.jsp</result>
+        </action>
+		
+		<!-- 浙江本地action -->
+		<action name="zjDownloadApproveAction" class="com.ailk.biapp.ci.localization.zhejiang.action.ZjDownloadApproveAction">
+            <result name="downloadApprove">/aibi_ci/location/zhejiang/downloadApprove.jsp</result>
+            <result name="commitApprove">/aibi_ci/location/zhejiang/commitApprove.jsp</result>
+        </action>
+
+		<!-- dataSource数据源标签 -->
+		<action name="ciDataSourceAction" method="getDataSource" class="ciDataSourceAction">
+			<result name="dSource">/test/TestDataSourceLabelCount.jsp</result>
+			<result name="theNewestDataDate">/test/TestGetNewestDataDate.jsp</result>
+			<result name="InfluencedLabel">/test/TestSelectInfluencedLabel.jsp</result>
+		</action>
+
+		<!-- labelCount标签统计 -->
+		<action name="ciLabelCountAction" method="getLabelCount" class="ciLabelCountAction">
+			<result name="labelCount">/test/TestLabelCountDataSource.jsp</result>
+		</action>
+
+	</package>
+</struts>

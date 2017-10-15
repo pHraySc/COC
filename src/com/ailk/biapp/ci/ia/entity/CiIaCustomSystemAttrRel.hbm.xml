@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 
+    Mapping file autogenrated by MyEclipse Persistence Tools
+-->
+<hibernate-mapping>
+    <class name="com.ailk.biapp.ci.ia.entity.CiIaCustomSystemAttrRel" table="CI_IA_CUSTOM_SYSTEM_ATTR_REL">
+        <id name="ruleId" type="java.lang.Integer">
+            <column name="RULE_ID"  />
+            <generator class="native" />
+        </id>
+        <property name="customAttrId" type="java.lang.Integer">
+            <column name="CUSTOM_ATTR_ID"  />
+        </property>
+        <property name="attrId" type="java.lang.Integer">
+            <column name="ATTR_ID"  />
+        </property>
+        <property name="calcuVal" type="java.lang.Integer">
+            <column name="CALCU_VAL"  />
+        </property>
+        <property name="calcuOprator" type="java.lang.String">
+            <column name="CALCU_OPRATOR" length="32" />
+        </property>
+        <property name="elementType" type="java.lang.Integer">
+            <column name="ELEMENT_TYPE"  />
+        </property>
+    </class>
+</hibernate-mapping>

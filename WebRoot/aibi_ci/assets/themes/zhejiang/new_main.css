@@ -1,0 +1,86 @@
+@charset "utf-8";
+.loginfInner{min-width:1004px;max-width:1260px;width:100%; margin:0 auto;}
+.navMapListBox{  display:none;position:fixed;  top:30px; padding:15px 0px; left:50%;  min-width:1004px;max-width:1260px;width:100%; background-color:#fff;  border:1px solid #dbdbdb;border-top:none;  z-index:1002;}
+.comWidth{  min-width:1004px;max-width:1260px;width:100%;  margin:0 auto;}
+.indexSearch{min-width:1004px;max-width:1260px;width:100%; margin:22px auto 0px auto;}
+.mainBody{min-width:1004px;max-width:1260px;width:100%; margin:0 auto;}
+.save-customer-header{
+	height:92px; 
+	background: transparent url(images/nav_bg.png) no-repeat left bottom;
+	margin-top:30px;
+}
+.no-search-header-without-line {
+	height:92px; 
+	margin-top:30px;
+}
+.save-customer-inner .tagList { 
+	margin:10px auto;
+	min-width:980px;
+	max-width:1200px;
+	width:auto;
+	height:auto;
+	overflow:hidden; 
+	background:#fff; 
+	border:1px solid #dcdcdc;
+}
+.save-customer-inner .tagListBox{
+	min-width:735px;
+	max-width:950px;
+	width:100%;
+	height:370px;
+	background:#FFF;
+	position:relative;
+	margin-left: 23px; 
+}
+.save-customer-inner .tagListBox .tagListBoxInner{
+	min-width:735px;
+	max-width:950px;
+	width:auto;
+	height:334px;
+	background:#FFF;
+	overflow-x:hidden;
+	position:relative;
+	background:url(images/create-bg.png) no-repeat center center;
+}
+.save-customer-inner .customer-rules { 
+	margin:auto;
+	width:1200px;
+	height:100px;
+	overflow:hidden; 
+	background:#fff; 
+	border:1px solid #dcdcdc;
+	padding-left:8px;	
+}
+.open-close-box{
+    width:1200px;
+    height:20px;
+	clear:both;
+	position:relative;
+	margin:auto;
+	padding-left:10px;
+}
+.open-close-icon{
+	position:absolute;
+	color:#418CCB;
+	right:0px;
+	top:0px;
+	cursor:pointer;
+	width:50px;
+	height:20px;
+	line-height:20px;
+	padding-left:15px;
+	text-align:center;
+	border:1px solid #dcdcdc;
+	border-bottom:none;
+	background: #FFF url(images/icon_arrow_fold.png) no-repeat 5px 1px;
+}
+.open-close-icon.arrowDown{
+	background-position: 5px -19px;
+}
+.theme-inner{
+	width:1260px;
+	height:auto;
+	overflow:hidden;
+	margin:0 auto;
+	background:#fbfbfb;
+}

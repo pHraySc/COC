@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.ailk.biapp.ci.entity.CiSysInfo" table="CI_SYS_INFO">
+        <id name="sysId" type="string">
+            <column name="sys_id" length="32" />
+            <generator class="com.ailk.biapp.ci.util.CiIdentifierGenerator"/>
+        </id>
+        <property name="sysName" type="string">
+            <column name="sys_name" length="64" />
+        </property>
+        <property name="ftpServerIp" type="string">
+            <column name="ftp_server_ip" length="15" />
+        </property>
+        <property name="ftpPort" type="string">
+            <column name="ftp_port" length="6" />
+        </property>
+        <property name="ftpUser" type="string">
+            <column name="ftp_user" length="32" />
+        </property>
+        <property name="ftpPwd" type="string">
+            <column name="ftp_pwd" length="32" />
+        </property>
+        <property name="ftpPath" type="string">
+            <column name="ftp_path"  length="128" />
+        </property>
+         <property name="localPath" type="string">
+            <column name="local_path"  length="128" />
+        </property>
+		
+		<property name="webserviceWSDL" type="string">
+            <column name="WEBSERVICE_WSDL"  length="300" />
+        </property>
+        <property name="webserviceTargetNamespace" type="string">
+            <column name="WEBSERVICE_TARGETNAMESPACE"  length="64" />
+        </property>
+        <property name="webserviceMethod" type="string">
+            <column name="WEBSERVICE_METHOD"  length="64" />
+        </property>
+        <property name="webserviceArgs" type="string">
+            <column name="WEBSERVICE_ARGS"  length="1000" />
+        </property>
+        <property name="showInPage" type="java.lang.Integer">
+            <column name="SHOW_IN_PAGE" />
+        </property>
+        
+        <property name="descTxt" type="string">
+            <column name="DESC_TXT" length="128" />
+        </property>
+        <property name="isNeedXml" type="java.lang.Integer">
+            <column name="IS_NEED_XML"/>
+        </property>
+        <property name="isNeedDes" type="java.lang.Integer">
+            <column name="IS_NEED_DES"/>
+        </property>
+        <property name="desKey" type="string">
+            <column name="DES_KEY" length="128" />
+        </property>
+         <property name="isNeedCycle" type="java.lang.Integer">
+            <column name="IS_NEED_CYCLE"/>
+        </property>
+        <property name="actionId" type="string">
+            <column name="ACTION_ID" length="512" />
+        </property>
+        <property name="functionId" type="string">
+            <column name="FUNCTION_ID" length="512" />
+        </property>
+        <property name="pushClassName" type="string">
+            <column name="PUSH_CLASS_NAME" length="128" />
+        </property>
+    </class>
+</hibernate-mapping>

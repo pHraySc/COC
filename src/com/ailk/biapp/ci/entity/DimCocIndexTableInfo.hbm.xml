@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.ailk.biapp.ci.entity.DimCocIndexTableInfo" table="DIM_COC_INDEX_TABLE_INFO">
+        <id name="dataSrcCode" type="java.lang.String">
+            <column name="DATA_SRC_CODE" length="128" />
+            <generator class="assigned" />
+        </id>
+        <property name="dataSrcTabName" type="java.lang.String">
+            <column name="DATA_SRC_TAB_NAME" length="128" />
+        </property>
+        <property name="tableDataCycle" type="java.lang.Integer">
+            <column name="TABLE_DATA_CYCLE" />
+        </property>
+        <property name="joinColumn" type="java.lang.String">
+            <column name="JOIN_COLUMN" length="128"/>
+        </property>
+        <property name="joinRules" type="java.lang.String">
+            <column name="JOIN_RULES" length="128" />
+        </property>
+        <property name="effectiveTime" type="java.util.Date">
+            <column name="EFFECTIVE_TIME" />
+        </property>
+        <property name="invalidTime" type="java.util.Date">
+            <column name="INVALID_TIME" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>智能分析</title>
+<link rel="stylesheet" type="text/css" href="../../../assets/js/jqueryUI/ui-lightness/jquery-ui-1.9.2.custom.css" /> 
+<link href="../../../assets/js/multiselect/css/jquery.multiselect.css" rel="stylesheet"/>
+<link href="../../../assets/js/multiselect/css/jquery.multiselect.filter.css" rel="stylesheet"/>
+<link href="../../../assets/js/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet"  />
+<link href="../../../assets/themes/common.css" rel="stylesheet" />
+<link href="../../assets/styles/main_cia.css" rel="stylesheet" />  
+<link rel="stylesheet" type="text/css" href="../../../assets/themes/zhejiang/dialog_overload.css" rel="stylesheet" />
+<script type="text/javascript" src="../../../assets/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../../../assets/js/jqueryUI/jquery-ui.js"></script>  
+<script type="text/javascript" src="../../../assets/js/multiselect/src/jquery.multiselect.js"></script>
+<script type="text/javascript" src="../../../assets/js/multiselect/src/jquery.multiselect.filter.js"></script>
+<script type="text/javascript" src="../../../assets/js/scrollbar/jquery.mCustomScrollbar.concat.min.js" ></script>
+<script type="text/javascript" src="../../assets/scripts/jQeryUIPlug-in.js"></script>
+<script type="text/javascript" src="../../assets/scripts/jQuery.contextMenu.js"></script> 
+<script type="text/javascript" >
+	$(function(){
+		
+	 
+		/*****************************
+		 * dialog demo js区域  上线时删除
+		 */
+		$("#showdialog1").click(function(){
+			var data = $("#settingDialog1").show()[0].outerHTML;
+			jQueryUIUtils.dialog("#cia-dialog",{ 
+				buttons:{},
+		      	content:data,
+				title:"模糊查询", 
+				height: 365,
+				width:513
+			}); 
+		});
+		$("#showdialog2").click(function(){
+			var data = $("#settingDialog2").show().remove()[0].outerHTML;
+			jQueryUIUtils.dialog("#cia-dialog",{ 
+				buttons:{},
+		      	content:data,
+				title:"设置", 
+				height: 322,
+				width:513,
+				open:function(){
+					jQueryUIUtils.multiselect("#cia-list1",{
+				    	   multiple: false,
+				    	   header:false,
+				    	   noneSelectedText: "请选择清单",
+				    	   selectedList: 1 ,
+				    	   minWidth:373,
+				    	   click:function(event, ui){
+				    	   }
+				    	});
+					
+				}
+			}); 
+		});
+		$("#showdialog3").click(function(){
+			var data = $("#settingDialog3").show()[0].outerHTML;
+			jQueryUIUtils.dialog("#cia-dialog",{ 
+				buttons:{},
+		      	content:data,
+				title:"设置", 
+				height: 322,
+				width:513
+				 
+			}); 
+		});
+			
+		$("#showdialog4").click(function(){
+			var data = $("#settingDialog4").show()[0].outerHTML;
+			jQueryUIUtils.dialog("#cia-dialog",{ 
+				buttons:{},
+		      	content:data,
+				title:"设置", 
+				height: 322,
+				width:513
+				 
+			}); 
+		});
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	/****************************
+	 * dialog demo区域结束
+	 */	
+		
+	});
+
+</script> 
+
+</head>
+<body> 
+<button type="button" id="showdialog1">模糊匹配</button>
+<button type="button" id="showdialog2">数值区间</button>
+<button type="button" id="showdialog3">使用清单</button>
+<button type="button" id="showdialog4">规则使用</button>
+<!-- 改为jsp时把hidden的class去掉 -->
+<div class="cia-setting-dialog hidden main-cia-frame" id="settingDialog1">
+	<div class="clearfix of">
+		<div class="fleft img-left-box"></div>
+		<div class="fleft content-dialog-box of">
+			<div class=" content-dialog-inner">
+				<div class="cia-like-box">
+					<div class="cia-like-text">请输入查询匹配内容：</div>
+					<div class="cia-like-input">
+						<input type="text" class="cia-l-input"/>
+					</div>
+				</div>
+			</div>
+		</div> 
+	</div>
+	<div class="cia-dialod-bottom-tip">
+		此处显示输入样式及说明等文字  
+	</div>
+	<div class="bottom clearfix">
+	     <button type="button" class="cia-show-button cursor fright" id="but_ensure">确定</button>
+         <button type="button" class="cia-show-button cursor fright no" id="but_cancel">取消</button>
+  </div>
+</div>
+<div class="cia-setting-dialog clearfix hidden main-cia-frame" id="settingDialog2">
+	<div class="content-dialog-box">
+		<div class="content-dialog-row clearfix">
+			<p class="cia-dialog-radio cia-radio-bg fleft">间隔查询</p>
+			<p class="cia-dialog-input-s fleft">
+				<input type="text" class="cia-s-input"/>
+			</p>
+			<p class="cia-dialog-input-link fleft">——</p>
+			<p class="cia-dialog-input-s fleft">
+				<input type="text" class="cia-s-input"/>
+			</p>
+		</div>
+		<div class="content-dialog-row clearfix even">
+			<p class="cia-dialog-radio cia-radio-bg fleft">间隔查询</p>
+			<div class="cia-dialog-input-long fleft">
+				<div class="of clearfix">
+					<select name="demo" id ="cia-list1" class="hidden">
+						<option value="option1">请选择清单</option> 
+						<option value="option1">4G飞享套餐推荐用户1</option>
+						<option value="option2">4G飞享套餐推荐用户2</option>
+						<option value="option3">4G飞享套餐推荐用户3</option>
+						<option value="option4">4G飞享套餐推荐用户4</option>
+						<option value="option5">4G飞享套餐推荐用户5</option>
+						<option value="option6">4G飞享套餐推荐用户6</option>
+						<option value="option7">4G飞享套餐推荐用户7</option>
+						<option value="option7">4G飞享套餐推荐用户8</option>
+						<option value="option7">4G飞享套餐推荐用户9</option>
+						<option value="option7">4G飞享套餐推荐用户10</option>
+					</select>
+				</div>
+				<div class="of cia-dialod-tip">多个条件值用“，”隔开</div>
+			</div>
+			
+		</div>
+	</div> 
+	<div class="bottom">
+	     <button type="button" class="cia-show-button cursor fright" id="but_ensure">确定</button>
+         <button type="button" class="cia-show-button cursor fright no" id="but_cancel">取消</button>
+  </div>
+</div>
+
+
+<div class="cia-setting-dialog clearfix hidden main-cia-frame" id="settingDialog3">
+	<div class="content-dialog-box">
+		<div class="content-dialog-row clearfix even">
+			<p class="cia-dialog-radio cia-radio-bg fleft cia-dialod-radio-top active">使用清单</p>
+			<p class="cia-dialog-radio cia-radio-bg fleft cia-dialod-radio-top disable">使用规则</p> 
+		</div>
+		<div class="of cia-dialog-list-text">
+			餐饮用户群 和（手机报用户群 并且手机报用户群和手机报用户群和手机报用
+			户群手机报用户群手机报用户群 手机报用户群 手机报用户群或群手机报用户
+			群和（手机报用群和手机报用户群和手机报用户群和手机报用户群
+		</div>
+		<div class="of cia-dialod-bottom-tip">多个条件值用“，”隔开</div>
+	</div> 
+	<div class="bottom">
+	     <button type="button" class="cia-show-button cursor fright" id="but_ensure">确定</button>
+         <button type="button" class="cia-show-button cursor fright no" id="but_cancel">取消</button>
+   </div>
+</div>
+
+<div class="cia-setting-dialog clearfix hidden main-cia-frame" id="settingDialog4">
+	<div class="content-dialog-box">
+		<div class="content-dialog-row clearfix even">
+			<p class="cia-dialog-radio cia-radio-bg fleft cia-dialod-radio-top active">使用清单</p>
+			<p class="cia-dialog-radio cia-radio-bg fleft cia-dialod-radio-top disable">使用规则</p> 
+		</div>
+		<div class="of cia-dialog-list-text content-dialog-row">
+		 	<p class="cia-dialog-radio cia-radio-bg fleft  active cia-dialog-rule-box">使用清单</p>
+			<p class="cia-dialog-radio cia-radio-bg fleft  disable cia-dialog-rule-box">使用规则</p> 
+			<p class="cia-dialog-radio cia-radio-bg fleft  cia-dialog-rule-box">使用规则</p> 
+		 	<p class="cia-dialog-radio cia-radio-bg fleft  active cia-dialog-rule-box">使用清单</p>
+			<p class="cia-dialog-radio cia-radio-bg fleft  disable cia-dialog-rule-box">使用规则</p> 
+			<p class="cia-dialog-radio cia-radio-bg fleft  cia-dialog-rule-box">使用规则</p> 
+		 	<p class="cia-dialog-radio cia-radio-bg fleft  active cia-dialog-rule-box">使用清单</p>
+			<p class="cia-dialog-radio cia-radio-bg fleft  disable cia-dialog-rule-box">使用规则</p> 
+			<p class="cia-dialog-radio cia-radio-bg fleft  cia-dialog-rule-box">使用规则</p> 
+		</div>
+		<div class="of cia-dialod-bottom-tip">多个条件值用“，”隔开</div>
+	</div> 
+	<div class="bottom">
+	     <button type="button" class="cia-show-button cursor fright" id="but_ensure">确定</button>
+         <button type="button" class="cia-show-button cursor fright no" id="but_cancel">取消</button>
+   </div>
+</div>
+</body>
+</html>

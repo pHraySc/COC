@@ -1,0 +1,159 @@
+﻿@charset "utf-8";
+/* 
+Aisainfolinkage All copyright reserved
+Date: 2010.09.27
+Version: v1.0
+Creator: Wulei
+E-mail: wulei@asiainfo-linkage.com
+for vgop
+ */
+/* 重写滚动条样式start */
+*{
+	scrollbar-face-color: #eee; 
+	scrollbar-highlight-color: #fff; 
+	scrollbar-shadow-color: #ccc; 
+	scrollbar-3dlight-color: #999; 
+	scrollbar-arrow-color: #666; 
+	scrollbar-track-color: #fcfcfc; 
+	scrollbar-darkshadow-color: #666; 
+	scrollbar-base-color: #ccc;
+}
+/* 重写滚动条样式end */
+/* 布局start col_2代表这个DIV含有2列布局 */
+.vgop_area_query{/* 查询区域 */
+	margin:0 5px 5px;
+}
+.vgop_area_data{/* 数据区域 */
+	margin:5px;
+}
+.vgop_col_2 .col_left{/* 两列布局 */
+	width:18%;
+	float:left;
+	display:inline;
+}
+.vgop_col_2 .col_right{/* 两列布局 */
+	width:82%;
+	float:left;
+	display:inline;
+}
+.vgop_col_2 .col_right .main{
+	margin-left:5px;
+}
+.part_up{
+	margin-left:5px;
+}
+.part_bottom{
+	margin:5px 0 0 5px;
+}
+.vgop_col_2_sub .col_left{
+	width:25%;
+	float:left;
+	display:inline;
+}
+.vgop_col_2_sub .col_left .main{
+	border:1px solid #ccc;
+	padding:5px;
+}
+.vgop_col_2_sub .col_right{
+	width:74%;
+	float:right;
+	display:inline;
+}
+.vgop_col_2_sub .main{
+	margin-left:5px;
+}
+.vgop_col_2_extra{
+	margin-bottom:5px;
+}
+.vgop_col_2_extra .col_left{/* 代表第三种两列布局 */
+	width:35%;
+	float:left;
+	display:inline;
+}
+.vgop_col_2_extra .col_left .main{
+	margin-right:5px;
+}
+.vgop_col_2_extra .col_right{
+	width:64.8%;
+	float:right;
+	display:inline;
+}
+.vgop_row_3{
+	margin-left:5px;
+}
+.vgop_row_3 .row_2{
+	margin:5px 0;
+	border:1px solid #999;
+}
+.vgop_row_3 .row_3{
+	border:1px solid #999;
+}
+.vgop_complex_1{/* 复杂布局1 */
+}
+.vgop_complex_1 .row{
+	margin:0;
+}
+.vgop_complex_1 .col_left{
+	width:40%;
+	float:left;
+	display:inline;
+	margin-top:5px;
+}
+.vgop_complex_1 .col_left .main{
+	margin:5px;
+	padding:5px;
+	border:1px solid #ccc;
+}
+.vgop_complex_1 .col_right{
+	width:59%;
+	float:right;
+	display:inline;
+	margin-top:5px;
+}
+.vgop_complex_1 .col_right button{
+	padding:0 5px;
+	margin:0 3px;
+}
+/* 两列,左宽右窄 */
+.vgop_col_3 .col_left{
+	width:70%;
+	float:left;
+	display:inline;
+	margin-top:3px;
+}
+.vgop_col_3 .col_right{
+	width:29%;
+	float:right;
+	display:inline;
+	margin-top:3px;
+}
+/* 两列,一列固定宽度，另一列自适应 */
+.vgop_col_4 .col_left{
+	margin-top:5px;
+	margin-right:175px;
+}
+.vgop_col_4 .col_right{
+	width:170px;
+	float:right;
+	margin-top:5px;
+}
+/* 布局end */
+/* 字体start */
+.vgop_font_confirmed{
+	color:#CCC!important;
+}
+/* 字体end */
+/* aibi布局重写start */
+.aibi_fieldset_common .main{
+	padding:10px;
+}
+.vgop_tips .aibi_tips_warm{
+	margin:0 5px;
+}
+/* aibi布局重写end. */
+#div_spliter{
+	height:3px;
+	border:0px;
+	padding:0px;
+	margin:0px;
+}

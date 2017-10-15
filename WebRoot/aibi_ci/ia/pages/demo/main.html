@@ -1,0 +1,375 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>智能分析</title>
+<link rel="stylesheet" type="text/css" href="../../../assets/js/jqueryUI/ui-lightness/jquery-ui-1.9.2.custom.css" /> 
+<link href="../../../assets/js/multiselect/css/jquery.multiselect.css" rel="stylesheet"/>
+<link href="../../../assets/js/multiselect/css/jquery.multiselect.filter.css" rel="stylesheet"/>
+<link href="../../../assets/js/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet"  />
+<link href="../../../assets/themes/common.css" rel="stylesheet" />
+<link href="../../assets/styles/main_cia.css" rel="stylesheet" />  
+<link rel="stylesheet" type="text/css" href="../../../assets/themes/zhejiang/dialog_overload.css" rel="stylesheet" />
+<script type="text/javascript" src="../../../assets/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="../../../assets/js/jqueryUI/jquery-ui.js"></script>  
+<script type="text/javascript" src="../../../assets/js/multiselect/src/jquery.multiselect.js"></script>
+<script type="text/javascript" src="../../../assets/js/multiselect/src/jquery.multiselect.filter.js"></script>
+<script type="text/javascript" src="../../../assets/js/scrollbar/jquery.mCustomScrollbar.concat.min.js" ></script>
+<script type="text/javascript" src="../../assets/scripts/jQeryUIPlug-in.js"></script>
+<script type="text/javascript" src="../../assets/scripts/ciaScriptEntrance.js"></script> 
+<script type="text/javascript" src="../../assets/scripts/jQuery.contextMenu.js"></script> 
+
+</head>
+<body> 
+	<div class="contentLayout">
+		<div class="contentInner">
+			<div class="cia-location ">
+				<ul class="clearfix cb location-ul">
+					<li class="fleft location-item">
+						<h4 class="location-title location-item"> 4G飞享套餐推荐用户</h4>   
+					</li>
+					<li class="fleft location-item">
+						<i class="cia-icons fleft cia-dividing-line"></i>
+					</li>
+					<li class="fleft location-item">
+						<div class="location-item clearfix cb">
+							<div class="fleft location-item cia-item-text">请选择清单：</div>
+							<div class="fleft cia-item-select">
+								<select name="demo" id ="cia-list" class="hidden">
+									<option value="option1">请选择清单</option> 
+									<option value="option1">4G飞享套餐推荐用户1</option>
+									<option value="option2">4G飞享套餐推荐用户2</option>
+									<option value="option3">4G飞享套餐推荐用户3</option>
+									<option value="option4">4G飞享套餐推荐用户4</option>
+									<option value="option5">4G飞享套餐推荐用户5</option>
+									<option value="option6">4G飞享套餐推荐用户6</option>
+									<option value="option7">4G飞享套餐推荐用户7</option>
+									<option value="option7">4G飞享套餐推荐用户8</option>
+									<option value="option7">4G飞享套餐推荐用户9</option>
+									<option value="option7">4G飞享套餐推荐用户10</option>
+								</select>
+							</div>
+						</div>
+					</li>
+					<li class="fleft location-item">
+						<div class="fleft location-item cia-item-text">用户数：</div>
+						<div class="fleft location-item cia-item-num"><span class="red-num">16,996</span></div>
+					</li>	
+					<li class="fright location-item">
+						<button type="button" class="cia-show-detail cursor">查看详情</button> 
+					</li>
+				</ul>
+			</div>
+			<div class="content-cia clearfix cb">
+				<div class="left-menus fleft">
+					<div class="left-menu-header tl">分析属性</div>
+					<div class="left-menu-content">
+						<div class="menu-groups">
+							<h3 class="menu-groups-header tl cursor">
+								<span class="fleft menu-groups-open cia-icons"></span>
+								<span class="fleft">客户群自带属性</span>
+							</h3>
+							<ul class="menu-groups-ul">
+								<li class="clearfix menu-groups-item cb cursor">
+									<span class="fleft green-block block tc">维</span>
+									<span class="fleft">手机号码</span>
+								</li>
+								<li class="clearfix menu-groups-item cb cursor">
+									<span class="fleft green-block block tc">维</span>
+									<span class="fleft">品牌</span>
+								</li>
+								<li class="clearfix menu-groups-item cb cursor">
+									<span class="fleft red-block block tc">指</span>
+									<span class="fleft tl">出账总收入</span>
+								</li>
+								<li class="clearfix menu-groups-item cb cursor">
+									<span class="fleft green-block block tc">维</span>
+									<span class="fleft">出账-上月收入</span>
+								</li>
+									<li class="clearfix menu-groups-item cb cursor">
+									<span class="fleft red-block block tc">指</span>
+									<span class="fleft tl">入账-上月入账</span>
+								</li>
+							</ul>
+						</div>
+						<div class="menu-groups">
+							<h3 class="menu-groups-header tl cursor">
+								<span class="fleft menu-groups-open cia-icons"></span>
+								<span class="fleft">客户群自带属性</span>
+							</h3>
+							<ul class="menu-groups-ul">
+								<li class="clearfix menu-groups-item cb cursor">
+									<span class="fleft green-block block tc">维</span>
+									<span class="fleft">手机号码</span>
+								</li>
+								<li class="clearfix menu-groups-item cb cursor">
+									<span class="fleft green-block block tc">维</span>
+									<span class="fleft">品牌</span>
+								</li>
+								<li class="clearfix menu-groups-item cb cursor">
+									<span class="fleft red-block block tc">指</span>
+									<span class="fleft tl">出账总收入</span>
+								</li>
+								<li class="clearfix menu-groups-item cb cursor">
+									<span class="fleft green-block block tc">维</span>
+									<span class="fleft">出账-上月收入</span>
+								</li>
+									<li class="clearfix menu-groups-item cb cursor">
+									<span class="fleft red-block block tc">指</span>
+									<span class="fleft tl">入账-上月入账</span>
+								</li>
+							</ul>
+						</div>
+					
+					</div>
+				
+				</div>
+				<div class="main-cia fleft">
+					<div class="main-cia-inner">
+						<div class="main-cia-content">
+							<div class="main-content-inner">
+								<div class="fleft of tag-del-box margin-r-30 cia-icons cursor hidden"></div>
+								<ul class="main-content-inner">
+									<li class="main-content-item clearfix">
+										<div class="fleft cia-left-tag">
+											<span class="fleft cia-left-tag-text tc">行</span>
+											<span class="fleft cia-left-tag-arrow cia-icons"></span>
+										</div>
+										<div class="fleft cia-left-dropzone">
+											<ul class="clearfix of J_droppable">
+												<li class="fleft placeholder">请拖拽至此</li> 
+											</ul>
+										</div>
+									</li>
+									<li class="main-content-item clearfix">
+										<div class="fleft cia-left-tag">
+											<span class="fleft cia-left-tag-text tc">列</span>
+											<span class="fleft cia-left-tag-arrow cia-icons"></span>
+										</div>
+										<div class="fleft cia-left-dropzone">
+											<ul class="clearfix of J_droppable">
+												<li class="fleft tag-box-list">品牌</li>
+												<li class="fleft tag-box-list">出账-上月收入</li>
+											</ul>
+										</div>
+									</li>
+									<li class="main-content-item clearfix">
+										<div class="fleft cia-left-tag">
+											<span class="fleft cia-left-tag-text tc">标记</span>
+											<span class="fleft cia-left-tag-arrow cia-icons"></span>
+										</div>
+										<div class="fleft cia-left-dropzone">
+											<ul class="clearfix of J_droppable">
+												<li class="fleft tag-box-list">品牌</li>
+												<li class="fleft tag-box-list">出账-上月收入</li>
+											</ul>
+										</div>
+									</li>
+									<li class="main-content-item clearfix">
+										<div class="fleft cia-left-tag">
+											<span class="fleft cia-left-tag-text tag-text-height tc">筛选</span>
+											<span class="fleft cia-left-tag-arrow tag-text-height cia-icons"></span>
+										</div>		
+										<div class="fleft of b-right">
+											<p class="cia-left-tag-sec b-bottom">
+												仅排除
+											</p> 	
+											<p class="cia-left-tag-sec">
+												仅保留
+											</p> 
+										</div>
+										<div class="clearfix of"> 
+											<div class="fleft cia-left-dropzone b-bottom width960">
+												<ul class="clearfix of J_droppable  width960">
+													<li class="fleft tag-box-list">品牌</li>
+													<li class="fleft tag-box-list">出账-上月收入</li>
+												</ul> 
+											</div> 
+										</div>
+										<div class="clearfix of"> 
+											<div class="fleft cia-left-dropzone width960">
+												<ul class="clearfix of J_droppable  width960">
+													<li class="fleft tag-box-list">品牌</li>
+													<li class="fleft tag-box-list">出账-上月收入</li>
+												</ul> 
+											</div> 
+										</div> 
+									</li>
+								</ul> 
+								<div class="of clearfix">
+									<div class="charts-control-box of b-bottom cb">
+                                    	<div class="fleft cursor">
+                                            <span class="fleft">
+												<i class="cia-icon table-icon-one"></i>
+											</span>
+											<span class="fleft">
+												<i class="cia-icon table-icon-two"></i>
+											</span>
+                                            <span class="fleft">
+												<i class="cia-icon table-icon-three"></i>
+											</span>
+                                            <span class="fleft">
+												<i class="cia-icon table-icon-four"></i>
+											</span> 
+                                            <span class="fleft">
+												<i class="cia-icon table-icon-five"></i>
+											</span> 
+                                            <span class="fleft">
+												<i class="cia-icon table-icon-six"></i>
+											</span> 
+                                            <span class="fleft">
+												<i class="cia-icon table-icon-seven"></i>
+											</span> 
+                                            <span class="fleft">
+												<i class="cia-icon table-icon-eight"></i>
+											</span> 
+                                        </div>
+										<div class="of fright"> 
+											<div class="fleft of margin-r-30">
+												<label>
+													<input type="checkbox" class="fleft excluding-checkbox"/>
+													<span class="fleft tl">是否按电话号码剔除</span>
+												</label> 
+											</div>
+											<button type="button" class="cia-show-button cursor fright">生成图表</button>
+										</div>
+									</div>
+									<!-- 无charts样式 -->
+									<div class="echarts-box of b-bottom cb no-charts">
+										<div class="switch-views cursor">
+											<span class="fleft cia-charts active J_switch">
+												<i class="cia-icons charts-icon-switch active"></i>
+											</span>
+											<span class="fleft cia-table J_switch">
+												<i class="cia-icons table-icon-switch"></i>
+											</span> 
+										</div>
+										<div id="" class="echarts-box of "></div>
+									</div>
+									<!-- 表格 -->
+									<!-- <div class="echarts-box of b-bottom cb">
+										<table  border="0" class="cia-table-box">
+											<tr class="cia-table-thead">
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+											</tr>
+											<tr  class="cia-table-tbody">
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+											</tr>
+											<tr  class="cia-table-tbody even">
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+											</tr>
+											<tr  class="cia-table-tbody">
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+											</tr>
+											<tr  class="cia-table-tbody even">
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+											</tr>
+											<tr  class="cia-table-tbody">
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+											</tr>
+											<tr  class="cia-table-tbody even">
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+											</tr>
+											<tr  class="cia-table-tbody">
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+												<th>表头名称</th>
+											</tr>
+										</table>
+										<div class="switch-views cursor">
+											<span class="fleft cia-charts active J_switch">
+												<i class="cia-icons charts-icon-switch active"></i>
+											</span>
+											<span class="fleft cia-table J_switch">
+												<i class="cia-icons table-icon-switch"></i>
+											</span> 
+										</div>
+									</div> -->
+								
+								</div>
+							</div>
+						</div>
+						<div class="main-cia-footer">
+							<ul class="of clearfix">
+								<li class="fleft cia-tab-item-first cia-tab-item cursor">
+									<div class="fleft tab-left-text-first tc">基础分析</div>
+									<div class="fleft tab-left-bg"></div>
+								</li>
+								<li class="fleft cia-tab-item cursor">
+									<div class="fleft tab-left-text tc">多维分析</div>
+									<div class="fleft tab-left-bg"></div>
+								</li> 
+								<li class="fleft cia-tab-item cursor">
+									<div class="fleft tab-left-text tc">气泡图</div>
+									<div class="fleft tab-left-bg"></div>
+								</li> 
+								<li class="fleft cia-tab-item cursor">
+									<div class="fleft tab-left-text tl" id="createTable">
+										<i class="fleft add-job-table cia-icons"></i>
+										创建工作表 
+										</div>
+									<div class="fleft tab-left-bg"></div>
+								</li>  	
+								<li class="fleft cia-tab-item cursor">
+									<div class="fleft tab-left-text tc">
+										<i class="fleft add-report-table cia-icons"></i>
+										创建报告
+									</div>
+									<div class="fleft tab-left-bg-last"></div>
+								</li>  
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--<div class="cia-bubble-dialog of">
+		<div class="cia-bubble-dialog-top"></div>
+		<div class="cia-bubble-dialog-center">
+			<div class="cia-bubble-dialog-content">
+				<ul class="clearfix of">
+					<li class="of cia-menu-item tl cursor">重命名</li>
+					<li class="of cia-menu-item tl cursor">排序</li>
+					<li class="of cia-menu-item tl cursor">创建数据分档</li>
+					<li class="of cia-menu-item tl cursor">设置数据格式</li>
+					<li class="of cia-menu-item tl cursor">设置计算字段</li>
+					<li class="of cia-menu-item tl cursor">设置聚合方式</li>
+				</ul>
+			
+			</div>
+		</div>
+		<div class="cia-bubble-dialog-bottom"></div> 
+	</div>-->
+</body>
+</html>

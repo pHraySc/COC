@@ -1,0 +1,1706 @@
+<?xml version="1.0" encoding="gb2312"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+  	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.directwebremoting.org/schema/spring-dwr
+    http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+
+    <bean id="privilegeServiceTrasactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">
+        <property name="transactionManager">
+            <ref bean="transactionManager"/>
+        </property>
+        <property name="transactionAttributes">
+            <props>
+            	<prop key="create*">PROPAGATION_REQUIRED</prop>
+            	<prop key="delete*">PROPAGATION_REQUIRED</prop>
+            	<prop key="create*">PROPAGATION_REQUIRED</prop>
+            	<prop key="export*">PROPAGATION_REQUIRED</prop>
+            	<prop key="export*">PROPAGATION_REQUIRED</prop>
+            	<!-- prop key="import*">PROPAGATION_REQUIRED</prop -->
+            	<prop key="lock*">PROPAGATION_REQUIRED</prop>
+            	<prop key="unlock*">PROPAGATION_REQUIRED</prop>
+            	<prop key="modify*">PROPAGATION_REQUIRED</prop>
+            	<prop key="realDelete*">PROPAGATION_REQUIRED</prop>
+            	<prop key="save*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+            	<prop key="save*">PROPAGATION_REQUIRED</prop>
+            	<prop key="clone*">PROPAGATION_REQUIRED</prop>
+            	<prop key="update*">PROPAGATION_REQUIRED</prop>
+            	<prop key="delete*">PROPAGATION_REQUIRED</prop>
+            	<prop key="do*">PROPAGATION_REQUIRED</prop>
+            	<prop key="add*">PROPAGATION_REQUIRED,-java.lang.Exception</prop>
+            	<prop key="log*">PROPAGATION_REQUIRED</prop>
+              <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+            </props>
+		</property>
+	</bean>
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="beanNames">
+			<list>
+				<value>right_userAdminService</value>
+				<value>right_roleAdminService</value>
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+    
+    <!--  ========================= DAO Bean Definitions Begin =========================== -->
+    <bean id="right_sysmanageJdbcDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.SysmanageJdbcDaoImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+    </bean>
+
+    <bean id="right_userGroupDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserGroupDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+     <bean id="right_userUserDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserUserDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+		<!-- added by chenxu -->
+	<bean id="right_userDutyDao" class="com.asiainfo.biframe.privilege.dutyMaintain.dao.impl.UserDutyDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+
+    <bean id="right_userDeptDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserDeptDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="right_userUserMapDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserUserMapDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+	<!--yanghui3 begin -->
+	 <bean id="right_sysMenuItemDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.SysMenuItemDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+	<!--portal实例资源dao定义-->
+    <bean id="right_portalInstRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>PTL_NODE_RIGHT</value>
+		</property>
+		<property name="defineTable">
+			<value>PTL_NODE_VIEW</value>
+		</property>
+		<property name="idField">
+			<value>NODEID</value>
+		</property>
+		<property name="descField">
+			<value>NODENAME</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>type</value>
+		</property>
+		<property name="parentFiled">
+			<value>PARENTID</value>
+		</property>
+		<property name="sortField">
+			<value>SORTNUM</value>
+		</property>
+		<property name="orderSql">
+			<value>order by NODEID</value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>false</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+		<property name="isNeedConvertIdType">
+			<value>true</value> <!-- portal视图主键ID是Integer类型的，需要转型 -->
+		</property>			
+    </bean>
+
+
+
+	<!--yanghui3 end -->
+	
+<!--huangliang3 begin -->
+    <bean id="right_userExtInfoDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserExtInfoDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    <bean id="right_userExtInfoDefineDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserExtInfoDefineDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+     <bean id="right_userExtInfoService" parent="baseTrasactionProxy">
+	  		<property name="target">
+	    			<bean class="com.asiainfo.biframe.privilege.sysmanage.service.impl.UserExtInfoServiceImpl">
+	      				<property name="userExtInfoDao">
+	        					<ref bean="right_userExtInfoDao"/>
+	        			</property>
+	        			<property name="userExtInfoDefineDao">
+	        					<ref bean="right_userExtInfoDefineDao"/>
+	        			</property>
+	      		</bean>
+	    	</property>
+  	</bean>
+<!--huangliang3 end -->
+
+
+<!--chenzq begin -->
+	<!--dao define-->
+    <bean id="right_userUserExtDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserUserExtDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+	<bean id="right_userRoleDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserRoleDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+	<bean id="right_groupRoleMapDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.GroupRoleMapDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+	<bean id="right_userRoleMapDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserRoleMapDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    <bean id="right_sysResourceTypeDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.SysResourceTypeDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    <bean id="right_userGroupMapDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserGroupMapDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    <!-- added by zhanghy2-->
+	<bean id="right_userOperationDefineDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserOperationDefineDaoImpl">
+		<property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+   	</bean>
+   <bean id="right_userCityDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserCityDaoImpl">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+   <bean id="right_resourceOperationDefineDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceOperationDefineDao">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+   <bean id="right_userApplicationDao" class="com.asiainfo.biframe.privilege.menu.dao.impl.UserApplicationDao">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+   <bean id="right_userTempRightDao" class="com.asiainfo.biframe.privilege.tempright.dao.impl.UserTempRightDao">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+   <bean id="right_firstPageParamDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.FirstPageParamDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+     <bean id="right_userUserPreferDefineDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserUserPreferDefineDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+     <bean id="right_userUserUserPreferDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.UserUserUserPreferDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    <!-- zhanghy2 end -->
+    
+    
+     <!--自动登录dao定义-->
+	<bean id="right_autoLoginDao" class="com.asiainfo.biframe.privilege.autologin.dao.impl.AutoLoginDaoImpl">
+        <property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+	<!--参数说明
+		rightTable    =权限表(必需)
+		defineTable   =资源定义表(必需)
+		idField       =资源定义表中的id字段名(必需)
+		descField     =资源定义表中的资源描述字段名(必需)
+		parentFiled   =资源定义表中的parentid字段名，如果是单层结构没有parentid，可以直接输入一个数字（与topLevelId一致）(必需)
+		sortField     =资源定义表中的排序类字段名，如果有多个，可以用逗号分隔
+		orderSql      =查询资源定义表时使用的排序语句，可以在这里制定排序的字段和升降
+		topLevelId    =查询出来的资源定义的顶层父id，缺省是-1
+		idVarchar     =资源id的类型，缺省=true（varchar类型），暂时作为保留字段
+		checkFrameField   =  根据定义表内的某个字段值判断是否在权限页面显示选择框(判断是否是不需要授权的共享资源) ,可以不填（只有菜单资源使用这个参数）
+		checkFrameValue   =  checkFrameField字段的判断值, 相等说明需要授权,可以不填（和上一个参数checkFrameField一起使用）
+		isAccessType = 特殊资源的标识  缺省0  (0:不是;1:是特殊资源,如文件报表和指标库)
+	-->
+	<!--IFrame中第三方资源dao定义-->
+	 <bean id="right_otherSysDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>user_othersys_right</value>
+		</property>
+		<property name="defineTable">
+			<value>othersys_define</value>
+		</property>
+		<property name="idField">
+			<value>SYSID</value>
+		</property>
+		<property name="descField">
+			<value>Topic</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>PARENTID</value>
+		</property>
+		<property name="sortField">
+			<value>SORTNUM</value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.PARENTID,resdef.SORTNUM,opdef.operationkey</value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>false</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+		 <property name="isNeedConvertIdType">
+                <value>true</value>
+         </property>
+</bean>
+	<!--地市资源dao定义-->
+	<bean id="right_userRightDaoUserCity" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>USER_RIGHT</value>
+		</property>
+		<property name="defineTable">
+			<value>USER_CITY</value>
+		</property>
+		<property name="idField">
+			<value>CITYID</value>
+		</property>
+		<property name="descField">
+			<value>CITYNAME</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>PARENTID</value>
+		</property>
+		<property name="sortField">
+			<value>SORTNUM</value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.PARENTID,resdef.SORTNUM,opdef.operationkey</value>
+		</property>
+		<property name="topLevelId">
+			<value>-1</value>
+		</property>
+		<property name="idVarchar">
+			<value>true</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+	</bean>
+	<!--角色菜单资源dao定义-->
+    <bean id="right_sysMenuitemRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl_ForMenuItem">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>SYS_MENUITEM_RIGHT</value>
+		</property>
+		<property name="defineTable">
+			<value>V_SYS_MENU_ITEM</value>
+		</property>
+		<property name="idField">
+			<value>MENUITEMID</value>
+		</property>
+		<property name="descField">
+			<value>MENUITEMTITLE</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>PARENTID</value>
+		</property>
+		<property name="sortField">
+			<value>SORTNUM</value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.PARENTID,resdef.SORTNUM,opdef.operationkey</value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>false</value>
+		</property>
+		<property name="checkFrameField">
+			<value>accesstoken</value>
+		</property>
+		<property name="checkFrameValue">
+			<value>1</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+		<property name="isNeedConvertIdType">
+			<value>true</value>
+		</property>
+    </bean>
+	<!--kpi资源dao定义-->
+    <bean id="right_userKpiRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>USER_KPI_RIGHT</value>
+		</property>
+		<property name="defineTable">
+			<value>KPI_DEFINE</value>
+		</property>
+		<property name="idField">
+			<value>KPIID</value>
+		</property>
+		<property name="descField">
+			<value>TOPIC</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>PARENTID</value>
+		</property>
+		<property name="sortField">
+			<value>SORTNUM</value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.PARENTID,resdef.SORTNUM,opdef.operationkey</value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>false</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+		<property name="isNeedConvertIdType">
+			<value>true</value>
+		</property>
+    </bean>
+	<!--rpt资源dao定义-->
+    <bean id="right_userRptRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>USER_RPT_RIGHT</value>
+		</property>
+		<property name="defineTable">
+			<value>RPT_CATALOG</value>
+		</property>
+		<property name="idField">
+			<value>UNIQUEID</value>
+		</property>
+		<property name="descField">
+			<value>TITLE</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>PARENTID</value>
+		</property>
+		<property name="sortField">
+			<value>SORTNUM</value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.PARENTID,resdef.SORTNUM,opdef.operationkey</value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>false</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+		<property name="isNeedConvertIdType">
+			<value>true</value>
+		</property>
+    </bean>
+
+	<!--rpt资源dao定义 专题-->
+    <bean id="right_userRptRightDao_subject" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>USER_RPT_RIGHT</value>
+		</property>
+		<property name="defineTable">
+			<value>RPT_CATALOG</value>
+		</property>
+		<property name="idField">
+			<value>UNIQUEID</value>
+		</property>
+		<property name="descField">
+			<value>TITLE</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>PARENTID</value>
+		</property>
+		<property name="sortField">
+			<value>SORTNUM</value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.PARENTID,resdef.SORTNUM,opdef.operationkey</value>
+		</property>
+		<property name="topLevelId">
+			<value>-1</value>
+		</property>
+		<property name="idVarchar">
+			<value>false</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+		<property name="isNeedConvertIdType">
+			<value>true</value>
+		</property>
+    </bean>
+
+	<!--rpt资源dao定义 报表-->
+    <bean id="right_userRptRightDao_report" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>USER_RPT_RIGHT</value>
+		</property>
+		<property name="defineTable">
+			<value>RPT_CATALOG</value>
+		</property>
+		<property name="idField">
+			<value>UNIQUEID</value>
+		</property>
+		<property name="descField">
+			<value>TITLE</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>PARENTID</value>
+		</property>
+		<property name="sortField">
+			<value>SORTNUM</value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.PARENTID,resdef.SORTNUM,opdef.operationkey</value>
+		</property>
+		<property name="topLevelId">
+			<value>-2</value>
+		</property>
+		<property name="idVarchar">
+			<value>false</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+		<property name="isNeedConvertIdType">
+			<value>true</value>
+		</property>
+    </bean>
+	<!--文件报表资源dao定义 报表-->
+    <bean id="right_specialRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>user_rptfile_right</value>
+		</property>
+		<property name="defineTable">
+			<value>rpt_define</value>
+		</property>
+		<property name="idField">
+			<value>RPTNO</value>
+		</property>
+		<property name="descField">
+			<value>RPTNAME</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>PARENTID</value>
+		</property>
+		<property name="sortField">
+			<value></value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.PARENTID,opdef.operationkey</value>
+		</property>
+		<property name="topLevelId">
+			<value>-2</value>
+		</property>
+		<property name="idVarchar">
+			<value>true</value>
+		</property>
+		<property name="isAccessType">
+			<value>1</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+    </bean>
+	<!--指标库资源dao定义 报表-->
+    <bean id="right_irindiRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>user_irindi_right</value>
+		</property>
+		<property name="defineTable">
+			<value>ir_indi_view</value>
+		</property>
+		<property name="idField">
+			<value>id_indi</value>
+		</property>
+		<property name="descField">
+			<value>name_indi</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>id_parent</value>
+		</property>
+		<property name="sortField">
+			<value></value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.id_parent,opdef.operationkey</value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>true</value>
+		</property>
+		<property name="isAccessType">
+			<value>1</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+    </bean>
+
+    <!--系统功能资源dao定义-->
+    <bean id="right_systemFunctionRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl_UserOperationDefine">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="defineTable">
+			<value>SYSTEM_FUNCTION_DEFINE</value>
+		</property>
+		<property name="rightTable">
+			<value>SYSTEM_FUNCTION_ACTION</value>
+		</property>
+		<property name="roleRightTable">
+			<value>SYSTEM_FUNCTION_RIGHT</value>
+		</property>
+		<property name="idField">
+			<value>FUNCTION_ID</value>
+		</property>
+		<property name="descField">
+			<value>FUNCTION_NAME</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>PARENT_ID</value>
+		</property>
+		<property name="sortField">
+			<value>SORT_NUM</value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.PARENT_ID,resdef.SORT_NUM,rig.operation_type</value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>true</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+    </bean>
+
+	<!--portlet资源dao定义 报表-->
+    <bean id="right_userPortletDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>user_portlet_right</value>
+		</property>
+		<property name="defineTable">
+			<value>light_portlet_ref</value>
+		</property>
+		<property name="idField">
+			<value>name</value>
+		</property>
+		<property name="descField">
+			<value>label</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>0</value>
+		</property>
+		<property name="sortField">
+			<value></value>
+		</property>
+		<property name="orderSql">
+			<value>order by opdef.operationkey</value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>true</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+	</bean>
+
+	<!--特殊资源权限表，定义了一个“可以分配所有权限”的特殊权限-->
+    <bean id="right_specialResourceRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl" >
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>special_resource_right</value>
+		</property>
+		<property name="defineTable">
+			<value>special_resource</value>
+		</property>
+		<property name="idField">
+			<value>resource_id</value>
+		</property>
+		<property name="descField">
+			<value>resource_name</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>0</value>
+		</property>
+		<property name="sortField">
+			<value></value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.PARENT_ID,opdef.operationkey</value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>true</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+	</bean>
+    <!-- biplatform4的操作权限dao -->
+    <bean id="right_plat4OperationRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl_Plat4_Operation">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>user_operation_right</value>
+		</property>
+		<property name="defineTable">
+			<value>user_operation_define</value>
+		</property>
+		<property name="idField">
+			<value>operationid</value>
+		</property>
+		<property name="descField">
+			<value>operationname</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resourcetype</value>
+		</property>
+		<property name="parentFiled">
+			<value>0</value>
+		</property>
+		<property name="sortField">
+			<value></value>
+		</property>
+		<property name="orderSql">
+			<value></value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>true</value>
+		</property>
+    </bean>
+
+    <!--portal功能权限dao定义-->
+    <bean id="right_portalFunctionRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl_UserOperationDefine">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="defineTable">
+			<value>light_portal_function</value>
+		</property>
+		<property name="rightTable">
+			<value>light_portal_function_right</value>
+		</property>
+		<property name="roleRightTable">
+			<value>light_portal_func_role_right</value>
+		</property>
+		<property name="idField">
+			<value>PORTAL_FUNCTION_ID</value>
+		</property>
+		<property name="descField">
+			<value>PORTAL_FUNCTION_NAME</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>PARENT_ID</value>
+		</property>
+		<property name="sortField">
+			<value>SORT_NUM</value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.PARENT_ID,resdef.SORT_NUM</value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>true</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+    </bean>
+    <!-- KPI报表 权限dao定义-->
+    <bean id="right_userRightKpiReportDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="defineTable">
+			<value>userdefine_rpt</value>
+		</property>
+		<property name="roleRightTable">
+			<value>user_rptdefine_right</value>
+		</property>
+		<property name="idField">
+			<value>RPT_ID</value>
+		</property>
+		<property name="descField">
+			<value>RPT_NAME</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>resource_type</value>
+		</property>
+		<property name="parentFiled">
+			<value>PARENT_ID</value>
+		</property>
+		<property name="sortField">
+			<value></value>
+		</property>
+		<property name="orderSql">
+			<value>order by resdef.PARENT_ID</value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>true</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+    </bean>
+
+	<!--新kpi资源dao定义-->
+    <bean id="right_newUserKpiRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="roleRightTable">
+			<value>NEW_USER_KPI_RIGHT</value>
+		</property>
+		<property name="defineTable">
+			<value>NEW_KPI_DEFINE</value>
+		</property>
+		<property name="idField">
+			<value>KPI_ID</value>
+		</property>
+		<property name="descField">
+			<value>KPI_NAME</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>RESOURCE_TYPE</value>
+		</property>
+		<property name="parentFiled">
+			<value>KPI_PARENT_ID</value>
+		</property>
+		<property name="sortField">
+			<value></value>
+		</property>
+		<property name="orderSql">
+			<value></value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>true</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+		<property name="isNeedConvertIdType">
+			<value>false</value>
+		</property>
+    </bean>
+    
+    <!--隐私字段资源dao定义-->
+    <bean id="right_sysPrivateRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="defineTable">
+			<value>sys_private_define_view</value>
+		</property>
+		<property name="roleRightTable">
+			<value>sys_private_right</value>
+		</property>
+		<property name="idField">
+			<value>PRIVATE_ID</value>
+		</property>
+		<property name="descField">
+			<value>private_title</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>RESOURCE_TYPE</value>
+		</property>
+		<property name="parentFiled">
+			<value></value>
+		</property>
+		<property name="sortField">
+			<value></value>
+		</property>
+		<property name="orderSql">
+			<value></value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>true</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+    </bean>
+    <!--自助报表资源dao定义-->
+    <bean id="right_selfrptRightDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+		<property name="defineTable">
+			<value>selfrpt_define</value>
+		</property>
+		<property name="roleRightTable">
+			<value>selfrpt_info_right</value>
+		</property>
+		<property name="idField">
+			<value>REPORT_ID</value>
+		</property>
+		<property name="descField">
+			<value>REPORT_NAME</value>
+		</property>
+		<property name="resourceTypeField">
+			<value>RESOURCE_TYPE</value>
+		</property>
+		<property name="parentFiled">
+			<value></value>
+		</property>
+		<property name="sortField">
+			<value></value>
+		</property>
+		<property name="orderSql">
+			<value></value>
+		</property>
+		<property name="topLevelId">
+			<value>0</value>
+		</property>
+		<property name="idVarchar">
+			<value>true</value>
+		</property>
+		<property name="accessTypeField">
+			<value>ACCESSTYPE</value>
+		</property>
+    </bean>
+    
+    <!--业务参数dao定义-->
+	<bean id="right_busiParametersDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.BusiParametersDaoImpl">
+        <property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+     <bean id="rightAdmin_userSysMapDao" class="com.asiainfo.biframe.privilege.uniauth.dao.impl.UserSysMapDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+        <property name="userGroupMapDao">
+       		<ref bean="right_userGroupMapDao"/>
+    	</property>
+    </bean>
+    <bean id="rightAdmin_userRightApplyDao" class="com.asiainfo.biframe.privilege.tempright.dao.impl.UserRightApplyDao">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+   <bean id="rightAdmin_systemSingleAppRightDao" class="com.asiainfo.biframe.privilege.userHitRank.dao.impl.SystemSingleAppRightDao"/>
+   
+   <bean id="rightAdmin_deptMangerDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.DeptMangerDaoImpl">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+    <!--  ========================= DAO Bean Definitions End =========================== -->
+    
+    
+    	<!--service define-->
+  	<bean id="right_roleAdminService" class="com.asiainfo.biframe.privilege.sysmanage.service.impl.RoleAdminServiceImpl">
+	      		<property name="userRoleDao">
+	        		<ref bean="right_userRoleDao"/>
+	        	</property>
+				<property name="userGroupDao">
+	        		<ref bean="right_userGroupDao"/>
+	        	</property>
+	      		<property name="groupRoleMapDao">
+	        		<ref bean="right_groupRoleMapDao"/>
+	        	</property>
+	      		<property name="userRoleMapDao">
+	        		<ref bean="right_userRoleMapDao"/>
+	        	</property>
+	      		<property name="sysResourceTypeDao">
+	        		<ref bean="right_sysResourceTypeDao"/>
+	        	</property>
+	        	<property name="userOperationDefineDao">
+	        		<ref bean="right_userOperationDefineDao"/>
+	        	</property>
+
+				<property name="resourceRightDaoMap">
+					<map>
+						<entry key="sysMenuitemRightDao">
+							<ref bean="right_sysMenuitemRightDao"/>
+						</entry>
+						<entry key="userKpiRightDao">
+							<ref bean="right_userKpiRightDao"/>
+						</entry>
+						<entry key="userRightDaoUserCity">
+							<ref bean="right_userRightDaoUserCity"/>
+						</entry>
+						<entry key="userRptRightDao">
+							<ref bean="right_userRptRightDao"/>
+						</entry>
+						<entry key="userRptRightDao_subject">
+							<ref bean="right_userRptRightDao_subject"/>
+						</entry>
+						<entry key="userRptRightDao_report">
+							<ref bean="right_userRptRightDao_report"/>
+						</entry>
+						<entry key="specialRightDao">
+							<ref bean="right_specialRightDao"/>
+						</entry>
+						<entry key="irindiRightDao">
+							<ref bean="right_irindiRightDao"/>
+						</entry>
+						<entry key="otherSysDao">
+							<ref bean="right_otherSysDao"/>
+						</entry>
+						<entry key="systemFunctionRightDao">
+							<ref bean="right_systemFunctionRightDao"/>
+						</entry>
+						<entry key="userPortletDao">
+							<ref bean="right_userPortletDao"/>
+						</entry>
+						<entry key="specialResourceRightDao">
+							<ref bean="right_specialResourceRightDao"/>
+						</entry>
+						<entry key="userOperationRightDao">
+							<ref bean="right_plat4OperationRightDao"/>
+						</entry>
+						<entry key="portalFunctionRightDao">
+							<ref bean="right_portalFunctionRightDao"/>
+						</entry>
+						<entry key="userRightKpiReportDao">
+							<ref bean="right_userRightKpiReportDao"/>
+						</entry>
+						<entry key="portalInstRightDao">
+							<ref bean="right_portalInstRightDao"/>
+						</entry>
+						<entry key="newUserKpiRightDao">
+							<ref bean="right_newUserKpiRightDao"/>
+						</entry>
+						<entry key="sysPrivateRightDao">
+							<ref bean="right_sysPrivateRightDao"/>
+						</entry>
+						<entry key="selfrptRightDao">
+							<ref bean="right_selfrptRightDao"/>
+						</entry>
+						<entry key="baseRightDao">
+							<ref bean="right_resourceRightDao_base"/>
+						</entry>
+						<entry key="operationRightDao">
+							<ref bean="right_resourceRightDao_userOperation"/>
+						</entry>
+						<entry key="plat4RightDao">
+							<ref bean="right_resourceRightDao_plat4"/>
+						</entry>
+						<entry key="jndiRightDao">
+							<ref bean="right_resourceRightDao_JNDI"/>
+						</entry>
+					</map>
+				</property>
+  	</bean>
+
+	<bean id="right_sysResourceTypeService" class="com.asiainfo.biframe.privilege.sysmanage.service.impl.SysResourceTypeService">
+		<property name="sysResourceTypeDao">
+			<ref bean="right_sysResourceTypeDao"/>
+		</property>
+	</bean>
+
+<!--chenzq end -->
+
+
+
+    <!--  ========================= Service Bean Definitions Begin =========================== -->
+    <bean id="right_pwdPolicy" class="com.asiainfo.biframe.privilege.sysmanage.model.PasswordPolicy">
+    </bean>
+
+    <bean id="right_userAdminService" class="com.asiainfo.biframe.privilege.sysmanage.service.impl.UserAdminServiceImpl">
+	      				<property name="sysmanageJdbcDao">
+	        					<ref bean="right_sysmanageJdbcDao"/>
+	        			</property>
+	      				<property name="userUserDao">
+	        					<ref bean="right_userUserDao"/>
+	        			</property>
+	        			<property name="userUserExtDao">
+	        					<ref bean="right_userUserExtDao"/>
+	        			</property>
+	        			<property name="userGroupDao">
+	        					<ref bean="right_userGroupDao"/>
+	        			</property>
+	        			<property name="userRoleDao">
+	        					<ref bean="right_userRoleDao"/>
+	        			</property>
+	        			<property name="userGroupMapDao">
+	        					<ref bean="right_userGroupMapDao"/>
+	        			</property>
+	        			<property name="userRoleMapDao">
+	        					<ref bean="right_userRoleMapDao"/>
+	        			</property>
+	        			<property name="groupRoleMapDao">
+	        					<ref bean="right_groupRoleMapDao"/>
+	        			</property>
+	        			<property name="userUserMapDao">
+	        					<ref bean="right_userUserMapDao"/>
+	        			</property>
+	        			<property name="sysResourceTypeDao">
+			        		<ref bean="right_sysResourceTypeDao"/>
+			        	</property>
+			        	<property name="userCityService">
+			        		<ref bean="right_userCityService"/>
+			        	</property>
+			        	<property name="userTempRightService">
+			        		<ref bean="right_userTempRightService"/>
+			        	</property>
+	        			<property name="policyList">
+	        					<list>
+	        							<ref bean="right_pwdPolicy"/>
+	        					</list>
+	        			</property>
+	        			<property name="userUserPreferDefineDao">
+	        					<ref bean="right_userUserPreferDefineDao"/>
+	        			</property>
+	        			<property name="userUserUserPreferDao">
+	        					<ref bean="right_userUserUserPreferDao"/>
+	        			</property>
+						<property name="userCompanyService">
+	        					<ref bean="right_userCompanyService"/>
+	        			</property>
+						<property name="userDutyDao">
+	        					<ref bean="right_userDutyDao"/>
+	        			</property>
+						<property name="userGroupAdminService">
+	        					<ref bean="right_userGroupAdminService"/>
+	        			</property>
+						<property name="roleAdminService">
+		        				<ref bean="right_roleAdminService"/>
+	       				</property>
+	      				<property name="userExtInfoDao">
+	        					<ref bean="right_userExtInfoDao"/>
+	        			</property>
+	        			<property name="userExtInfoDefineDao">
+	        					<ref bean="right_userExtInfoDefineDao"/>
+	        			</property>
+	        			<property name="iBusiParametersDao">
+	        					<ref bean="right_busiParametersDao"/>
+	        			</property>
+	        			
+  	</bean>
+
+    <bean id="right_userGroupAdminService" parent="baseTrasactionProxy">
+	  		<property name="target">
+	    			<bean class="com.asiainfo.biframe.privilege.sysmanage.service.impl.UserGroupAdminServiceImpl">
+	      				<property name="userGroupDao">
+	        					<ref bean="right_userGroupDao"/>
+	        			</property>
+	        			<property name="userGroupMapDao">
+	        					<ref bean="right_userGroupMapDao"/>
+	        			</property>
+	        			<property name="groupRoleMapDao">
+	        					<ref bean="right_groupRoleMapDao"/>
+	        			</property>
+	        			<property name="userRoleDao">
+	        					<ref bean="right_userRoleDao"/>
+	        			</property>
+	        			<property name="userUserDao">
+	        					<ref bean="right_userUserDao"/>
+	        			</property>
+	      		</bean>
+	    	</property>
+  	</bean>
+
+    <!-- 地市管理的service -->
+    <bean id="right_userCityService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.sysmanage.service.impl.UserCityServiceImpl">
+            	<property name="userCityDao">
+	        		<ref bean="right_userCityDao"/>
+       			</property>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- 部门管理的service -->
+    <bean id="right_userCompanyService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.sysmanage.service.impl.UserCompanyServiceImpl">
+            	<property name="userDeptDao">
+	        		<ref bean="right_userDeptDao"/>
+       			</property>
+            </bean>
+        </property>
+    </bean>
+
+     <!-- 应用定义的service接口 -->
+    <bean id="right_userApplicationService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.menu.serivce.impl.UserApplicationService">
+            	<property name="userApplicationDao">
+	        		<ref bean="right_userApplicationDao" />
+            	</property>
+            </bean>
+        </property>
+    </bean>
+
+	 <!-- added by yanghui  职务管理的service实现-->
+  	 <bean id="right_dutyAdminService" parent="baseTrasactionProxy">
+	  		<property name="target">
+	    			<bean class="com.asiainfo.biframe.privilege.dutyMaintain.service.impl.DutyAdminServiceImpl">
+
+	      				<property name="userDutyDao">
+	        					<ref bean="right_userDutyDao"/>
+	        			</property>
+
+	        			<property name="userRoleDao">
+	        					<ref bean="right_userRoleDao"/>
+	        			</property>
+
+	        			<property name="userRoleMapDao">
+	        					<ref bean="right_userRoleMapDao"/>
+	        			</property>
+	        			<property name="userAdminService">
+	        					<ref bean="right_userAdminService"/>
+	        			</property>
+
+	      		</bean>
+	    	</property>
+  	</bean>
+	<!-- added by yanghui  用户操作定义的service实现-->
+	<bean id="right_UserOperationDefineService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.sysmanage.service.impl.UserOperationDefineServiceImpl">
+            	<property name="userOperationDefineDao">
+	        		<ref bean="right_userOperationDefineDao" />
+            	</property>
+
+            </bean>
+        </property>
+    </bean>
+
+ 	<!-- 权限子系统对外提供的查询service接口 -->
+ 	<bean id="right_privilegeService" class="com.asiainfo.biframe.privilege.sysmanage.publish.PrivilegeServiceImpl">
+            	<!--property name="userAdminService">
+	        		<ref bean="right_userAdminService"/>
+       			</property>
+            	<property name="roleAdminService">
+	        		<ref bean="right_roleAdminService"/>
+       			</property>
+       			<property name="userGroupAdminService">
+       				<ref bean="right_userGroupAdminService"/>
+       			</property>
+				<property name="sysMenuItemService">
+					<ref bean="right_sysMenuItemService"/>
+	        	</property-->
+			    
+			    <property name="userAdminService">
+	        		<ref bean="right_userAdminService"/>
+       			</property>
+            	<property name="roleAdminService">
+	        		<ref bean="right_roleAdminService"/>
+       			</property>
+       			<property name="userGroupAdminService">
+       				<ref bean="right_userGroupAdminService"/>
+       			</property>
+       			<property name="userApplicationService">
+       				<ref bean="right_userApplicationService"/>
+       			</property>
+       			<property name="userRightService">
+       				<ref bean="right_uniUserRightService"/>
+       			</property>
+       			<property name="sysMenuItemService">
+       				<ref bean="right_sysMenuItemService"/>
+       			</property>
+       			<property name="userCityService">
+			        <ref bean="right_userCityService"/>
+			    </property>
+			    
+			    <property name="userCompanyService">
+       				<ref bean="right_userCompanyService"/>
+       			</property>
+				<property name="fileDataImportService">
+       				<ref bean="right_fileDataImportService"/>
+       			</property>
+				<property name="fileExportService">
+       				<ref bean="right_fileExportService"/>
+       			</property>
+       			<property name="userTempRightService">
+       				<ref bean="right_userTempRightService"/>
+       			</property>
+       			<property name="userExtInfoService">
+       				<ref bean="right_userExtInfoService"/>
+       			</property>
+       			<property name="resourceOperationDefineService">
+       				<ref bean="right_resourceOperationDefineService"/>
+       			</property>
+    </bean>
+	<!-- yanghui add 权限子系统对外提供的增改删service接口 -->
+	<bean id="right_privilegeCUDService" parent="privilegeServiceTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.sysmanage.publish.PrivilegeCUDServiceImpl">
+            	<property name="userAdminService">
+	        		<ref bean="right_userAdminService"/>
+       			</property>
+            	<property name="roleAdminService">
+	        		<ref bean="right_roleAdminService"/>
+       			</property>
+       			<property name="userGroupAdminService">
+       				<ref bean="right_userGroupAdminService"/>
+       			</property>
+				<property name="userCompanyService">
+       				<ref bean="right_userCompanyService"/>
+       			</property>
+				<property name="fileDataImportService">
+       				<ref bean="right_fileDataImportService"/>
+       			</property>
+				<property name="fileExportService">
+       				<ref bean="right_fileExportService"/>
+       			</property>
+
+            </bean>
+        </property>
+    </bean>
+
+	<!-- yanghui add 文件导入数据的service，现在用于用户导入、用户组导入、角色导入 ，程序中自己控制事务-->
+    <bean id="right_fileDataImportService" parent="baseProxy">
+    	<property name="target">
+    		 <bean class="com.asiainfo.biframe.privilege.sysmanage.service.impl.FileDataImportServiceImpl">
+			    	<property name="userAdminService">
+			 			<ref bean="right_userAdminService"/>
+					</property>
+			    	<property name="userGroupAdminService">
+			 			<ref bean="right_userGroupAdminService"/>
+					</property>
+					<property name="roleAdminService">
+			 			<ref bean="right_roleAdminService"/>
+					</property>
+					<property name="userCityService">
+			 			<ref bean="right_userCityService"/>
+					</property>
+					<property name="dutyAdminService">
+			 			<ref bean="right_dutyAdminService"/>
+					</property>
+					<property name="sysResourceTypeService">
+			 			<ref bean="right_sysResourceTypeService"/>
+					</property>
+					<property name="userCompanyService">
+			 			<ref bean="right_userCompanyService"/>
+					</property>
+					<property name="userOperationDefineService">
+			 			<ref bean="right_UserOperationDefineService"/>
+					</property>
+				</bean>
+			</property>
+    </bean>
+
+	 <!-- 数据导出的service，现在用于权限数据导出、菜单和角色对应关系矩阵导出，程序中自己控制事务-->
+    <bean id="right_fileExportService" class="com.asiainfo.biframe.privilege.sysmanage.service.impl.FileExportServiceImpl">
+		<property name="roleAdminService">
+ 			<ref bean="right_roleAdminService"/>
+		</property>
+		<property name="sysResourceTypeService">
+			<ref bean="right_sysResourceTypeService" />
+		</property>
+
+    </bean>
+
+    <bean id="right_userTempRightService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.tempright.service.impl.UserTempRightService">
+            	<property name="userTempRightDao">
+			        <ref bean="right_userTempRightDao"/>
+		       </property>
+		       <property name="userUserDao">
+			        <ref bean="right_userUserDao"/>
+		       </property>
+            </bean>
+        </property>
+    </bean>
+
+   	 <bean id="right_firstPageSetService" parent="baseProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.sysmanage.service.impl.FirstPageSetServiceImpl">
+                <property name="firstpageDao">
+                    <ref bean="right_firstPageParamDao"/>
+                </property>
+                <property name="roleDao">
+                    <ref bean="right_userGroupDao"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="right_uniUserRightService" parent="baseProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.uniauth.service.impl.UserRightServiceImpl">
+            </bean>
+        </property>
+    </bean>
+	<!--yanghui3 begin-->
+
+	<bean id="right_sysMenuItemService" parent="baseProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.sysmanage.service.impl.SysMenuItemServiceImpl">
+            	<property name="sysMenuItemDao">
+                    <ref bean="right_sysMenuItemDao"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+	<!--yanghui3 end-->
+	<!--  ========================= Service Bean Definitions End =========================== -->
+
+     <bean id="userPrivilegeService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.ailk.biapp.ci.localization.sichuan.service.impl.SCUserPrivilegeService">
+			    
+
+            </bean>
+        </property>
+    </bean>
+     <bean id="SysMenuMaintainService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.menu.SysMenuMaintain">
+            </bean>
+        </property>
+    </bean>
+	 	  <!-- 菜单树查询-->
+    <bean id="rightAdmin_treeItemDao" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.TreeItemDaoImpl" >
+ 		<property name="dataSource">
+ 			<ref bean="dataSource"/>
+ 		</property>
+    </bean>
+    
+    <bean id="rightAdmin_treeItemService" class="com.asiainfo.biframe.privilege.sysmanage.service.impl.TreeItemServiceImpl" >
+		<property name="treeItemDao">
+			<ref bean="rightAdmin_treeItemDao"/>
+		</property>
+    </bean>
+     <!-- 菜单维护 -->
+    <bean id="rightAdmin_menuMangerService" class="com.asiainfo.biframe.privilege.menu.serivce.impl.MenuMangerServiceImpl" >
+    	<property name="rightService">
+    		<ref bean="right_uniUserRightService"/>
+    	</property>
+   	</bean>
+   	<!-- 菜单维护 -->
+   	
+    <!--业务参数service定义-->
+	<bean id="right_busiParametersService" class="com.asiainfo.biframe.privilege.sysmanage.service.impl.BusiParametersServiceImpl" >
+		<property name="busiParametersDao">
+			<ref bean="right_busiParametersDao"/>
+		</property>
+    </bean>
+     <!--自动登录service定义-->
+     <bean id="right_autoLoginService" class="com.asiainfo.biframe.privilege.autologin.service.impl.AutoLoginServiceImpl" >
+		<property name="autoLoginDao">
+			<ref bean="right_autoLoginDao"/>
+		</property>
+		
+		<property name="privilegeService">
+			<ref bean="right_privilegeService"/>
+		</property>
+		
+    </bean>
+     
+    <bean id="right_resourceRightDao_base" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+    </bean>
+    <bean id="right_resourceRightDao_userOperation" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl_UserOperationDefine">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+    </bean>
+    <bean id="right_resourceRightDao_plat4" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl_Plat4_Operation">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+    </bean>
+    <bean id="right_resourceRightDao_JNDI" class="com.asiainfo.biframe.privilege.sysmanage.dao.impl.ResourceRightDaoJdbcImpl_JNDI">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+    </bean>
+    
+     <bean id="rightAdmin_systemFunctionDefineDao" class="com.asiainfo.biframe.privilege.functionright.dao.impl.SystemFunctionDefineDao">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+    <bean id="rightAdmin_systemFunctionActionDao" class="com.asiainfo.biframe.privilege.functionright.dao.impl.SystemFunctionActionDao">
+   		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+   </bean>
+
+     <!-- 角色分类管理-->
+    <bean id="rightAdmin_userRoleClassifyDao" class="com.asiainfo.biframe.privilege.roleclassifymanage.dao.impl.UserRoleClassifyDaoImpl">
+    	<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    <bean id="rightAdmin_roleClassifyManageService" class="com.asiainfo.biframe.privilege.roleclassifymanage.service.impl.RoleClassifyManageServiceImpl" >
+           	<property name="userRoleClassifyDao">
+           		<ref bean="rightAdmin_userRoleClassifyDao"/>
+           	</property>
+    </bean>
+    <!-- 系统功能定义的service接口 -->
+    <bean id="rightAdmin_systemFunctionDefineService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.functionright.service.impl.SystemFunctionDefineService">
+            	<property name="systemFunctionDefineDao">
+	        		<ref bean="rightAdmin_systemFunctionDefineDao" />
+            	</property>
+            	<property name="sysResourceTypeService">
+	        		<ref bean="right_sysResourceTypeService" />
+            	</property>
+            	<property name="systemFunctionActionDao">
+	        		<ref bean="rightAdmin_systemFunctionActionDao" />
+            	</property>
+            	<property name="systemFunctionActionService">
+	        		<ref bean="rightAdmin_systemFunctionActionService" />
+            	</property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="rightAdmin_systemFunctionActionService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.functionright.service.impl.SystemFunctionActionService">
+            	<property name="systemFunctionActionDao">
+	        		<ref bean="rightAdmin_systemFunctionActionDao" />
+            	</property>
+            	<property name="sysResourceTypeService">
+	        		<ref bean="right_sysResourceTypeService" />
+            	</property>
+            	<property name="roleAdminService">
+	        		<ref bean="right_roleAdminService" />
+            	</property>
+            </bean>
+        </property>
+    </bean>
+    <!-- 系统功能权限的service接口 -->
+    
+    <!-- 第三放系统用户的service接口 -->
+    <bean id="rightAdmin_userSysMapService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.othersysmanage.service.impl.UserSysMapService">
+            	<property name="userSysMapDao">
+	        		<ref bean="rightAdmin_userSysMapDao" />
+            	</property>
+            </bean>
+        </property>
+    </bean>
+    <!-- 第三放系统用户的service接口 -->
+    
+    <!-- 临时权限申请的service接口 -->
+     <bean id="rightAdmin_userRightApplyService" parent="baseTrasactionProxy">
+        <property name="target">
+            <bean class="com.asiainfo.biframe.privilege.tempright.service.impl.UserRightApplyService">
+            	<property name="userRightApplyDao">
+			        <ref bean="rightAdmin_userRightApplyDao"/>
+		       </property>
+		       <property name="userTempRightService">
+			        <ref bean="right_userTempRightService"/>
+		       </property>
+		       <property name="userAdminService">
+			        <ref bean="right_userAdminService"/>
+		       </property>
+            </bean>
+        </property>
+    </bean>
+   <!-- 临时权限申请的service接口 -->
+   
+   <!-- 访问权限查询接口-->
+    <bean id="rightAdmin_systemSingleAppRightService" class="com.asiainfo.biframe.privilege.userHitRank.service.impl.SystemSingleAppRightService" >
+           	<property name="systemSingleAppRightDao">
+           		<ref bean="rightAdmin_systemSingleAppRightDao"/>
+           	</property>
+    </bean>
+    <!-- 访问权限查询接口-->
+    
+    <!-- 公司层次 -->
+    <bean id="rightAdmin_deptMangerService" class="com.asiainfo.biframe.privilege.sysmanage.service.impl.DeptMangerServiceImpl" >
+   		<property name="deptMangerDao">
+   			<ref bean="rightAdmin_deptMangerDao"/>
+   		</property>
+   	</bean> 
+   <!-- 公司层次 -->
+   
+   <!-- 特殊资源 -->
+   <bean id="rightAdmin_specialRightService" parent="baseTrasactionProxy">
+	  		<property name="target">
+	    			<bean class="com.asiainfo.biframe.privilege.sysmanage.service.impl.SpecialRightServiceImpl">
+	      				<property name="userRoleDao">
+	        					<ref bean="right_userRoleDao"/>
+	        			</property>
+	        			<property name="sysmanageJdbcDao">
+	        					<ref bean="right_sysmanageJdbcDao"/>
+	        			</property>
+
+	        			<property name="roleAdminService">
+	        					<ref bean="right_roleAdminService"/>
+	        			</property>
+	        			<property name="userGroupAdminService">
+	        					<ref bean="right_userGroupAdminService"/>
+	        			</property>
+	      		</bean>
+	    	</property>
+  	</bean>
+  	<!-- 特殊资源 -->
+  	
+  	<!-- 资源操作定义的service接口 -->
+    <bean id="right_resourceOperationDefineService" class="com.asiainfo.biframe.privilege.sysmanage.service.impl.ResourceOperationDefineService"> 
+    	<property name="resourceOperationDefineDao">
+      		<ref bean="right_resourceOperationDefineDao" />
+        </property>
+    </bean>
+</beans>

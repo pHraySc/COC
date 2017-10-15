@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-4-3 11:39:20 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.ailk.biapp.ci.entity.DimCustomUseType" table="DIM_CUSTOM_USE_TYPE">
+        <id name="useTypeId" type="java.lang.Integer">
+            <column name="USE_TYPE_ID" />
+            <generator class="native" />
+        </id>
+        <property name="useTypeName" type="java.lang.String">
+            <column name="USE_TYPE_NAME" length="128" />
+        </property>
+        <property name="useTypeDesc" type="java.lang.String">
+            <column name="USE_TYPE_DESC" length="256" />
+        </property>
+    </class>
+</hibernate-mapping>

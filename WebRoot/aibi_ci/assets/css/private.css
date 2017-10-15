@@ -1,0 +1,61 @@
+/*private for demo*/
+/**@import "tablesorter.css";**/
+.maininner{padding:10px;}
+.searchpanel{height:110px;background:url(../images/search-bg.jpg) repeat-x 0 0;}
+.searchpanel .title{width:130px;float:left;text-align:right;line-height:100px;font-size:16px;padding-right:10px;font-weight:bold;height:110px;}
+.searchpanel .search{float:left;text-align:left;background:url(../images/sbtn-bg.jpg) no-repeat left center;height:100px;}
+.searchpanel .search .hotword{position:relative;top:44px;color:#353535;min-width:500px;}
+.searchpanel .search .sea{text-align:left;border:0px;height:28px;position:relative;left:5px;top:35px;top:25px\9;*top:35px;width:365px;font-size:16px;color:#ccc;outline:none;line-height:28px;}
+.searchpanel .search .sbm_go{width:36px;height:31px;border:0px;position:relative;top:35px;left:6px;background:url(../images/sb_go.jpg) no-repeat 0 0;cursor:pointer;}
+.searchpanel .search input.hasfocus{color:#000;}
+.searchpanel .searchmore{float:right;text-align:right;line-height:100px;}
+
+.resultpanel{}
+.result .flow{width:33%;border:1px solid #CED2DA;float:left;height:42px;padding:38px 0;}
+.result .flow span{padding-left:104px;padding-right:20px;font-size:14px;color:#272626;line-height:20px;display:block;}
+.result .f1{background:#f7f7f7 url(../images/f1.jpg) no-repeat left center;}
+.result .f2{background:#f7f7f7 url(../images/f2.jpg) no-repeat left center;}
+.result .f3{background:#f7f7f7 url(../images/f3.jpg) no-repeat left center;}
+.prompt{text-align:right;padding-right:5px;padding-top:10px;}
+.prompt .btn{border:1px solid #89AEE8;background:#D2DCF0;color:#2F67B4;display:inline-block;*zoom:1;padding:5px 10px;}
+.prompt .btn:hover{background:#3E3EB8;color:#fff;border:1px solid #3E3EB8;text-decoration:none;}
+
+.tb{margin:0px;margin-top:5px;border:1px solid #BDB8B8;}
+/*.tb .total{min-height:20px;_height:20px;background:url(../images/total-bg.jpg) repeat-x left bottom;font-size:12px;line-height:35px;padding:0 20px;border-bottom:1px solid #BDB8B8;}*/
+.tb .total{min-height:20px;_height:20px;background:#f8f4e2;font-size:12px;line-height:35px;padding:0 10px;border-bottom:1px solid #BDB8B8;}
+.tb .total b{padding:0 4px;color:#F2583A;}
+.tb .total i{font-style: normal;}
+.tb .total .interval{padding:0 20px;color:#BDB8B8;}
+.tb .tablesorter thead th{background:#e6e6e6 url(../images/th-bg.jpg) right top repeat-x;padding:0;}
+table.tablesorter tbody .backcolr{background:#A4B9D8;}
+table.tablesorter thead th.headerSortUp{background-image:url(../images/asc.gif); color:#3462ad;}
+table.tablesorter thead th.headerSortDown{background-image:url(../images/desc.gif); color:#349e20;}
+table.tablesorter thead th.headerSortUp-hover{background-image:url(../images/asc-hover.gif); color:#3462ad;}
+table.tablesorter thead th.headerSortDown-hover{background-image:url(../images/desc-hover.gif); color:#349e20;}
+.pager {height:36px;line-height:36px;border-top:1px solid #BDB8B8;*padding-top:5px;*height:26px;*line-height:26px;}
+.icon{width:25px;height:20px;display:inline-block;*display:inline;vertical-align:middle;line-height:20px;overflow:hidden;*zoom:1;background:url(../images/pager.gif) 0 0 no-repeat transparent;}
+.pp{margin-right:10px;line-height:36px;_height:26px;}
+.first:link .icon{background-position:-33px 0;}
+.prev:link .icon{background-position:0 0;}
+.next:link .icon{background-position:-98px 0;}
+.last:link .icon{background-position:-65px 0;}
+
+.first:visited .icon{background-position:-33px 0;}
+.prev:visited .icon{background-position:0 0;}
+.next:visited .icon{background-position:-98px 0;}
+.last:visited .icon{background-position:-65px 0;}
+
+.first:hover .icon{background-position:-173px 0;}
+.prev:hover .icon{background-position:-140px 0;}
+.next:hover .icon{background-position:-238px 0;}
+.last:hover .icon{background-position:-205px 0;}
+
+.first:active .icon{background-position:-313px 0;}
+.prev:active .icon{background-position:-280px 0;}
+.next:active .icon{background-position:-379px 0;}
+.last:active .icon{background-position:-346px 0;}
+
+.bread{background:url(../images/bread.gif) no-repeat 0 0;font-size:12px;text-decoration:none;color:#1e67c1;display:inline-block;zoom:1;height:26px;padding:0 0 0 30px;line-height:26px;margin-right:10px;}
+.bread span{background:url(../images/bread.gif) no-repeat right -28px;display:inline-block;zoom:1;line-height:26px;height:26px;padding:0 20px 0 0;}
+.bread:hover{text-decoration:none;color:#ff7506;}
+.breadcurrent{font-size:14px;font-weight:bold;color:#000;}

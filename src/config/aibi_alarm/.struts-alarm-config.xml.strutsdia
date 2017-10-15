@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="StrutsProcess">
+ <PROCESS-ITEM ID="#alarmTypeAction" NAME="action0"
+  PATH="/alarmTypeAction" SHAPE="32,17,0,0" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="alarmTypeView" NAME="forward0"
+   PATH="/aibi_alarm/alarmType/alarmsTypeTree.jsp" TARGET="page7"
+   TITLE="alarmTypeView" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="alarmTypeEdit" NAME="forward1"
+   PATH="/aibi_alarm/alarmType/alarmTypeTree.jsp" TARGET="page0"
+   TITLE="alarmTypeEdit" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="modAlarmType" NAME="forward2"
+   PATH="/aibi_alarm/alarmType/alarmTypeMod.jsp" TARGET="page1"
+   TITLE="modAlarmType" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="alarmHelp" NAME="forward3"
+   PATH="/aibi_alarm/alarmType/alarmHelp.jsp" TARGET="page11"
+   TITLE="alarmHelp" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#alarmGenAction" NAME="action1"
+  PATH="/alarmGenAction" SHAPE="32,417,0,0" TITLE="busiForm"
+  TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="showAlarmInfo" NAME="forward0"
+   PATH="/aibi_alarm/example/alarmGenerate/alarmResult.jsp"
+   TARGET="page3" TITLE="showAlarmInfo" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="editBusinessInfo" NAME="forward1"
+   PATH="/aibi_alarm/example/alarmGenerate/inputBusinessInfo.jsp"
+   TARGET="page4" TITLE="editBusinessInfo" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM ID="#thresAction" NAME="action2" PATH="/thresAction"
+  SHAPE="32,673,0,0" TITLE="thresForm" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="toThreshold" NAME="forward0"
+   PATH="/aibi_alarm/example/alarmThreshold/alarmThresholdBasic.jsp"
+   TARGET="page5" TITLE="toThreshold" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="listThreshold" NAME="forward1"
+   PATH="/aibi_alarm/example/alarmThreshold/alarmThresholdList.jsp"
+   TARGET="page6" TITLE="listThreshold" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page3"
+  PATH="/aibi_alarm/example/alarmGenerate/alarmResult.jsp"
+  SHAPE="256,434,0,0" SUBTYPE="jsp" TITLE="alarmResult.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page4"
+  PATH="/aibi_alarm/example/alarmGenerate/inputBusinessInfo.jsp"
+  SHAPE="256,578,0,0" SUBTYPE="jsp" TITLE="inputBusinessInfo.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page5"
+  PATH="/aibi_alarm/example/alarmThreshold/alarmThresholdBasic.jsp"
+  SHAPE="256,690,0,0" SUBTYPE="jsp" TITLE="alarmThresholdBasic.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page6"
+  PATH="/aibi_alarm/example/alarmThreshold/alarmThresholdList.jsp"
+  SHAPE="256,834,0,0" SUBTYPE="jsp" TITLE="alarmThresholdList.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page7"
+  PATH="/aibi_alarm/alarmType/alarmsTypeTree.jsp" SHAPE="240,129,0,0"
+  SUBTYPE="jsp" TITLE="alarmsTypeTree.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page0"
+  PATH="/aibi_alarm/alarmType/alarmTypeTree.jsp" SHAPE="240,17,0,0"
+  SUBTYPE="jsp" TITLE="alarmTypeTree.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page1"
+  PATH="/aibi_alarm/alarmType/alarmTypeMod.jsp" SHAPE="448,17,0,0"
+  SUBTYPE="jsp" TITLE="alarmTypeMod.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#alarmLevelAction" NAME="action3"
+  PATH="/alarmLevelAction" SHAPE="32,1041,0,0" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="alarmLevelEdit" NAME="forward0"
+   PATH="/aibi_alarm/alarmLevel/alarmLevelModify.jsp" TARGET="page2"
+   TITLE="alarmLevelEdit" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page2"
+  PATH="/aibi_alarm/alarmLevel/alarmLevelModify.jsp"
+  SHAPE="240,1058,0,0" SUBTYPE="jsp" TITLE="alarmLevelModify.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM ID="#alarmRecordAction" NAME="action4"
+  PATH="/alarmRecordAction" SHAPE="32,1153,0,0" TYPE="action" model-entity="StrutsProcessItem">
+  <PROCESS-ITEM-OUTPUT ID="search" NAME="forward0"
+   PATH="/aibi_alarm/alarmRecord/alarmRecordSearchList.jsp"
+   TARGET="page8" TITLE="search" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="reply" NAME="forward1"
+   PATH="/aibi_alarm/alarmRecord/alarmRecordReply.jsp" TARGET="page9"
+   TITLE="reply" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+  <PROCESS-ITEM-OUTPUT ID="recordSearch" NAME="forward2"
+   PATH="/aibi_alarm/alarmRecord/alarmRecordSearchList.jsp"
+   TARGET="page8" TITLE="recordSearch" TYPE="forward" model-entity="StrutsProcessItemOutput"/>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="page8"
+  PATH="/aibi_alarm/alarmRecord/alarmRecordSearchList.jsp"
+  SHAPE="272,1170,0,0" SUBTYPE="jsp" TITLE="alarmRecordSearchList.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page9"
+  PATH="/aibi_alarm/alarmRecord/alarmRecordReply.jsp"
+  SHAPE="272,1346,0,0" SUBTYPE="jsp" TITLE="alarmRecordReply.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page10"
+  PATH="/aibi_alarm/alarmRecord/alarmRecordSearch.jsp"
+  SHAPE="272,1458,0,0" SUBTYPE="jsp" TITLE="alarmRecordSearch.jsp"
+  TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page11" PATH="/aibi_alarm/alarmType/alarmHelp.jsp"
+  SHAPE="240,241,0,0" SUBTYPE="jsp" TITLE="alarmHelp.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+ <PROCESS-ITEM NAME="page12"
+  PATH="/aibi_alarm/alarmType/alarmType_blank.jsp" SHAPE="448,129,0,0"
+  SUBTYPE="jsp" TITLE="alarmType_blank.jsp" TYPE="page" model-entity="StrutsProcessItem"/>
+</PROCESS>

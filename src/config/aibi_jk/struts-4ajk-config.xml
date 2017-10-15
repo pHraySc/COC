@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+    
+    <!-- ========== Data Source Configuration =============================== -->
+    <data-sources />
+    
+    <!-- ========== Form Bean Definitions ================================== -->
+    <form-beans>
+    	<form-bean name="fourAJKForm" type="com.asiainfo.biframe.privilege.foura.jk.action.FourAJKForm"/>
+    </form-beans>
+    
+    <!-- ========== Action Mapping Definitions =============================== -->
+    <action-mappings>
+	<action path="/fourAJKAction" name="fourAJKForm" type="com.asiainfo.biframe.privilege.foura.jk.action.FourAJKAction"
+	 scope="request" parameter="actionType">
+    </action>
+    </action-mappings>
+    <!-- ========== Controller Configuration ================================ -->
+    <controller />
+    
+    <!-- ========== Message Resources Definitions ============================ -->
+    
+    <!-- ========== Plug Ins Configuration ================================= -->    
+</struts-config>
